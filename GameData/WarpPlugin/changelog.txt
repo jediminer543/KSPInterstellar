@@ -22,6 +22,7 @@ Version Experimental
 - Microwave recievers will now attempt to throttle reception to equal demand. (experimental)
 - Plasma engines now have the capability to automaticely toggle between quantum vacuum plasma and normal fuel. (experimental)
 - Added "radial" warp drive models.
+- Fixed thermal reciever power reception throttling. (experimental)
 
 Version 0.11.0
 -Toolbar Integration

@@ -283,29 +283,29 @@ namespace FNPlugin {
                 
                 // dynamicly configure power reception
                 List<Part> parts = vessel.parts;  // lets find the maxPower in those part configs for each engine
-                float eEnginePower = 0; //we'll save total electric engine power here
-                foreach (Part part in parts)
+                double eEnginePower = 0; //we'll save total electric engine power here
+                double tEnginePower = 0; // and the thermal engine power here
+
+                var eEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ElectricEngineController>().ToList(); // Lets find the electric engines
+                foreach (ElectricEngineController engine in eEngines)
                 {
-                    foreach (PartModule partModules in part.Modules) //search part modules
+                    if (engine.isEnabled) // if they are enables
                     {
-                        var eEngine = partModules as ElectricEngineController;
- 
-                        if (eEngine != null) // is it an electric engine?
-                        {
-                            var engine = eEngine.part.Modules["ModuleEngines"] as ModuleEngines;
-
-                            if (engine.isOperational) // is it activated?
-                            {
-                                // add each engine's power that we've found
-                                eEnginePower += eEngine.maxPower; 
-                            }
-                        }
+                        eEnginePower += engine.maxPower; // add thier demand together
                     }
-
                 }
 
+                var tEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<FNNozzleController>().ToList(); // find the thermal nozzles
+                foreach (FNNozzleController engine in tEngines)
+                {
+                    if (engine.IsEnabled) // if they are enabled
+                    {
+                        tEnginePower = total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency; // max the power, since there is no power cap, and waste heat isn't an issue.
+                    }
+                }                
+
                 minDemand = getCurrentResourceDemand("Megajoules") + getCurrentResourceDemand("ElectricCharge");// fallback for minimum demand
-                maxDemand = eEnginePower * FlightGlobals.ActiveVessel.ctrlState.mainThrottle; // save the maximum demand scaled to the current throttle
+                maxDemand = Math.Max(eEnginePower, tEnginePower) * FlightGlobals.ActiveVessel.ctrlState.mainThrottle; // save the maximum demand scaled to the current throttle
                                 
                 //if throttled up, recieve the maximum of demand up to the maximum available power (ie. atmo, dist, angle, total supply)
                 if (FlightGlobals.ActiveVessel.ctrlState.mainThrottle > 0.0f) powerInputMegajoules = Math.Min(maxDemand, total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
