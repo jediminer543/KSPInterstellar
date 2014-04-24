@@ -38,7 +38,7 @@ namespace FNPlugin {
         public void RefuelUranium() {
             List<PartResource> uf6_resources = new List<PartResource>();
             part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, uf6_resources);
-            double spare_capacity_for_uf6 = uf4.maxAmount - actinides.amount;
+            double spare_capacity_for_uf6 = Math.Max(uf4.maxAmount - uf4.amount - actinides.amount, 0);
             foreach (PartResource uf6_resource in uf6_resources) {
                 if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
                     double uf6_available = uf6_resource.amount;
@@ -54,7 +54,7 @@ namespace FNPlugin {
         public void RefuelThorium() {
             List<PartResource> th4_resources = new List<PartResource>();
             part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, th4_resources);
-            double spare_capacity_for_thf4 = thf4.maxAmount - actinides.amount;
+            double spare_capacity_for_thf4 = Math.Max(thf4.maxAmount - thf4.amount - actinides.amount, 0);
             foreach (PartResource thf4_resource in th4_resources) {
                 if (thf4_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
                     double thf4_available = thf4_resource.amount;

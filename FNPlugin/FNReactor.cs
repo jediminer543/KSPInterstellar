@@ -254,7 +254,7 @@ namespace FNPlugin {
                 double time_diff = now - last_active_time;
                 double resource_to_take = consumeReactorResource(resourceRate*time_diff*ongoing_consumption_rate);
                 if (breedtritium) {
-                    tritium_rate = (float)(ThermalPower / 1000.0f / GameConstants.tritiumBreedRate);
+                    tritium_rate = (float)(ThermalPower / 1000.0f / GameConstants.tritiumBreedRate) * (1 - chargedParticleRatio);
                     List<PartResource> lithium_resources = new List<PartResource>();
                     part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Lithium").id, lithium_resources);
                     double lithium_current_amount = 0;
@@ -486,10 +486,14 @@ namespace FNPlugin {
                 // total power
                 total_power_ratio = total_power / ThermalPower / TimeWarp.fixedDeltaTime;
                 ongoing_consumption_rate = (float)total_power_ratio;
-                double return_ratio = 1 - total_power_ratio;
+                double used_power_ratio = 0;
+                if (power_to_supply > 0) {
+                    used_power_ratio = total_power / power_to_supply;
+                }
+                double return_ratio = 1 - used_power_ratio;
                 double resource_returned = returnReactorResource(resource_provided * return_ratio);
-                powerPcnt = (float)(resource_ratio * 100.0 * total_power_ratio);
-                tritium_rate = (float)(thermal_power_received / TimeWarp.fixedDeltaTime / 1000.0f / GameConstants.tritiumBreedRate)*(1-chargedParticleRatio);
+                powerPcnt = (float)(100.0 * total_power_ratio);
+                tritium_rate = (float)(total_power / TimeWarp.fixedDeltaTime / 1000.0f / GameConstants.tritiumBreedRate) * (1 - chargedParticleRatio);
                 if (breedtritium) {
                     double lith_rate = tritium_rate * TimeWarp.fixedDeltaTime;
                     //double lith_used = part.RequestResource("Lithium", lith_rate);
