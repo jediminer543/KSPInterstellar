@@ -356,9 +356,9 @@ namespace FNPlugin
                 maxDemand = Math.Max(eEnginePower, tEnginePower) * FlightGlobals.ActiveVessel.ctrlState.mainThrottle; // save the maximum demand scaled to the current throttle
 
                 //if throttled up, recieve the maximum of demand up to the maximum available power (ie. atmo, dist, angle, total supply)
-                if (FlightGlobals.ActiveVessel.ctrlState.mainThrottle > 0.0f) powerInputMegajoules = Math.Min(maxDemand, total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
+                if (FlightGlobals.ActiveVessel.ctrlState.mainThrottle > 0.0f) powerInputMegajoules = Math.Min(maxDemand + getSpareResourceCapacity("Megajoules"), total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
                 // else only recieve the minimum demand (just enough to keep the lights running) again, if enough available power
-                else powerInputMegajoules = Math.Min(minDemand, total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
+                else powerInputMegajoules = Math.Min(minDemand + getSpareResourceCapacity("Megajoules"), total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
 
                 powerInput = powerInputMegajoules * 1000.0f * receiptPower / 100.0f;
 
