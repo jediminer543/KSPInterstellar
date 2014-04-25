@@ -1,28 +1,31 @@
-
-// slashes indicate changes that were rolled back when merging with the official version and I haven't yet reapplied them.
-
 Version Experimental
 - Fixed data collection on magnetometer.
 - Added more details to generator, reactor and radiator modules.
 - Added atmospheric intake functionality to atmospheric scoops.
 - Charging is now disabled by default on the alcubierre drives.
 - Added 1000 EC to computer core, and increased torque to 5/5/5.
-- //Added a more detailed tooltip description for the computer core.
-- //Added details about power transmission to array and reciever to tooltip descriptions.
-- //Added details about generator attachment and modes to tooltip descriptions.
-- //Added detail to the GC/MS tooltip to indicate that it is also a science experiment.
-- //Added details to the GRS description to indicate that it is useful for detecting concentrations of uranium and thorium.
-- //Added a more detailed description of the science labs capabilities.
-- //Added a clarification of the crygenic helium tank, and its use with the IR telescope.
-- //Added details about the magnetometer is also a science experiment	to the tooltip desciption.
-- //Added details to the helium-3 container to clarify that it does not store helium, and is used as a reator fuel.
-- //Added tooltip to antimatter containers to indicate maximum capacity.
+- Added a more detailed tooltip description for the computer core.
+- Added details about power transmission to array and reciever to tooltip descriptions.
+- Added details about generator attachment and modes to tooltip descriptions.
+- Added detail to the GC/MS tooltip to indicate that it is also a science experiment.
+- Added details to the GRS description to indicate that it is useful for detecting concentrations of uranium and thorium.
+- Added a more detailed description of the science labs capabilities.
+- Added a clarification of the crygenic helium tank, and its use with the IR telescope.
+- Added details about the magnetometer is also a science experiment	to the tooltip desciption.
+- Added details to the helium-3 container to clarify that it does not store helium, and is used as a reator fuel.
+- Added tooltip to antimatter containers to indicate maximum capacity.
 - The UN tank now uses the correct model.
 - Charging is now disabled by default for antimatter containers.
 - Microwave recievers will now attempt to throttle reception to equal demand. (experimental)
 - Plasma engines now have the capability to automaticely toggle between quantum vacuum plasma and normal fuel. (experimental)
 - Added "radial" warp drive models.
 - Fixed thermal reciever power reception throttling. (experimental)
+- Fixed improper power calculation for AM reactors. (code: ArtForz)
+- Fixed improper fuel/waste transfer on nuclear reactors. (code: ArtForz)
+- Fixed trittium breed rate whne using unloaded lithium. (code: ArtForz)
+- Added detail to IR telescope description to indicate it's requirements.
+- Corrected many node sizes in part configs. (feedback: arcfurnace)
+- Limited visibility of toolbar icons to thier appropriate mode. (code: blizzy78)
 
 Version 0.11.0
 -Toolbar Integration
