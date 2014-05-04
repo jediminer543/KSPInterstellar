@@ -26,6 +26,9 @@ Version Experimental
 - Added detail to IR telescope description to indicate it's requirements.
 - Corrected many node sizes in part configs. (feedback: arcfurnace)
 - Limited visibility of toolbar icons to thier appropriate mode. (code: blizzy78)
+- Corrected node sizes for thermal recievers.
+- Corrected resource name in particle fission reactor configs.
+- Corrected	tech requirements for warp drive configs.
 
 Version 0.11.0
 -Toolbar Integration
