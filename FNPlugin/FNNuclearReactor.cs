@@ -37,7 +37,7 @@ namespace FNPlugin {
         [KSPEvent(guiName = "Refuel UF4", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
         public void RefuelUranium() {
             List<PartResource> uf6_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, uf6_resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, PartResourceLibrary.Instance.GetDefinition("UF4").resourceFlowMode, uf6_resources);
             double spare_capacity_for_uf6 = Math.Max(uf4.maxAmount - uf4.amount - actinides.amount, 0);
             foreach (PartResource uf6_resource in uf6_resources) {
                 if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
@@ -53,7 +53,7 @@ namespace FNPlugin {
         [KSPEvent(guiName = "Refuel ThF4", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
         public void RefuelThorium() {
             List<PartResource> th4_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, th4_resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, PartResourceLibrary.Instance.GetDefinition("ThF4").resourceFlowMode, th4_resources);
             double spare_capacity_for_thf4 = Math.Max(thf4.maxAmount - thf4.amount - actinides.amount, 0);
             foreach (PartResource thf4_resource in th4_resources) {
                 if (thf4_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
@@ -245,7 +245,7 @@ namespace FNPlugin {
 
         protected void defuelThorium() {
             List<PartResource> swap_resource_list = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, swap_resource_list);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, PartResourceLibrary.Instance.GetDefinition("ThF4").resourceFlowMode, swap_resource_list);
             foreach (PartResource thf4_resource in swap_resource_list) {
                 if (thf4_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
                     double spare_capacity_for_thf4 = thf4_resource.maxAmount - thf4_resource.amount;
@@ -258,7 +258,7 @@ namespace FNPlugin {
 
         protected void defuelUranium() {
             List<PartResource> swap_resource_list = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, swap_resource_list);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, PartResourceLibrary.Instance.GetDefinition("UF4").resourceFlowMode, swap_resource_list);
             foreach (PartResource uf6_resource in swap_resource_list) {
                 if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
                     double spare_capacity_for_uf6 = uf6_resource.maxAmount - uf6_resource.amount;

@@ -202,7 +202,7 @@ namespace FNPlugin{
 			float maxpropellant = 0;
 
 			List<PartResource> partresources = new List<PartResource>();
-			part.GetConnectedResources(myAttachedEngine.propellants[0].id, partresources);
+            part.GetConnectedResources(myAttachedEngine.propellants[0].id, PartResourceLibrary.Instance.GetDefinition(myAttachedEngine.propellants[0].name).resourceFlowMode, partresources);
 
 			foreach (PartResource partresource in partresources) {
 				currentpropellant += (float) partresource.amount;
@@ -280,7 +280,7 @@ namespace FNPlugin{
                 curEngine_propellants_list = myAttachedEngine.propellants;
                 foreach (Propellant curEngine_propellant in curEngine_propellants_list) {
                     List<PartResource> partresources = new List<PartResource>();
-                    part.GetConnectedResources(curEngine_propellant.id, partresources);
+                    part.GetConnectedResources(curEngine_propellant.id, PartResourceLibrary.Instance.GetDefinition(curEngine_propellant.name).resourceFlowMode, partresources);
 
                     if (partresources.Count == 0 || !PartResourceLibrary.Instance.resourceDefinitions.Contains(list_of_propellants[0].name)) {
                         next_propellant = true;
@@ -562,7 +562,7 @@ namespace FNPlugin{
 				}
 
 				List<PartResource> partresources = new List<PartResource> ();
-				vess.rootPart.GetConnectedResources (PartResourceLibrary.Instance.GetDefinition (resourcename).id, partresources);
+                vess.rootPart.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition(resourcename).id, PartResourceLibrary.Instance.GetDefinition(resourcename).resourceFlowMode, partresources);
 				double currentintakeatm = 0;
 				foreach (PartResource partresource in partresources) {
 					currentintakeatm += partresource.amount;

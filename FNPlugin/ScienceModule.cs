@@ -192,7 +192,7 @@ namespace FNPlugin {
                     double time_diff = now - last_active_time;
 
                     List<PartResource> partresources = new List<PartResource>();
-                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, partresources);
+                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, PartResourceLibrary.Instance.GetDefinition("Antimatter").resourceFlowMode, partresources);
                     float currentAntimatter_missing = 0;
                     foreach (PartResource partresource in partresources) {
                         currentAntimatter_missing += (float)(partresource.maxAmount - partresource.amount);

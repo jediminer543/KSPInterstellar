@@ -20,7 +20,7 @@ namespace FNPlugin {
 
         protected override double consumeReactorResource(double resource) {
             List<PartResource> antimatter_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, antimatter_resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, PartResourceLibrary.Instance.GetDefinition("Antimatter").resourceFlowMode, antimatter_resources);
             double antimatter_provided = 0;
             foreach (PartResource antimatter_resource in antimatter_resources) {
                 double antimatter_consumed_here = Math.Min(antimatter_resource.amount, resource);
@@ -33,7 +33,7 @@ namespace FNPlugin {
 
         protected override double returnReactorResource(double resource) {
             List<PartResource> antimatter_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, antimatter_resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Antimatter").id, PartResourceLibrary.Instance.GetDefinition("Antimatter").resourceFlowMode, antimatter_resources);
             double antimatter_returned = 0;
             foreach (PartResource antimatter_resource in antimatter_resources) {
                 double antimatter_returned_here = Math.Min(antimatter_resource.maxAmount - antimatter_resource.amount, resource);

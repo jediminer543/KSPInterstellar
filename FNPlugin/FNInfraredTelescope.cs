@@ -143,7 +143,7 @@ namespace FNPlugin {
             }
 
             List<PartResource> prl = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("LqdHelium").id, prl);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("LqdHelium").id, PartResourceLibrary.Instance.GetDefinition("LqdHelium").resourceFlowMode, prl);
             double max_helium = 0;
             double cur_helium = 0;
             double helium_fraction = 0;

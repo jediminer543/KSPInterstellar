@@ -107,7 +107,7 @@ namespace FNPlugin
             }
             
             var resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, PartResourceLibrary.Instance.GetDefinition("ExoticMatter").resourceFlowMode, resources);
             float electrical_current_available = 0;
             for (int i = 0; i < resources.Count; ++i) {
                 electrical_current_available += (float)resources.ElementAt(i).amount;
@@ -453,7 +453,7 @@ namespace FNPlugin
 			float currentExoticMatter = 0;
 			float maxExoticMatter = 0;
 			List<PartResource> partresources = new List<PartResource>();
-			part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, partresources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, PartResourceLibrary.Instance.GetDefinition("ExoticMatter").resourceFlowMode, partresources);
 			foreach (PartResource partresource in partresources) {
 				currentExoticMatter += (float)partresource.amount;
 				maxExoticMatter += (float)partresource.maxAmount;
@@ -470,7 +470,7 @@ namespace FNPlugin
             if (!IsEnabled) {
                 //ChargeStatus = "";
                 var resources = new List<PartResource>();
-                part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, resources);
+                part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ExoticMatter").id, PartResourceLibrary.Instance.GetDefinition("ExoticMatter").resourceFlowMode, resources);
                 float electrical_current_available = 0;
                 for (int i = 0; i < resources.Count; ++i) {
                     electrical_current_available += (float)resources.ElementAt(i).amount;

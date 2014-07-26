@@ -132,7 +132,7 @@ namespace FNPlugin {
 			Fields["scienceRate"].guiActive = isupgraded;
 
 			List<PartResource> partresources = new List<PartResource>();
-			part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Science").id, partresources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Science").id, PartResourceLibrary.Instance.GetDefinition("Science").resourceFlowMode, partresources);
 			float currentscience = 0;
 			foreach (PartResource partresource in partresources) {
 				currentscience += (float)partresource.amount;

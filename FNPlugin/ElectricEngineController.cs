@@ -228,7 +228,7 @@ namespace FNPlugin {
             float maxpropellant = 0;
 
 			List<PartResource> partresources = new List<PartResource>();
-            part.GetConnectedResources(curEngineT.propellants[0].id, partresources);
+            part.GetConnectedResources(curEngineT.propellants[0].id, PartResourceLibrary.Instance.GetDefinition(curEngineT.propellants[0].name).resourceFlowMode, partresources);
 
             foreach (PartResource partresource in partresources) {
                 currentpropellant += (float)partresource.amount;
@@ -361,7 +361,7 @@ namespace FNPlugin {
 				float vacuum_plasma_needed = 0;
 				float vacuum_plasma_current = 0;
 				List<PartResource> vacuum_resources = new List<PartResource>();
-				part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("VacuumPlasma").id, vacuum_resources);
+                part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("VacuumPlasma").id, PartResourceLibrary.Instance.GetDefinition("VacuumPlasma").resourceFlowMode, vacuum_resources);
 
 				foreach (PartResource partresource in vacuum_resources) {
 					vacuum_plasma_needed += (float)(partresource.maxAmount-partresource.amount);
@@ -425,7 +425,7 @@ namespace FNPlugin {
             }
 
             List<PartResource> partresources = new List<PartResource>();
-            part.GetConnectedResources(curEngine.propellants[0].id, partresources);
+            part.GetConnectedResources(curEngine.propellants[0].id, PartResourceLibrary.Instance.GetDefinition(curEngine.propellants[0].name).resourceFlowMode, partresources);
 
             //if(!isupgraded) {
             if (partresources.Count == 0 && fuel_mode != 0) {

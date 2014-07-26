@@ -20,7 +20,7 @@ namespace OpenResourceSystem {
         public static double fixedRequestResource(Part part, string resourcename, double resource_amount) {
             List<PartResource> prl = new List<PartResource>();
             List<Part> parts = new List<Part>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition(resourcename).id, prl);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition(resourcename).id, PartResourceLibrary.Instance.GetDefinition(resourcename).resourceFlowMode, prl);
             ResourceFlowMode flow = PartResourceLibrary.Instance.GetDefinition(resourcename).resourceFlowMode;
             prl = prl.Where(p => p.flowState == true).ToList();
             double max_available = 0;

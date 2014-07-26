@@ -1,4 +1,4 @@
-Version Experimental
+Version Experimental -  for ksp v0.24.2
 - Fixed data collection on magnetometer.
 - Added more details to generator, reactor and radiator modules.
 - Added atmospheric intake functionality to atmospheric scoops.
@@ -28,7 +28,8 @@ Version Experimental
 - Limited visibility of toolbar icons to thier appropriate mode. (code: blizzy78)
 - Corrected node sizes for thermal recievers.
 - Corrected resource name in particle fission reactor configs.
-- Corrected	tech requirements for warp drive configs.
+- Corrected tech requirements for warp drive configs.
+- Adjusted part costs for 0.24. (ongoing adjustments)
 
 Version 0.11.0
 -Toolbar Integration

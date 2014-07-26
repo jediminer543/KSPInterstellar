@@ -256,14 +256,14 @@ namespace FNPlugin {
                 if (breedtritium) {
                     tritium_rate = (float)(ThermalPower / 1000.0f / GameConstants.tritiumBreedRate) * (1 - chargedParticleRatio);
                     List<PartResource> lithium_resources = new List<PartResource>();
-                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Lithium").id, lithium_resources);
+                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Lithium").id, PartResourceLibrary.Instance.GetDefinition("Lithium").resourceFlowMode, lithium_resources);
                     double lithium_current_amount = 0;
                     foreach (PartResource lithium_resource in lithium_resources) {
                         lithium_current_amount += lithium_resource.amount;
                     }
 
                     List<PartResource> tritium_resources = new List<PartResource>();
-                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Tritium").id, tritium_resources);
+                    part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("Tritium").id, PartResourceLibrary.Instance.GetDefinition("Tritium").resourceFlowMode, tritium_resources);
                     double tritium_missing_amount = 0;
                     foreach (PartResource tritium_resource in tritium_resources) {
                         tritium_missing_amount += tritium_resource.maxAmount - tritium_resource.amount;
