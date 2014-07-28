@@ -328,8 +328,8 @@ namespace FNPlugin {
                     if (water_consumption_rate <= 0 && electrical_power_ratio > 0) {
                         ScreenMessages.PostScreenMessage("Water is required to perform the Anthraquinone Process.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                         IsEnabled = false;
-                    } else if (antra_rate_d >= 0) { // no where to store it
-		      antra_rate_d = 0;
+                    } else if (anthra_rate_d >= 0) { // no where to store it
+		      anthra_rate_d = 0;
 		      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
 		    }
                 } else if (active_mode == 5) { // Monoprop Production
