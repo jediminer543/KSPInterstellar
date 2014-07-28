@@ -142,6 +142,13 @@ namespace OpenResourceSystem {
                     double resource_density = PartResourceLibrary.Instance.GetDefinition(resourceName).density;
                     //extraction_rate_d = -part.RequestResource(resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
                     extraction_rate_d = -ORSHelper.fixedRequestResource(part,resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
+		    if (extraction_rate_d >= 0) {
+		      if (resourceManaged) {
+			consumeFNResource(-electrical_power_provided, resourceToUse);
+		      } else {
+		        part.RequestResource(resourceToUse, -electrical_power_provided);
+		      }
+		    }
                 } else {
                     IsEnabled = false;
                 }
