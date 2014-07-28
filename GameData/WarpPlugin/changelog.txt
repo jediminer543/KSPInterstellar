@@ -30,6 +30,7 @@ Version Experimental -  for ksp v0.24.2
 - Corrected resource name in particle fission reactor configs.
 - Corrected tech requirements for warp drive configs.
 - Adjusted part costs for 0.24. (ongoing adjustments)
+- Throttle MJ consumption based upon actual extraction and refinement output. (jakkarth)
 
 Version 0.11.0
 -Toolbar Integration
