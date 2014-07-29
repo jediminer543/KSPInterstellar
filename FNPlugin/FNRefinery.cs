@@ -253,19 +253,14 @@ namespace FNPlugin {
                     double oxygen_density = PartResourceLibrary.Instance.GetDefinition(PluginHelper.oxygen_resource_name).density;
                     electrolysis_rate_d = electrical_power_provided / GameConstants.aluminiumElectrolysisEnergyPerTon / TimeWarp.fixedDeltaTime;
                     double alumina_consumption_rate = part.RequestResource("Alumina", electrolysis_rate_d * TimeWarp.fixedDeltaTime / density_alumina) / TimeWarp.fixedDeltaTime * density_alumina;
-		    if (alumina_consumption_rate <= 0) { // none to convert
+		    double mass_rate = alumina_consumption_rate;
+		    electrolysis_rate_d = part.RequestResource(PluginHelper.aluminium_resource_name, -mass_rate * TimeWarp.fixedDeltaTime / aluminium_density) * aluminium_density;
+		    electrolysis_rate_d += part.RequestResource(PluginHelper.oxygen_resource_name, -GameConstants.aluminiumElectrolysisMassRatio * mass_rate * TimeWarp.fixedDeltaTime / oxygen_density) * oxygen_density;
+		    electrolysis_rate_d = electrolysis_rate_d / TimeWarp.fixedDeltaTime;
+		    if (electrolysis_rate_d <= 0) { //no where to store it
+		      part.RequestResource("Alumina", -alumina_consumption_rate * TimeWarp.fixedDeltaTime / density_alumina); 
 		      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-		      electrolysis_rate_d = 0;
-		    } else {
-		      double mass_rate = alumina_consumption_rate;
-		      electrolysis_rate_d = part.RequestResource(PluginHelper.aluminium_resource_name, -mass_rate * TimeWarp.fixedDeltaTime / aluminium_density) * aluminium_density;
-		      electrolysis_rate_d += part.RequestResource(PluginHelper.oxygen_resource_name, -GameConstants.aluminiumElectrolysisMassRatio * mass_rate * TimeWarp.fixedDeltaTime / oxygen_density) * oxygen_density;
-		      if (electrolysis_rate_d <= 0) { //no where to store it
-			consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-			electrolysis_rate_d = 0;
-		      } else {
-			electrolysis_rate_d = electrolysis_rate_d / TimeWarp.fixedDeltaTime;
-		      }
+		      electrolysis_rate_d = electrical_power_ratio = 0;
 		    }
                 } else if (active_mode == 2) { // Sabatier ISRU
                     if (FlightGlobals.getStaticPressure(vessel.transform.position) * ORSAtmosphericResourceHandler.getAtmosphericResourceContentByDisplayName(vessel.mainBody.flightGlobalsIndex, "Carbon Dioxide") >= 0.01) {
@@ -278,17 +273,14 @@ namespace FNPlugin {
                         double density_o = PartResourceLibrary.Instance.GetDefinition(PluginHelper.oxygen_resource_name).density;
                         double density_ch4 = PartResourceLibrary.Instance.GetDefinition(PluginHelper.methane_resource_name).density;
                         double h2_rate = part.RequestResource(PluginHelper.hydrogen_resource_name, hydrogen_rate * TimeWarp.fixedDeltaTime / density_h / 2);
-                        if (h2_rate > 0) {
-                            double o_rate = part.RequestResource(PluginHelper.oxygen_resource_name, -oxygen_rate * TimeWarp.fixedDeltaTime / density_o);
-                            double methane_rate = oxygen_rate * 2;
-                            methane_rate_d = -part.RequestResource(PluginHelper.methane_resource_name, -methane_rate * TimeWarp.fixedDeltaTime / density_ch4) * density_ch4 / TimeWarp.fixedDeltaTime;
-			    if (methane_rate_d >= 0) { //no where to store it
-			      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-			      methane_rate_d = 0;
-			    }
-                        } else { //none to convert
+			double o_rate = part.RequestResource(PluginHelper.oxygen_resource_name, -oxygen_rate * TimeWarp.fixedDeltaTime / density_o);
+			double methane_rate = oxygen_rate * 2;
+			methane_rate_d = -part.RequestResource(PluginHelper.methane_resource_name, -methane_rate * TimeWarp.fixedDeltaTime / density_ch4) * density_ch4 / TimeWarp.fixedDeltaTime;
+			if (methane_rate_d <= 0) { //no where to store it
+			  part.RequestResource(PluginHelper.hydrogen_resource_name, -h2_rate);
+			  part.RequestResource(PluginHelper.oxygen_resource_name, -o_rate);
 			  consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-			  h2_rate = 0;
+			  electrical_power_ratio = electrolysis_rate_d = methane_rate_d = 0;
 			}
                     } else {
                         ScreenMessages.PostScreenMessage("Ambient C02 insufficient.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
@@ -302,20 +294,17 @@ namespace FNPlugin {
                     electrical_power_ratio = (float)(electrical_power_provided / TimeWarp.fixedDeltaTime / GameConstants.baseELCPowerConsumption);
                     electrolysis_rate_d = electrical_power_provided / GameConstants.electrolysisEnergyPerTon / TimeWarp.fixedDeltaTime;
                     double water_consumption_rate = part.RequestResource(PluginHelper.water_resource_name, electrolysis_rate_d * TimeWarp.fixedDeltaTime / density_h2o) / TimeWarp.fixedDeltaTime*density_h2o;
-		    if (water_consumption_rate <= 0) { // none to convert
-		      electrolysis_rate_d = 0;
+		    double hydrogen_rate = water_consumption_rate / (1 + GameConstants.electrolysisMassRatio);
+		    double oxygen_rate = hydrogen_rate * GameConstants.electrolysisMassRatio;
+		    double h_rate = part.RequestResource(PluginHelper.hydrogen_resource_name, -hydrogen_rate * TimeWarp.fixedDeltaTime / density_h);
+		    double o_rate = part.RequestResource(PluginHelper.oxygen_resource_name, -oxygen_rate * TimeWarp.fixedDeltaTime / density_o);
+		    electrolysis_rate_d = (h_rate + o_rate) / TimeWarp.fixedDeltaTime * density_h;
+		    if (electrolysis_rate_d <= 0) { // no where to store it
+		      part.RequestResource(PluginHelper.water_resource_name, -water_consumption_rate * TimeWarp.fixedDeltaTime / density_h2o);
+		      part.RequestResource(PluginHelper.hydrogen_resource_name, -h_rate);
+		      part.RequestResource(PluginHelper.oxygen_resource_name, -o_rate);
 		      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-		    } else {
-		      double hydrogen_rate = water_consumption_rate / (1 + GameConstants.electrolysisMassRatio);
-		      double oxygen_rate = hydrogen_rate * GameConstants.electrolysisMassRatio;
-		      electrolysis_rate_d = part.RequestResource(PluginHelper.hydrogen_resource_name, -hydrogen_rate * TimeWarp.fixedDeltaTime / density_h);
-		      electrolysis_rate_d += part.RequestResource(PluginHelper.oxygen_resource_name, -oxygen_rate * TimeWarp.fixedDeltaTime / density_o);
-		      if (electrolysis_rate_d <= 0) { // no where to store it
-			consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
-			electrolysis_rate_d = 0;
-		      } else {
-			electrolysis_rate_d = electrolysis_rate_d / TimeWarp.fixedDeltaTime * density_h;
-		      }
+		      electrolysis_rate_d = electrical_power_ratio = 0;
 		    }
                 } else if (active_mode == 4) { // Anthraquinone Process
                     double density_h2o = PartResourceLibrary.Instance.GetDefinition(PluginHelper.water_resource_name).density;
@@ -328,9 +317,10 @@ namespace FNPlugin {
                     if (water_consumption_rate <= 0 && electrical_power_ratio > 0) {
                         ScreenMessages.PostScreenMessage("Water is required to perform the Anthraquinone Process.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                         IsEnabled = false;
-                    } else if (anthra_rate_d >= 0) { // no where to store it
-		      anthra_rate_d = 0;
+                    } else if (anthra_rate_d <= 0) { // no where to store it
+		      part.RequestResource(PluginHelper.water_resource_name, -water_consumption_rate * TimeWarp.fixedDeltaTime / density_h2o);
 		      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+		      electrical_power_ratio = anthra_rate_d = 0;
 		    }
                 } else if (active_mode == 5) { // Monoprop Production
                     double density_h2o2 = PartResourceLibrary.Instance.GetDefinition(PluginHelper.hydrogen_peroxide_resource_name).density;
@@ -345,14 +335,20 @@ namespace FNPlugin {
                         double mono_prop_produciton_rate = ammonia_consumption_rate + h202_consumption_rate;
                         double density_monoprop = PartResourceLibrary.Instance.GetDefinition("MonoPropellant").density;
                         monoprop_rate_d = -ORSHelper.fixedRequestResource(part,"MonoPropellant", -mono_prop_produciton_rate * TimeWarp.fixedDeltaTime / density_monoprop)*density_monoprop/TimeWarp.fixedDeltaTime;
-			if (monoprop_rate_d >= 0) { //no where to store it
+			if (monoprop_rate_d <= 0) { //no where to store it
+			  part.RequestResource(PluginHelper.ammonia_resource_name, -ammonia_consumption_rate * TimeWarp.fixedDeltaTime / density_ammonia);
+			  part.RequestResource(PluginHelper.hydrogen_peroxide_resource_name, -h202_consumption_rate * TimeWarp.fixedDeltaTime / density_ammonia);
 			  consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			  electrical_power_ratio = monoprop_rate_d = 0;
 			} else {
 			  ORSHelper.fixedRequestResource(part, PluginHelper.water_resource_name, -mono_prop_produciton_rate * TimeWarp.fixedDeltaTime * 1.12436683185 / density_h2o);
 			}
                     } else { // none to consume
                         if (electrical_power_ratio > 0) {
-                            monoprop_rate_d = 0;
+			  part.RequestResource(PluginHelper.ammonia_resource_name, -ammonia_consumption_rate * TimeWarp.fixedDeltaTime / density_ammonia);
+			  part.RequestResource(PluginHelper.hydrogen_peroxide_resource_name, -h202_consumption_rate * TimeWarp.fixedDeltaTime / density_ammonia);
+			  consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			  electrical_power_ratio = monoprop_rate_d = 0;
                             ScreenMessages.PostScreenMessage("Ammonia and Hydrogen Peroxide are required to produce Monopropellant.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                             IsEnabled = false;
                         }
@@ -371,11 +367,18 @@ namespace FNPlugin {
                     double ammonia_rate = ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, uf4persec * TimeWarp.fixedDeltaTime);
                     if (uf4_rate > 0 && ammonia_rate > 0) {
                         uranium_nitride_rate_d = -ORSHelper.fixedRequestResource(part, "UraniumNitride", -uf4_rate * density_uf4 / 1.24597 / density_un)/TimeWarp.fixedDeltaTime*density_un;
-			if (uranium_nitride_rate_d >= 0) { // no where to store it
+			if (uranium_nitride_rate_d <= 0) { // no where to store it
+			  ORSHelper.fixedRequestResource(part, "UF4", -uf4_rate);
+			  ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, -ammonia_rate);
 			  consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			  electrical_power_ratio = uranium_nitride_rate_d = 0;
 			}
                     } else { // none to convert
                         if (electrical_power_ratio > 0) {
+			  ORSHelper.fixedRequestResource(part, "UF4", -uf4_rate);
+			  ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, -ammonia_rate);
+			  consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			  electrical_power_ratio = 0;
                             uranium_nitride_rate_d = 0;
                             ScreenMessages.PostScreenMessage("Uranium Tetraflouride and Ammonia are required to produce Uranium Nitride.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                             IsEnabled = false;
@@ -392,11 +395,15 @@ namespace FNPlugin {
                         double ammonia_rate_to_add_t = ORSHelper.fixedRequestResource(part, PluginHelper.hydrogen_resource_name, hydrogen_rate_t * TimeWarp.fixedDeltaTime / density_h) * density_h / GameConstants.ammoniaHydrogenFractionByMass/TimeWarp.fixedDeltaTime;
                         if (ammonia_rate_to_add_t > 0) {
                             ammonia_rate_d = -ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, -ammonia_rate_to_add_t * TimeWarp.fixedDeltaTime / density_ammonia) * density_ammonia/TimeWarp.fixedDeltaTime;
-			    if (ammonia_rate_d >= 0) { // no where to store it
+			    if (ammonia_rate_d <= 0) { // no where to store it
+			      ORSHelper.fixedRequestResource(part, PluginHelper.hydrogen_resource_name, -ammonia_rate_to_add_t / density_h * GameConstants.ammoniaHydrogenFractionByMass * TimeWarp.fixedDelatTime);
 			      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			      electrical_power_ratio = ammonia_rate_d = 0;
 			    }
                         } else { // none to convert
                             if (electrical_power_ratio > 0) {
+			      consumeFNResource(-electrical_power_provided, FNResourceManager.FNRESOURCE_MEGAJOULES);
+			      electrical_power_ratio = ammonia_rate_d = 0;
                                 ScreenMessages.PostScreenMessage("Hydrogen is required to perform the Haber Process.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                                 IsEnabled = false;
                             }
