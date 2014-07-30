@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
+using KSP;
 
 namespace OpenResourceSystem {
     public class ORSModuleResourceExtraction : ORSResourceSuppliableModule {
@@ -41,6 +43,7 @@ namespace OpenResourceSystem {
 
         //Internal
         double electrical_power_ratio = 0;
+        double electrical_power_ratio_avg = 0;
         double extraction_rate_d = 0;
 
         [KSPEvent(guiActive = true, guiName = "Start Action", active = true)]
@@ -87,7 +90,7 @@ namespace OpenResourceSystem {
                     } else if (vessel.Splashed) {
                         power_required = powerConsumptionOcean;
                     }
-                    powerStr = (power_required * electrical_power_ratio).ToString("0.000") + " MW / " + power_required.ToString("0.000") + " MW";
+                    powerStr = (power_required * electrical_power_ratio_avg).ToString("0.000") + " MW / " + power_required.ToString("0.000") + " MW";
                     double resource_density = PartResourceLibrary.Instance.GetDefinition(resourceName).density;
                     double resource_rate_per_hour = extraction_rate_d * resource_density * 3600;
                     resourceRate = formatMassStr(resource_rate_per_hour);
@@ -141,18 +144,21 @@ namespace OpenResourceSystem {
                 if (resource_abundance > 0) {
                     double resource_density = PartResourceLibrary.Instance.GetDefinition(resourceName).density;
                     //extraction_rate_d = -part.RequestResource(resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
-                    extraction_rate_d = -ORSHelper.fixedRequestResource(part,resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
-		    if (extraction_rate_d <= 0) {
-		      if (resourceManaged) {
-			Debug.Log("[KSP Interstellar] Refunding "+resourceToUse+", there is no more room");
-			consumeFNResource(-electrical_power_provided, resourceToUse);
-		      } else {
-		        part.RequestResource(resourceToUse, -electrical_power_provided);
-		      }
-		    }
+                    double desired = extraction_rate / resource_density;
+                    extraction_rate_d = -ORSHelper.fixedRequestResource(part,resourceName, -desired * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
+		            if (Math.Abs(extraction_rate_d - desired) > 0.0001) {
+                        electrical_power_ratio = electrical_power_ratio * (extraction_rate_d / desired);
+		                if (resourceManaged) {
+                            supplyFNResource((electrical_power_provided * (1-(extraction_rate_d / desired))), resourceToUse);
+		                } else {
+                            part.RequestResource(resourceToUse, -(electrical_power_provided * (1-(extraction_rate_d / desired))));
+		                }
+                        extraction_rate_d = 0;
+                    }
                 } else {
                     IsEnabled = false;
                 }
+                electrical_power_ratio_avg = (electrical_power_ratio_avg / 2) + (electrical_power_ratio / 2);
             }
         }
 
