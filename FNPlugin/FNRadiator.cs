@@ -285,11 +285,12 @@ namespace FNPlugin {
                     emissiveColor = new Color ((float)
                         ((getRadiatorTemperature()-shift) / (part.maxTemp-shift))/4f, 0.0f, 0.0f, 1.0f);
                 }*/
-                Debug.Log(renderer.material.shader);
-                renderer.material.SetColor ("_EmissiveColor", emissiveColor);
-                renderer.material.SetColor ("_RimColor", rimColor);
-                renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
-                Debug.Log ("Color: " + emissiveColor + " Temperature: " + getRadiatorTemperature());
+                if ( part.name.StartsWith("radiator") )
+                {
+                    renderer.material.SetColor ("_EmissiveColor", emissiveColor);
+                    renderer.material.SetColor ("_RimColor", rimColor);
+                    renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
+                }
 
             update_count++;
 		}
