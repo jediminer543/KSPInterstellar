@@ -17,7 +17,8 @@ namespace FNPlugin {
 
             foreach (AttachNode attach_node in part.attachNodes) {
                 if (attach_node.attachedPart != null) {
-                    List<ModuleResourceIntake> mres = attach_node.attachedPart.FindModulesImplementing<ModuleResourceIntake>().Where(mre => mre.resourceName == "IntakeAir").ToList();
+                    //List<ModuleResourceIntake> mres = attach_node.attachedPart.FindModulesImplementing<ModuleResourceIntake>().Where(mre => mre.resourceName == "IntakeAir").ToList();
+                    List<ModuleResourceIntake> mres = vessel.FindPartModulesImplementing<ModuleResourceIntake>();
                     if(mres.Count > 0) {
                         attachedIntake = mres.First();
                     }

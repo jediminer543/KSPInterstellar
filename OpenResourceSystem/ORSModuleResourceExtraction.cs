@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
-using KSP;
 
-namespace OpenResourceSystem {
-    public class ORSModuleResourceExtraction : ORSResourceSuppliableModule {
+namespace OpenResourceSystem
+{
+    public class ORSModuleResourceExtraction : ORSResourceSuppliableModule
+    {
         //Persistent True
         [KSPField(isPersistant = true)]
         public bool IsEnabled = false;
@@ -43,21 +43,23 @@ namespace OpenResourceSystem {
 
         //Internal
         double electrical_power_ratio = 0;
-        double electrical_power_ratio_avg = 0;
         double extraction_rate_d = 0;
 
         [KSPEvent(guiActive = true, guiName = "Start Action", active = true)]
-        public void startResourceExtraction() {
+        public void startResourceExtraction()
+        {
             IsEnabled = true;
         }
 
         [KSPEvent(guiActive = true, guiName = "Stop Action", active = true)]
-        public void stopResourceExtration() {
+        public void stopResourceExtration()
+        {
             IsEnabled = false;
         }
 
-        public override void OnStart(PartModule.StartState state) {
-            
+        public override void OnStart(PartModule.StartState state)
+        {
+
             if (state == StartState.Editor) { return; }
             Events["startResourceExtraction"].guiName = extractActionName;
             Events["stopResourceExtration"].guiName = stopActionName;
@@ -65,36 +67,48 @@ namespace OpenResourceSystem {
             part.force_activate();
         }
 
-        public override void OnUpdate() {
-            if (HighLogic.LoadedSceneIsFlight) {
+        public override void OnUpdate()
+        {
+            if (HighLogic.LoadedSceneIsFlight)
+            {
                 double resource_abundance = 0;
                 bool resource_available = false;
-                if (vessel.Landed) {
+                if (vessel.Landed)
+                {
                     ORSPlanetaryResourcePixel current_resource_abundance_pixel = ORSPlanetaryResourceMapData.getResourceAvailabilityByRealResourceName(vessel.mainBody.flightGlobalsIndex, resourceName, vessel.latitude, vessel.longitude);
                     resource_abundance = current_resource_abundance_pixel.getAmount();
-                } else if (vessel.Splashed) {
+                }
+                else if (vessel.Splashed)
+                {
                     resource_abundance = ORSOceanicResourceHandler.getOceanicResourceContent(vessel.mainBody.flightGlobalsIndex, resourceName);
                 }
-                if (resource_abundance > 0) {
+                if (resource_abundance > 0)
+                {
                     resource_available = true;
                 }
                 Events["startResourceExtraction"].active = !IsEnabled && resource_available;
                 Events["stopResourceExtration"].active = IsEnabled;
-                if (IsEnabled) {
+                if (IsEnabled)
+                {
                     Fields["powerStr"].guiActive = true;
                     Fields["resourceRate"].guiActive = true;
                     statusTitle = "Active";
                     double power_required = 0;
-                    if (vessel.Landed) {
+                    if (vessel.Landed)
+                    {
                         power_required = powerConsumptionLand;
-                    } else if (vessel.Splashed) {
+                    }
+                    else if (vessel.Splashed)
+                    {
                         power_required = powerConsumptionOcean;
                     }
-                    powerStr = (power_required * electrical_power_ratio_avg).ToString("0.000") + " MW / " + power_required.ToString("0.000") + " MW";
+                    powerStr = (power_required * electrical_power_ratio).ToString("0.000") + " MW / " + power_required.ToString("0.000") + " MW";
                     double resource_density = PartResourceLibrary.Instance.GetDefinition(resourceName).density;
                     double resource_rate_per_hour = extraction_rate_d * resource_density * 3600;
                     resourceRate = formatMassStr(resource_rate_per_hour);
-                } else {
+                }
+                else
+                {
                     Fields["powerStr"].guiActive = false;
                     Fields["resourceRate"].guiActive = false;
                     statusTitle = "Offline";
@@ -103,82 +117,107 @@ namespace OpenResourceSystem {
             }
         }
 
-        public override void OnFixedUpdate() {
-            if (IsEnabled) {
+        public override void OnFixedUpdate()
+        {
+            if (IsEnabled)
+            {
                 double power_requirements = 0;
                 double extraction_time = 0;
-                if (vessel.Landed) {
+                if (vessel.Landed)
+                {
                     power_requirements = powerConsumptionLand;
                     extraction_time = extractionRateLandPerTon;
-                } else if (vessel.Splashed) {
+                }
+                else if (vessel.Splashed)
+                {
                     power_requirements = powerConsumptionOcean;
                     extraction_time = extractionRateOceanPerTon;
-                } else {
+                }
+                else
+                {
                     IsEnabled = false;
                     return;
                 }
                 double electrical_power_provided = 0;
-                if (resourceManaged) {
+                if (resourceManaged)
+                {
                     electrical_power_provided = consumeFNResource(power_requirements * TimeWarp.fixedDeltaTime, resourceToUse);
-                } else {
+                }
+                else
+                {
                     electrical_power_provided = part.RequestResource(resourceToUse, power_requirements * TimeWarp.fixedDeltaTime);
                 }
-                if (power_requirements > 0) {
+                if (power_requirements > 0)
+                {
                     electrical_power_ratio = electrical_power_provided / TimeWarp.fixedDeltaTime / power_requirements;
-                } else {
-                    if (power_requirements < 0) {
+                }
+                else
+                {
+                    if (power_requirements < 0)
+                    {
                         IsEnabled = false;
                         return;
-                    } else {
+                    }
+                    else
+                    {
                         electrical_power_ratio = 1;
                     }
                 }
                 double resource_abundance = 0;
-                if (vessel.Landed) {
+                if (vessel.Landed)
+                {
                     ORSPlanetaryResourcePixel current_resource_abundance_pixel = ORSPlanetaryResourceMapData.getResourceAvailabilityByRealResourceName(vessel.mainBody.flightGlobalsIndex, resourceName, vessel.latitude, vessel.longitude);
                     resource_abundance = current_resource_abundance_pixel.getAmount();
-                } else if (vessel.Splashed) {
+                }
+                else if (vessel.Splashed)
+                {
                     resource_abundance = ORSOceanicResourceHandler.getOceanicResourceContent(vessel.mainBody.flightGlobalsIndex, resourceName);
                 }
                 double extraction_rate = resource_abundance * extraction_time * electrical_power_ratio;
-                if (resource_abundance > 0) {
+                if (resource_abundance > 0)
+                {
                     double resource_density = PartResourceLibrary.Instance.GetDefinition(resourceName).density;
                     //extraction_rate_d = -part.RequestResource(resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
-                    double desired = extraction_rate / resource_density;
-                    extraction_rate_d = -ORSHelper.fixedRequestResource(part,resourceName, -desired * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
-		            if (Math.Abs(extraction_rate_d - desired) > 0.0001) {
-                        electrical_power_ratio = electrical_power_ratio * (extraction_rate_d / desired);
-		                if (resourceManaged) {
-                            supplyFNResource((electrical_power_provided * (1-(extraction_rate_d / desired))), resourceToUse);
-		                } else {
-                            part.RequestResource(resourceToUse, -(electrical_power_provided * (1-(extraction_rate_d / desired))));
-		                }
-                        extraction_rate_d = 0;
-                    }
-                } else {
+                    extraction_rate_d = -ORSHelper.fixedRequestResource(part, resourceName, -extraction_rate / resource_density * TimeWarp.fixedDeltaTime) / TimeWarp.fixedDeltaTime;
+                }
+                else
+                {
                     IsEnabled = false;
                 }
-                electrical_power_ratio_avg = (electrical_power_ratio_avg / 2) + (electrical_power_ratio / 2);
             }
         }
 
-        public override string getResourceManagerDisplayName() {
+        public override string getResourceManagerDisplayName()
+        {
             return unitName;
         }
 
-        protected string formatMassStr(double mass) {
-            if (mass > 1) {
+        protected string formatMassStr(double mass)
+        {
+            if (mass > 1)
+            {
                 return mass.ToString("0.000") + " mT/hour";
-            } else {
-                if (mass > 0.001) {
-                    return (mass*1000).ToString("0.000") + " kg/hour";
-                }else{
-                    if (mass > 1e-6) {
+            }
+            else
+            {
+                if (mass > 0.001)
+                {
+                    return (mass * 1000).ToString("0.000") + " kg/hour";
+                }
+                else
+                {
+                    if (mass > 1e-6)
+                    {
                         return (mass * 1e6).ToString("0.000") + " g/hour";
-                    } else {
-                        if(mass > 1e-9) {
+                    }
+                    else
+                    {
+                        if (mass > 1e-9)
+                        {
                             return (mass * 1e9).ToString("0.000") + " mg/hour";
-                        }else{
+                        }
+                        else
+                        {
                             return (mass * 1e12).ToString("0.000") + " ug/hour";
                         }
                     }
@@ -186,12 +225,15 @@ namespace OpenResourceSystem {
             }
         }
 
-        public override string GetInfo() {
+        public override string GetInfo()
+        {
             string infostr = "Resource Produced: " + resourceName + "\n";
-            if (powerConsumptionLand >= 0) {
+            if (powerConsumptionLand >= 0)
+            {
                 infostr += "Power Consumption (Land): " + powerConsumptionLand + " MW\n";
             }
-            if (powerConsumptionOcean >= 0) {
+            if (powerConsumptionOcean >= 0)
+            {
                 infostr += "Power Consumption (Ocean): " + powerConsumptionOcean + " MW";
             }
             return infostr;
