@@ -34,7 +34,6 @@ namespace FNPlugin {
 		public string upgradedName;
 		[KSPField(isPersistant = false)]
 		public float upgradedRadiatorTemp;
-		
 
 		[KSPField(isPersistant = false, guiActive = true, guiName = "Type")]
 		public string radiatorType;
@@ -203,7 +202,6 @@ namespace FNPlugin {
 			FNRadiator.list_of_radiators.Add (this);
 
 			anim = part.FindModelAnimators (animName).FirstOrDefault ();
-			//orig_emissive_colour = part.renderer.material.GetTexture (emissive_property_name);
 			if (anim != null) {
 				anim [animName].layer = 1;
 
@@ -241,7 +239,6 @@ namespace FNPlugin {
 				radiatorTemp = upgradedRadiatorTemp;
 			}
 
-
 			radiatorTempStr = radiatorTemp + "K";
             this.part.force_activate();
 		}
@@ -268,32 +265,60 @@ namespace FNPlugin {
 
                 last_draw_update = update_count;
             }
-	    
-		Renderer[] array = part.FindModelComponents<Renderer> ();
-            float temperatureRatio = (float)(getRadiatorTemperature () / part.maxTemp);
-            Color emissiveColor = new Color (temperatureRatio*2f, 0.0f, 0.0f, 1.0f);
-            Color rimColor = new Color (temperatureRatio/10f, 0.0f, 0.0f, 1.0f);
 
+
+			colorHeat();
+
+			update_count++;
+
+
+		}
+
+        public void colorHeat()
+        {
+            Renderer[] array = part.FindModelComponents<Renderer> ();
+            float temperatureRatio = (float)(getRadiatorTemperature () / part.maxTemp);
+            Color emissiveColor = new Color (temperatureRatio*2.0f, 0.0f, 0.0f, 1.0f);
+            Color rimColor = new Color (temperatureRatio/10.0f, 0.1f, 0.0f, 1.0f);
+            String KSPShader = "KSP/Emissive/Bumped Specular";
             for (int i = 0; i < array.Length; i++)
             {
-
                 Renderer renderer = array [i];
-                /*if ( part.name.StartsWith("circradiator")) red color for inline radiators, but without emissive texture.
+                if ( part.name.StartsWith("circradiator"))
                 {
-                    renderer.material.shader= Shader.Find("KSP/Emissive/Diffuse");
-                    float shift = 700;
-                    emissiveColor = new Color ((float)
-                        ((getRadiatorTemperature()-shift) / (part.maxTemp-shift))/4f, 0.0f, 0.0f, 1.0f);
-                }*/
-                if ( part.name.StartsWith("radiator") )
+                    // too ugly.. better textures needed...
+                    return;
+                }
+                else if (part.name.StartsWith("RadialRadiator"))
                 {
-                    renderer.material.SetColor ("_EmissiveColor", emissiveColor);
-                    renderer.material.SetColor ("_RimColor", rimColor);
-                    renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
+                    if ( renderer.material.shader.name != KSPShader )
+                        renderer.material.shader = Shader.Find(KSPShader);
+
+                    if ( renderer.material.GetTexture("_Emissive") == null )
+                        renderer.material.SetTexture("_Emissive",
+                           GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/RadialHeatRadiator/d_glow", false));
+                } else if ( part.name.StartsWith("LargeFlatRadiator") ) {
+                    emissiveColor = new Color (temperatureRatio*1.5f, 0.0f, 0.0f, 1.0f); // get red more slowly
+
+                    if ( renderer.material.shader.name != KSPShader )
+                        renderer.material.shader = Shader.Find(KSPShader);
+
+                    if ( renderer.material.GetTexture("_Emissive") == null )
+                        renderer.material.SetTexture("_Emissive",
+                            GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/LargeFlatRadiator/glow", false));
+                } else if (part.name.StartsWith("radiator")) {
+                    // the default values are for the radiator
+                }
+                else // uknown raidator
+                {
+                    return;
                 }
 
-            update_count++;
-		}
+                renderer.material.SetColor ("_EmissiveColor", emissiveColor);
+                renderer.material.SetColor ("_RimColor", rimColor);
+                renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
+            }
+        }
 
 		public override void OnFixedUpdate() {
 			float atmosphere_height = vessel.mainBody.maxAtmosphereAltitude;
