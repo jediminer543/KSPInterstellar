@@ -268,7 +268,29 @@ namespace FNPlugin {
 
                 last_draw_update = update_count;
             }
-			
+	    
+		Renderer[] array = part.FindModelComponents<Renderer> ();
+            float temperatureRatio = (float)(getRadiatorTemperature () / part.maxTemp);
+            Color emissiveColor = new Color (temperatureRatio*2f, 0.0f, 0.0f, 1.0f);
+            Color rimColor = new Color (temperatureRatio/10f, 0.0f, 0.0f, 1.0f);
+
+            for (int i = 0; i < array.Length; i++)
+            {
+
+                Renderer renderer = array [i];
+                /*if ( part.name.StartsWith("circradiator")) red color for inline radiators, but without emissive texture.
+                {
+                    renderer.material.shader= Shader.Find("KSP/Emissive/Diffuse");
+                    float shift = 700;
+                    emissiveColor = new Color ((float)
+                        ((getRadiatorTemperature()-shift) / (part.maxTemp-shift))/4f, 0.0f, 0.0f, 1.0f);
+                }*/
+                Debug.Log(renderer.material.shader);
+                renderer.material.SetColor ("_EmissiveColor", emissiveColor);
+                renderer.material.SetColor ("_RimColor", rimColor);
+                renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
+                Debug.Log ("Color: " + emissiveColor + " Temperature: " + getRadiatorTemperature());
+
             update_count++;
 		}
 
