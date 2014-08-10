@@ -273,7 +273,6 @@ namespace FNPlugin {
 
 			update_count++;
 
-
 		}
 
         public void colorHeat()
@@ -324,7 +323,7 @@ namespace FNPlugin {
                              GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/LargeFlatRadiator/radtex_n", false));
 
                 } else if (part.name.StartsWith("radiator")) {
-                    emissiveColor = new Color (temperatureRatio*2.0f, 0.0f, 0.0f, 1.0f);
+                    // radiators have already everything set up
                 }
                 else // uknown raidator
                 {
