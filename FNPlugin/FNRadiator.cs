@@ -66,6 +66,8 @@ namespace FNPlugin {
 
 		protected static List<FNRadiator> list_of_radiators = new List<FNRadiator>();
 
+		protected Texture2D glow;
+
 
 		public static List<FNRadiator> getRadiatorsForVessel(Vessel vess) {
 			List<FNRadiator> list_of_radiators_for_vessel = new List<FNRadiator>();
@@ -276,29 +278,39 @@ namespace FNPlugin {
 
         public void colorHeat()
         {
+            const String KSPShader = "KSP/Emissive/Bumped Specular";
+            float emissiveTemperatureThreshold = 400;
+            float currentTemperature = getRadiatorTemperature() < emissiveTemperatureThreshold ? 0 : getRadiatorTemperature ();
+            float maxTemperature = part.maxTemp < emissiveTemperatureThreshold ? 0 : part.maxTemp;
+            float temperatureRatio = currentTemperature / maxTemperature;
+
             Renderer[] array = part.FindModelComponents<Renderer> ();
-            float temperatureRatio = (float)(getRadiatorTemperature () / part.maxTemp);
-            Color emissiveColor = new Color (temperatureRatio*2.0f, 0.0f, 0.0f, 1.0f);
-            Color rimColor = new Color (temperatureRatio/10.0f, 0.1f, 0.0f, 1.0f);
-            String KSPShader = "KSP/Emissive/Bumped Specular";
+            Color emissiveColor = new Color (temperatureRatio, 0.0f, 0.0f, 1.0f);
+
             for (int i = 0; i < array.Length; i++)
             {
                 Renderer renderer = array [i];
-                if ( part.name.StartsWith("circradiator"))
-                {
-                    // too ugly.. better textures needed...
-                    return;
+                if ( renderer.material.shader.name != KSPShader )
+                    renderer.material.shader = Shader.Find(KSPShader);
+
+                if (part.name.StartsWith("circradiator")) {
+
+                    if ( renderer.material.GetTexture("_Emissive") == null )
+                        renderer.material.SetTexture("_Emissive",
+                            GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/circradiatorKT/texture1_e", false));
+
+                    if ( renderer.material.GetTexture("_BumpMap") == null )
+                        renderer.material.SetTexture("_BumpMap",
+                             GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/circradiatorKT/texture1_n", false));
+
                 }
-                else if (part.name.StartsWith("RadialRadiator"))
-                {
-                    if ( renderer.material.shader.name != KSPShader )
-                        renderer.material.shader = Shader.Find(KSPShader);
+                else if (part.name.StartsWith("RadialRadiator")) {
 
                     if ( renderer.material.GetTexture("_Emissive") == null )
                         renderer.material.SetTexture("_Emissive",
                            GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/RadialHeatRadiator/d_glow", false));
+
                 } else if ( part.name.StartsWith("LargeFlatRadiator") ) {
-                    emissiveColor = new Color (temperatureRatio*1.5f, 0.0f, 0.0f, 1.0f); // get red more slowly
 
                     if ( renderer.material.shader.name != KSPShader )
                         renderer.material.shader = Shader.Find(KSPShader);
@@ -306,8 +318,13 @@ namespace FNPlugin {
                     if ( renderer.material.GetTexture("_Emissive") == null )
                         renderer.material.SetTexture("_Emissive",
                             GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/LargeFlatRadiator/glow", false));
+
+                    if ( renderer.material.GetTexture("_BumpMap") == null )
+                        renderer.material.SetTexture("_BumpMap",
+                             GameDatabase.Instance.GetTexture("WarpPlugin/Parts/Electrical/LargeFlatRadiator/radtex_n", false));
+
                 } else if (part.name.StartsWith("radiator")) {
-                    // the default values are for the radiator
+                    emissiveColor = new Color (temperatureRatio*2.0f, 0.0f, 0.0f, 1.0f);
                 }
                 else // uknown raidator
                 {
@@ -315,8 +332,6 @@ namespace FNPlugin {
                 }
 
                 renderer.material.SetColor ("_EmissiveColor", emissiveColor);
-                renderer.material.SetColor ("_RimColor", rimColor);
-                renderer.material.SetFloat ("_RimFalloff", temperatureRatio*2f);
             }
         }
 
