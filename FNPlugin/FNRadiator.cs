@@ -66,8 +66,6 @@ namespace FNPlugin {
 
 		protected static List<FNRadiator> list_of_radiators = new List<FNRadiator>();
 
-		protected Texture2D glow;
-
 
 		public static List<FNRadiator> getRadiatorsForVessel(Vessel vess) {
 			List<FNRadiator> list_of_radiators_for_vessel = new List<FNRadiator>();
