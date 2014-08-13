@@ -446,10 +446,6 @@
       <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\model2</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\part0.cfg">
-      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\part0</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\part1.cfg">
       <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\part1</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
@@ -528,14 +524,6 @@
     </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\n_normals copy_NRM.tga">
       <Link>\WarpPlugin\Parts\Engines\MPD\n_normals copy_NRM</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part0.cfg">
-      <Link>\WarpPlugin\Parts\Engines\MPD\part0</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part1.cfg">
-      <Link>\WarpPlugin\Parts\Engines\MPD\part1</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part2.cfg">
@@ -618,20 +606,8 @@
       <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\n_1_NRM</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part0.cfg">
-      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part0</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part1.cfg">
-      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part1</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part2.cfg">
       <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part2</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part3.cfg">
-      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part3</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\diff.tga">
@@ -648,10 +624,6 @@
     </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\n_normals_NRM.tga">
       <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\n_normals_NRM</Link>
-      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\part1.cfg">
-      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\part1</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\part2.cfg">
