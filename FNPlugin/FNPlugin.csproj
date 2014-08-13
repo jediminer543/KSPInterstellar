@@ -114,8 +114,1436 @@
     <Compile Include="VistaEngineController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\GameData\WarpPlugin\**\*.*">
-      <Link>\WarpPlugin\%(RecursiveDir)%(FileName)</Link>
+    <Content Include="..\GameData\WarpPlugin\AdvElectricEnginePropellants.cfg">
+      <Link>\WarpPlugin\AdvElectricEnginePropellants</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\alumina_resource_point.png">
+      <Link>\WarpPlugin\alumina_resource_point</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\b9aero.cfg">
+      <Link>\WarpPlugin\b9aero</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\changelog.txt">
+      <Link>\WarpPlugin\changelog</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\copyright notice.txt">
+      <Link>\WarpPlugin\copyright notice</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\ElectricEnginePropellants.cfg">
+      <Link>\WarpPlugin\ElectricEnginePropellants</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\EnginePropellants.cfg">
+      <Link>\WarpPlugin\EnginePropellants</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\explode.png">
+      <Link>\WarpPlugin\explode</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\explode2.png">
+      <Link>\WarpPlugin\explode2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\IntakeEnginePropellants.cfg">
+      <Link>\WarpPlugin\IntakeEnginePropellants</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\License.txt">
+      <Link>\WarpPlugin\License</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\megajoule_click.png">
+      <Link>\WarpPlugin\megajoule_click</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\megajoule_click2.png">
+      <Link>\WarpPlugin\megajoule_click2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\NameList.cfg">
+      <Link>\WarpPlugin\NameList</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\computerCore\ComputerCoreTexture.tga">
+      <Link>\WarpPlugin\Parts\Command\computerCore\ComputerCoreTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\computerCore\model.mu">
+      <Link>\WarpPlugin\Parts\Command\computerCore\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\computerCore\part.cfg">
+      <Link>\WarpPlugin\Parts\Command\computerCore\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\scienceModule\diff.tga">
+      <Link>\WarpPlugin\Parts\Command\scienceModule\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\scienceModule\glow.tga">
+      <Link>\WarpPlugin\Parts\Command\scienceModule\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\scienceModule\nrml_NRM.tga">
+      <Link>\WarpPlugin\Parts\Command\scienceModule\nrml_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\scienceModule\part.cfg">
+      <Link>\WarpPlugin\Parts\Command\scienceModule\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Command\scienceModule\sci_model.mu">
+      <Link>\WarpPlugin\Parts\Command\scienceModule\sci_model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AMIReactor\AMIReactor.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\AMIReactor\AMIReactor</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AMIReactor\FusionBigTexture.tga">
+      <Link>\WarpPlugin\Parts\Electrical\AMIReactor\FusionBigTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AMIReactor\model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\AMIReactor\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterCollector\AntimatterCollector.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterCollector\AntimatterCollector</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterCollector\model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterCollector\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterCollector\trap_diff.tga">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterCollector\trap_diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterCollector\trap_normals copy_NRM.tga">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterCollector\trap_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\AntimatterReactor.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\AntimatterReactor</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\diff.png">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\glow.png">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\NewModel.mu">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\NewModel</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\n__NRM.png">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\n__NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\AntimatterReactor\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Electrical\AntimatterReactor\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\DeployableRadiator.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\DeployableRadiator</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\diff.png">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\glow.png">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\Model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\Model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\n2_normals3_NRM.png">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\n2_normals3_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\DeployableRadiator\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Electrical\DeployableRadiator\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FissionReactor\FissionReactor.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\FissionReactor\FissionReactor</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr.mu">
+      <Link>\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_Diff.tga">
+      <Link>\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_Diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_LM.tga">
+      <Link>\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_LM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_Nrm 1_NRM.tga">
+      <Link>\WarpPlugin\Parts\Electrical\FissionReactor\Nuke_Reactor_Sr_Nrm 1_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FusionReactor\FusionMedTexture.tga">
+      <Link>\WarpPlugin\Parts\Electrical\FusionReactor\FusionMedTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FusionReactor\FusionReactor.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\FusionReactor\FusionReactor</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\FusionReactor\model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\FusionReactor\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\Generator\bgen.mu">
+      <Link>\WarpPlugin\Parts\Electrical\Generator\bgen</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\Generator\big_diff.tga">
+      <Link>\WarpPlugin\Parts\Electrical\Generator\big_diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\Generator\Generator.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\Generator\Generator</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\Generator\glow.tga">
+      <Link>\WarpPlugin\Parts\Electrical\Generator\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\Generator\n_normals copy_NRM.tga">
+      <Link>\WarpPlugin\Parts\Electrical\Generator\n_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\diff.png">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\glow.png">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\Model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\Model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\n2_normals3_NRM.png">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\n2_normals3_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\radiator0.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\radiator0</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\radiator1.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\radiator1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\radiator2.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\radiator2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\HeatRadiator\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Electrical\HeatRadiator\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\BigFission.tga">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\BigFission</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\FissionSmallTexture.tga">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\FissionSmallTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\FissonMediumTexture.tga">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\FissonMediumTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\model.mu">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\model2.mu">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\model2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\model3.mu">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\model3</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\model4.mu">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\model4</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\PFission0625.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\PFission0625</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\PFission125.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\PFission125</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\PFission375.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\PFission375</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\PFissionReactor.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\PFissionReactor</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\PFissionReactor\TinyFissionMod.tga">
+      <Link>\WarpPlugin\Parts\Electrical\PFissionReactor\TinyFissionMod</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\d.png">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\d</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\d_glow.png">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\d_glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\n_NRM.png">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\n_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\RadialRadiator.cfg">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\RadialRadiator</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\rheat.mu">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\rheat</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Electrical\RadialRadiator\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Electrical\RadialRadiator\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AluminiumHybrid\part.cfg">
+      <Link>\WarpPlugin\Parts\Engines\AluminiumHybrid\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\model.mu">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\model2.mu">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\model2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\part0.cfg">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\part0</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\part1.cfg">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\part1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaMedGlow.tga">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaMedGlow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaMedTexture.tga">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaMedTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaSmallGlow.tga">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaSmallGlow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaSmallTexture.tga">
+      <Link>\WarpPlugin\Parts\Engines\AugmentedArcjet\PlasmaSmallTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\1_normals copy_NRM.png">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\1_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\diff.png">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\glow_p.png">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\glow_p</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\InlineWarpDrive.cfg">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\InlineWarpDrive</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\InlineWarpDrive\warp.mu">
+      <Link>\WarpPlugin\Parts\Engines\InlineWarpDrive\warp</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MethaneEngine\diff.tga">
+      <Link>\WarpPlugin\Parts\Engines\MethaneEngine\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MethaneEngine\glow.tga">
+      <Link>\WarpPlugin\Parts\Engines\MethaneEngine\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MethaneEngine\model.mu">
+      <Link>\WarpPlugin\Parts\Engines\MethaneEngine\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MethaneEngine\n_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\MethaneEngine\n_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MethaneEngine\part.cfg">
+      <Link>\WarpPlugin\Parts\Engines\MethaneEngine\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\diff.tga">
+      <Link>\WarpPlugin\Parts\Engines\MPD\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\glow.tga">
+      <Link>\WarpPlugin\Parts\Engines\MPD\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\model.mu">
+      <Link>\WarpPlugin\Parts\Engines\MPD\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\n_normals copy_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\MPD\n_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part0.cfg">
+      <Link>\WarpPlugin\Parts\Engines\MPD\part0</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part1.cfg">
+      <Link>\WarpPlugin\Parts\Engines\MPD\part1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\MPD\part2.cfg">
+      <Link>\WarpPlugin\Parts\Engines\MPD\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\glow.png">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\n_normals copy_NRM.png">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\n_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\Object044VRayCompleteMap.png">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\Object044VRayCompleteMap</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\RadialWarpDrive.cfg">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\RadialWarpDrive</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\Thumbs.db">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\RadialWarpDrive\warp2.mu">
+      <Link>\WarpPlugin\Parts\Engines\RadialWarpDrive\warp2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\ArmBaseTEX.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\ArmBaseTEX</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\ArmExtNORM_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\ArmExtNORM_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\BaseNORM_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\BaseNORM_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\BaseTEX.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\BaseTEX</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\DoorNORM_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\DoorNORM_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\DoorTEX.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\DoorTEX</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\Model.mu">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\Model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\part.cfg">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\solarSail\SailTEX.tga">
+      <Link>\WarpPlugin\Parts\Engines\solarSail\SailTEX</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\diff.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\glow.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\model.mu">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\n_1_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\n_1_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part0.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part0</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part1.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part2.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part3.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalRocketNozzle\part3</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\diff.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\jet.mu">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\jet</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\light.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\light</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\n_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\n_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\part1.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\part1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\ThermalTurbojet\part2.cfg">
+      <Link>\WarpPlugin\Parts\Engines\ThermalTurbojet\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\vista\diff.tga">
+      <Link>\WarpPlugin\Parts\Engines\vista\diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\vista\glow.tga">
+      <Link>\WarpPlugin\Parts\Engines\vista\glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\vista\model.mu">
+      <Link>\WarpPlugin\Parts\Engines\vista\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\vista\N_normals copy_NRM.tga">
+      <Link>\WarpPlugin\Parts\Engines\vista\N_normals copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Engines\vista\part.cfg">
+      <Link>\WarpPlugin\Parts\Engines\vista\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks1\125.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks1\125</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks1\smalltank.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks1\smalltank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_diff.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_glow.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_normals_NRM.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks1\small_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\250.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\250</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\375.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\375</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\bigtank.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\bigtank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_diff.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_glow.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_glow</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_n_NRM.png">
+      <Link>\WarpPlugin\Parts\FuelTank\AntimatterTanks2\big_n_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\BigArgonTank\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\BigArgonTank\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\deuteriumtank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\deuteriumtank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\DeuteriumCryostat\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\fnmethaneTank\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\fnmethaneTank\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\fnmethaneTank\model2.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\fnmethaneTank\model2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\fnmethaneTank\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\fnmethaneTank\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\fnmethaneTank\part2.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\fnmethaneTank\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\fnmethaneTank\Texture.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\fnmethaneTank\Texture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\HeliumCryostat\heliumtank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\HeliumCryostat\heliumtank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\HeliumCryostat\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\HeliumCryostat\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\HeliumCryostat\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\HeliumCryostat\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\25PureLiquidTank.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\25PureLiquidTank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\375PureLiquidTank.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\375PureLiquidTank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model000.mbm">
+      <Link>\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model000</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model001.mbm">
+      <Link>\WarpPlugin\Parts\FuelTank\LiquidOnlyFuelTanks\model001</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\box_diff_A_C.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\box_diff_A_C</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\BOX_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\BOX_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\tank.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\LongAmmoniaTank\tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongWaterTank\box_diff_A_C.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\LongWaterTank\box_diff_A_C</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongWaterTank\BOX_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\LongWaterTank\BOX_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongWaterTank\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\LongWaterTank\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\LongWaterTank\tank.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\LongWaterTank\tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVAntimatter\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVAntimatter\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVAntimatter\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVAntimatter\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVAntimatter\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVAntimatter\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVDeutTrit\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVDeutTrit\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVDeutTrit\part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVDeutTrit\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVDeutTrit\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVDeutTrit\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVHe3\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVHe3\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVHe3\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVHe3\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVHe3\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVHe3\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVLithium\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVLithium\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVLithium\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVLithium\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVLithium\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVLithium\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVThorium\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVThorium\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVThorium\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVThorium\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVThorium\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVThorium\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium2\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium2\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium2\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium2\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium2\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium2\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium\model.mu">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium\Part.cfg">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium\Part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\FuelTank\RVUranium\Radial_Tank.tga">
+      <Link>\WarpPlugin\Parts\FuelTank\RVUranium\Radial_Tank</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Resources\ResourcesNuclear.cfg">
+      <Link>\WarpPlugin\Parts\Resources\ResourcesNuclear</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Resources\ScienceDefs.cfg">
+      <Link>\WarpPlugin\Parts\Resources\ScienceDefs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Science\Telescope\model.mu">
+      <Link>\WarpPlugin\Parts\Science\Telescope\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Science\Telescope\part.cfg">
+      <Link>\WarpPlugin\Parts\Science\Telescope\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Science\Telescope\telescope 1.tga">
+      <Link>\WarpPlugin\Parts\Science\Telescope\telescope 1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\atmosphericScoop\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\atmosphericScoop\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\atmosphericScoop\model000.mbm">
+      <Link>\WarpPlugin\Parts\Utility\atmosphericScoop\model000</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\atmosphericScoop\model001.mbm">
+      <Link>\WarpPlugin\Parts\Utility\atmosphericScoop\model001</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\atmosphericScoop\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\atmosphericScoop\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\atmosphericScoop\part2.cfg">
+      <Link>\WarpPlugin\Parts\Utility\atmosphericScoop\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\DTMagnetometer\mag.mu">
+      <Link>\WarpPlugin\Parts\Utility\DTMagnetometer\mag</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\DTMagnetometer\mag_diff.tga">
+      <Link>\WarpPlugin\Parts\Utility\DTMagnetometer\mag_diff</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\DTMagnetometer\n_ copy_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\DTMagnetometer\n_ copy_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\DTMagnetometer\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\DTMagnetometer\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GammaRaySpectrometer\GRS.tga">
+      <Link>\WarpPlugin\Parts\Utility\GammaRaySpectrometer\GRS</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GammaRaySpectrometer\GRS_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\GammaRaySpectrometer\GRS_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GammaRaySpectrometer\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\GammaRaySpectrometer\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GammaRaySpectrometer\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\GammaRaySpectrometer\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GCMassSpectrometer\box_diff_A_C.tga">
+      <Link>\WarpPlugin\Parts\Utility\GCMassSpectrometer\box_diff_A_C</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GCMassSpectrometer\BOX_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\GCMassSpectrometer\BOX_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GCMassSpectrometer\massspectrometer.mu">
+      <Link>\WarpPlugin\Parts\Utility\GCMassSpectrometer\massspectrometer</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\GCMassSpectrometer\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\GCMassSpectrometer\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\InlineRefinery\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\InlineRefinery\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\InlineRefinery\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\InlineRefinery\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\InlineRefinery\refinerytex.tga">
+      <Link>\WarpPlugin\Parts\Utility\InlineRefinery\refinerytex</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LargeRefinery\LPCTexture.tga">
+      <Link>\WarpPlugin\Parts\Utility\LargeRefinery\LPCTexture</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LargeRefinery\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\LargeRefinery\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LargeRefinery\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\LargeRefinery\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LCMassSpectrometer\box_diff_A_C.tga">
+      <Link>\WarpPlugin\Parts\Utility\LCMassSpectrometer\box_diff_A_C</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LCMassSpectrometer\BOX_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\LCMassSpectrometer\BOX_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LCMassSpectrometer\lcmassspectrometer.mu">
+      <Link>\WarpPlugin\Parts\Utility\LCMassSpectrometer\lcmassspectrometer</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\LCMassSpectrometer\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\LCMassSpectrometer\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\microwaveReceiver\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\microwaveReceiver\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\microwaveReceiver\model000.mbm">
+      <Link>\WarpPlugin\Parts\Utility\microwaveReceiver\model000</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\microwaveReceiver\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\microwaveReceiver\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-L.cfg">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-L</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-L.mu">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-L</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-M.cfg">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-M</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-M.mu">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-M</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-S.cfg">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-S</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-S.mu">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\MTER-S</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter.mbm">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter_emissive.mbm">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter_emissive</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter_normals.mbm">
+      <Link>\WarpPlugin\Parts\Utility\MicrowaveThermalPowerReceiver\mter_normals</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray1\n_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray1\n_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray1\n_occlusion.tga">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray1\n_occlusion</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray1\receiver.cfg">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray1\receiver</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray1\receiver.mu">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray1\receiver</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray2\n_normals_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray2\n_normals_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray2\n_occlusion.tga">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray2\n_occlusion</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray2\transmitter.cfg">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray2\transmitter</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\phasedArray2\transmitter.mu">
+      <Link>\WarpPlugin\Parts\Utility\phasedArray2\transmitter</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop.mu">
+      <Link>\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop1.cfg">
+      <Link>\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop2.cfg">
+      <Link>\WarpPlugin\Parts\Utility\radialAtmosphericScoop\scoop2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\radialAtmosphericScoop\texture 1.tga">
+      <Link>\WarpPlugin\Parts\Utility\radialAtmosphericScoop\texture 1</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\Refinery\glow_2.tga">
+      <Link>\WarpPlugin\Parts\Utility\Refinery\glow_2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\Refinery\model.mu">
+      <Link>\WarpPlugin\Parts\Utility\Refinery\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\Refinery\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\Refinery\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\Refinery\sphere_body_DIFFUSE.tga">
+      <Link>\WarpPlugin\Parts\Utility\Refinery\sphere_body_DIFFUSE</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\Refinery\sphere_normalst_NRM.tga">
+      <Link>\WarpPlugin\Parts\Utility\Refinery\sphere_normalst_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\warpAtmIntake\part.cfg">
+      <Link>\WarpPlugin\Parts\Utility\warpAtmIntake\part</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Utility\warpAtmIntake\part2.cfg">
+      <Link>\WarpPlugin\Parts\Utility\warpAtmIntake\part2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Parts\Warp_TweakScale.cfg">
+      <Link>\WarpPlugin\Parts\Warp_TweakScale</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\atmosphericresourcedefinitions.cfg">
+      <Link>\WarpPlugin\PlanetResourceData\atmosphericresourcedefinitions</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\bop_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\bop_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\bop_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\bop_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\dres_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\dres_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\dres_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\dres_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\duna_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\duna_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\duna_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\duna_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\duna_water.png">
+      <Link>\WarpPlugin\PlanetResourceData\duna_water</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\eeloo_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\eeloo_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\eeloo_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\eeloo_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\eve_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\eve_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\eve_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\eve_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\gilly_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\gilly_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\gilly_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\gilly_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\ike_alumina.png">
+      <Link>\WarpPlugin\PlanetResourceData\ike_alumina</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\ike_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\ike_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\ike_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\ike_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\kerbin_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\kerbin_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\kerbin_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\kerbin_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\laythe_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\laythe_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\laythe_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\laythe_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\minmus_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\minmus_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\minmus_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\minmus_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\minmus_water.png">
+      <Link>\WarpPlugin\PlanetResourceData\minmus_water</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\moho_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\moho_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\moho_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\moho_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\mun_alumina.png">
+      <Link>\WarpPlugin\PlanetResourceData\mun_alumina</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\mun_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\mun_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\mun_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\mun_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\mun_water.png">
+      <Link>\WarpPlugin\PlanetResourceData\mun_water</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\oceanicresourcedefinitions.cfg">
+      <Link>\WarpPlugin\PlanetResourceData\oceanicresourcedefinitions</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\planetaryresourcedefinitions.cfg">
+      <Link>\WarpPlugin\PlanetResourceData\planetaryresourcedefinitions</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\pol_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\pol_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\pol_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\pol_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\Thumbs.db">
+      <Link>\WarpPlugin\PlanetResourceData\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\tylo_alumina.png">
+      <Link>\WarpPlugin\PlanetResourceData\tylo_alumina</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\tylo_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\tylo_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\tylo_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\tylo_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\vall_thorium.png">
+      <Link>\WarpPlugin\PlanetResourceData\vall_thorium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\vall_uranium.png">
+      <Link>\WarpPlugin\PlanetResourceData\vall_uranium</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\PlanetResourceData\vall_water.png">
+      <Link>\WarpPlugin\PlanetResourceData\vall_water</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Plugins\InterstellarToolbar.dll">
+      <Link>\WarpPlugin\Plugins\InterstellarToolbar</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Plugins\KSPAPIExtensions.dll">
+      <Link>\WarpPlugin\Plugins\KSPAPIExtensions</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Plugins\Scale.dll">
+      <Link>\WarpPlugin\Plugins\Scale</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Plugins\Scale_Redist.dll">
+      <Link>\WarpPlugin\Plugins\Scale_Redist</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Plugins\WarpPlugin.dll">
+      <Link>\WarpPlugin\Plugins\WarpPlugin</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\rapier.cfg">
+      <Link>\WarpPlugin\rapier</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\resource_point.png">
+      <Link>\WarpPlugin\resource_point</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\science.cfg">
+      <Link>\WarpPlugin\science</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Sounds\warp_sound.ogg">
+      <Link>\WarpPlugin\Sounds\warp_sound</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\internal.cfg">
+      <Link>\WarpPlugin\Spaces\sci\internal</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\light.tga">
+      <Link>\WarpPlugin\Spaces\sci\light</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\model.mu">
+      <Link>\WarpPlugin\Spaces\sci\model</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\N_normals 1_NRM.tga">
+      <Link>\WarpPlugin\Spaces\sci\N_normals 1_NRM</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\smokeandmirrors.tga">
+      <Link>\WarpPlugin\Spaces\sci\smokeandmirrors</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Spaces\sci\testy2.tga">
+      <Link>\WarpPlugin\Spaces\sci\testy2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\thermal_click.png">
+      <Link>\WarpPlugin\thermal_click</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\thorium_resource_point.png">
+      <Link>\WarpPlugin\thorium_resource_point</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\Thumbs.db">
+      <Link>\WarpPlugin\Thumbs</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\transparent.png">
+      <Link>\WarpPlugin\transparent</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\tree.cfg">
+      <Link>\WarpPlugin\tree</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\uranium_resource_point.png">
+      <Link>\WarpPlugin\uranium_resource_point</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp.png">
+      <Link>\WarpPlugin\warp</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp10.png">
+      <Link>\WarpPlugin\warp10</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp11.png">
+      <Link>\WarpPlugin\warp11</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp12.png">
+      <Link>\WarpPlugin\warp12</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp13.png">
+      <Link>\WarpPlugin\warp13</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp14.png">
+      <Link>\WarpPlugin\warp14</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp15.png">
+      <Link>\WarpPlugin\warp15</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp16.png">
+      <Link>\WarpPlugin\warp16</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp2.png">
+      <Link>\WarpPlugin\warp2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp3.png">
+      <Link>\WarpPlugin\warp3</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp4.png">
+      <Link>\WarpPlugin\warp4</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp5.png">
+      <Link>\WarpPlugin\warp5</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp6.png">
+      <Link>\WarpPlugin\warp6</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp7.png">
+      <Link>\WarpPlugin\warp7</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp8.png">
+      <Link>\WarpPlugin\warp8</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warp9.png">
+      <Link>\WarpPlugin\warp9</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\WarpPluginSettings.cfg">
+      <Link>\WarpPlugin\WarpPluginSettings</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr.png">
+      <Link>\WarpPlugin\warpr</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr10.png">
+      <Link>\WarpPlugin\warpr10</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr11.png">
+      <Link>\WarpPlugin\warpr11</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr12.png">
+      <Link>\WarpPlugin\warpr12</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr13.png">
+      <Link>\WarpPlugin\warpr13</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr14.png">
+      <Link>\WarpPlugin\warpr14</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr15.png">
+      <Link>\WarpPlugin\warpr15</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr16.png">
+      <Link>\WarpPlugin\warpr16</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr2.png">
+      <Link>\WarpPlugin\warpr2</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr3.png">
+      <Link>\WarpPlugin\warpr3</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr4.png">
+      <Link>\WarpPlugin\warpr4</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr5.png">
+      <Link>\WarpPlugin\warpr5</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr6.png">
+      <Link>\WarpPlugin\warpr6</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr7.png">
+      <Link>\WarpPlugin\warpr7</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr8.png">
+      <Link>\WarpPlugin\warpr8</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\warpr9.png">
+      <Link>\WarpPlugin\warpr9</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GameData\WarpPlugin\water_resource_point.png">
+      <Link>\WarpPlugin\water_resource_point</Link>
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
