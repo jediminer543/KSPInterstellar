@@ -1,4 +1,4 @@
-Version Experimental -  for ksp v0.24.2
+Version 0.12.0 -  for ksp v0.24.2
 - Fixed data collection on magnetometer.
 - Added more details to generator, reactor and radiator modules.
 - Added atmospheric intake functionality to atmospheric scoops.
@@ -29,8 +29,12 @@ Version Experimental -  for ksp v0.24.2
 - Corrected node sizes for thermal recievers.
 - Corrected resource name in particle fission reactor configs.
 - Corrected tech requirements for warp drive configs.
-- Adjusted part costs for 0.24. (ongoing adjustments)
-- Throttle MJ consumption based upon actual extraction and refinement output. (jakkarth)
+- Added part costs for 0.24.
+- Radiators now glow red hot in proportion to temperature. (mellon85)
+- Tweakscale integration (Some models have been removed)
+- Reactor rebalance (basic fission is more capable, antimatter less so)
+- Radiators have been buffed. (Flat and inline radiator have decided to retire to the ugly duckling pond.)
+
 
 Version 0.11.0
 -Toolbar Integration

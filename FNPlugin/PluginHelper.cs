@@ -43,6 +43,7 @@ namespace FNPlugin {
 		protected static bool plugin_init = false;
 		protected static bool is_thermal_dissip_disabled_init = false;
 		protected static bool is_thermal_dissip_disabled = false;
+        protected static bool is_radiator_emissive_glow_disabled = false;
         protected static GameDatabase gdb;
         protected static bool resources_configured = false;
         protected static bool tech_checked = false;
@@ -71,6 +72,10 @@ namespace FNPlugin {
 		public static bool isThermalDissipationDisabled() {
 			return is_thermal_dissip_disabled;
 		}
+        public static bool isRadiatorEmissiveGlowDisabled()
+        {
+            return is_radiator_emissive_glow_disabled; ;
+        }
 
 		public static bool hasTech(string techid) {
 			try{
@@ -342,6 +347,11 @@ namespace FNPlugin {
                         PluginHelper.is_thermal_dissip_disabled = bool.Parse(plugin_settings.GetValue("ThermalMechanicsDisabled"));
                         Debug.Log("[KSP Interstellar] ThermalMechanics set to enabled: " + !PluginHelper.is_thermal_dissip_disabled);
                     }
+                    if (plugin_settings.HasValue("RadiatorEmissiveGlowDisabled"))
+                    {
+                        PluginHelper.is_radiator_emissive_glow_disabled = bool.Parse(plugin_settings.GetValue("RadiatorEmissiveGlowDisabled"));
+                        Debug.Log("[KSP Interstellar] Radiator Glow set to enabled: " + !PluginHelper.is_radiator_emissive_glow_disabled);
+                    }
                     resources_configured = true;
                 } else {
                     showInstallationErrorMessage();
@@ -477,6 +487,5 @@ namespace FNPlugin {
 				warning_displayed = true;
 			}
 		}
-        
     }
 }
