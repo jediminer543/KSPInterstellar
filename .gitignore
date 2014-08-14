@@ -1,7 +1,7 @@
 *.userprefs
-FNPlugin/bin
-FNPlugin/obj
-FNPlugin/WarpPlugin
+InterstellarPLugin/bin
+InterstellarPlugin/obj
+InterstellarPlugin/Interstellar
 OpenResourceSystem/bin
 OpenResourceSystem/obj
 OpenResourceSystem/OpenResourceSystem
