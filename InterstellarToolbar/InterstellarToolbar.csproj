@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\GameData\WarpPlugin\Plugins\</OutputPath>
+    <OutputPath>..\GameData\Interstellar\Plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -35,19 +35,16 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="InterstellarPlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GameData\Interstellar\Plugins\InterstellarPlugin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="OpenResourceSystem_1_1_0">
       <HintPath>..\GameData\OpenResourceSystem\Plugins\OpenResourceSystem_1_1_0.dll</HintPath>
       <Aliases>global, ORSv1_1</Aliases>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="Toolbar">
       <HintPath>..\GameData\000_Toolbar\Toolbar.dll</HintPath>
       <Private>False</Private>
@@ -55,10 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="WarpPlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\GameData\WarpPlugin\Plugins\WarpPlugin.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
