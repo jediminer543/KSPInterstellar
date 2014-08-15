@@ -154,7 +154,8 @@ namespace InterstellarPlugin {
             }
 
 			bool manual_upgrade = false;
-			if(HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
+            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
+            {
 				if(upgradeTechReq != null) {
 					if(PluginHelper.hasTech(upgradeTechReq)) {
 						hasrequiredupgrade = true;
@@ -446,7 +447,8 @@ namespace InterstellarPlugin {
         public override string GetInfo() {
 			bool upgraded = false;
 			if (HighLogic.CurrentGame != null) {
-				if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
+                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
+                {
 					if (PluginHelper.hasTech (upgradeTechReq)) {
 						upgraded = true;
 					}

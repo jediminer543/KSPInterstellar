@@ -17,7 +17,8 @@ namespace InterstellarPlugin {
             this.part = part;
             vessel = part.vessel;
             if (HighLogic.CurrentGame != null) {
-                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
+                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
+                {
                     if (PluginHelper.hasTech("interstellarTechAntimatterPower")) {
                         
                     } else if (PluginHelper.hasTech("interstellarTechAccelerator")) {
