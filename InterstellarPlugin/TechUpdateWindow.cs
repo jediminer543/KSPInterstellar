@@ -47,7 +47,7 @@ namespace InterstellarPlugin {
             GUILayout.EndVertical();
         }
 
-        protected void UpdateTechTree() {
+        public void UpdateTechTree() {
             ConfigNode new_tech_nodes = PluginHelper.getNewTechTreeFile();
             if (new_tech_nodes != null) {
                 new_tech_nodes.Save(PluginHelper.getTechTreeFilePath());

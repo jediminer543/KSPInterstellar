@@ -31,9 +31,12 @@ Version 0.12.0 -  for ksp v0.24.2
 - Corrected tech requirements for warp drive configs.
 - Added part costs for 0.24.
 - Radiators now glow red hot in proportion to temperature. (mellon85)
-- Tweakscale integration (Some models have been removed)
+- Tweakscale integration (Some of the models have been removed in the process.)
 - Reactor rebalance (basic fission is more capable, antimatter less so)
 - Radiators have been buffed. (Flat and inline radiator have decided to retire to the ugly duckling pond.)
+- Water is now Water. (Who'da thunk it!)
+- Precoolers work again! (They are basicly a "free" intake now.)
+- Science Mode is now supported. (By the KSPI code, Treeloader still doesn't work though.)
 
 
 Version 0.11.0

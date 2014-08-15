@@ -261,7 +261,7 @@ namespace InterstellarPlugin
                 radiatorIsEnabled = true;
             }
 
-            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER)
+            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
             {
                 if (PluginHelper.hasTech(upgradeTechReq))
                 {
@@ -496,7 +496,7 @@ namespace InterstellarPlugin
         {
             if (HighLogic.CurrentGame != null)
             {
-                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER)
+                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
                 {
                     if (upgradeTechReq != null)
                     {

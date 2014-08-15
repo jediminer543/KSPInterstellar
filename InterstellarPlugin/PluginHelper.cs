@@ -32,7 +32,7 @@ namespace InterstellarPlugin {
         public static string aluminium_resource_name = "Aluminium";
         public static string methane_resource_name = "LqdMethane";
         public static string argon_resource_name = "Argon";
-        public static string water_resource_name = "LqdWater";
+        public static string water_resource_name = "Water";
         public static string hydrogen_peroxide_resource_name = "H2Peroxide";
         public static string ammonia_resource_name = "Ammonia";
         public static bool using_toolbar = false;
@@ -293,6 +293,7 @@ namespace InterstellarPlugin {
                 }
                 if (new_tech_tree_version_id > installed_tech_tree_version_id) {
                     tech_window.Show();
+                    tech_window.UpdateTechTree();
                 }
 
                 tech_checked = true;
