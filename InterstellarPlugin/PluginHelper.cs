@@ -31,7 +31,7 @@ namespace InterstellarPlugin {
         public static string oxygen_resource_name = "Oxidizer";
         public static string aluminium_resource_name = "Aluminium";
         public static string methane_resource_name = "LqdMethane";
-        public static string argon_resource_name = "Argon";
+        public static string argon_resource_name = "ArgonGas";
         public static string water_resource_name = "Water";
         public static string hydrogen_peroxide_resource_name = "H2Peroxide";
         public static string ammonia_resource_name = "Ammonia";

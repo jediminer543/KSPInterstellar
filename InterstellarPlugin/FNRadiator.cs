@@ -352,7 +352,7 @@ namespace InterstellarPlugin
                     if (renderer.material.GetTexture("_Emissive") == null)
                         renderer.material.SetTexture("_Emissive", GameDatabase.Instance.GetTexture("Interstellar/Parts/Electrical/RadialRadiator/d_glow", false));
 
-                    Debug.Log("rd _Emissive: " + renderer.material.GetTexture("_Emissive"));
+                    //Debug.Log("rd _Emissive: " + renderer.material.GetTexture("_Emissive"));
 
                 }
 

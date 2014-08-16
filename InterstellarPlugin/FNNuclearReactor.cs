@@ -34,10 +34,10 @@ namespace InterstellarPlugin {
             IsEnabled = false;
         }
 
-        [KSPEvent(guiName = "Refuel UF4", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
+        [KSPEvent(guiName = "Refuel Uranium Nitride", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
         public void RefuelUranium() {
             List<PartResource> uf6_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, PartResourceLibrary.Instance.GetDefinition("UF4").resourceFlowMode, uf6_resources);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").resourceFlowMode, uf6_resources);
             double spare_capacity_for_uf6 = Math.Max(uf4.maxAmount - uf4.amount - actinides.amount, 0);
             foreach (PartResource uf6_resource in uf6_resources) {
                 if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
@@ -50,7 +50,7 @@ namespace InterstellarPlugin {
             }
         }
 
-        [KSPEvent(guiName = "Refuel ThF4", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
+        //[KSPEvent(guiName = "Refuel ThF4", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
         public void RefuelThorium() {
             List<PartResource> th4_resources = new List<PartResource>();
             part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("ThF4").id, PartResourceLibrary.Instance.GetDefinition("ThF4").resourceFlowMode, th4_resources);
@@ -66,7 +66,7 @@ namespace InterstellarPlugin {
             }
         }
 
-        [KSPEvent(guiName = "Swap Fuel", externalToEVAOnly = true, guiActiveUnfocused = true, guiActive = false, unfocusedRange = 3.0f)]
+        //[KSPEvent(guiName = "Swap Fuel", externalToEVAOnly = true, guiActiveUnfocused = true, guiActive = false, unfocusedRange = 3.0f)]
         public void SwapFuel() {
             if (actinides.amount <= 0.01) {
                 if (uranium_fuel) {
@@ -83,7 +83,7 @@ namespace InterstellarPlugin {
             }
         }
 
-        [KSPEvent(guiName = "Swap Fuel", guiActiveEditor = true, guiActiveUnfocused = false, guiActive = false)]
+        //[KSPEvent(guiName = "Swap Fuel", guiActiveEditor = true, guiActiveUnfocused = false, guiActive = false)]
         public void EditorSwapFuel() {
             if (uranium_fuel) {
                 uranium_fuel = !uranium_fuel;
@@ -132,41 +132,44 @@ namespace InterstellarPlugin {
             float up_thf4_ThermalPower = upgradedThermalPower * 1.38f;
             float up_thf4_rate_per_day = upgradedResourceRate * 86400 * .45f;
 
-            return String.Format("[Base Part Information]\nPart Name: {0}\n\n[UF4 Fuel Mode]\n- Core Temperature: {1:n0}K\n- Total Power Output: {2:n0}MW\n- Consumption Rate (Max):\n- {3}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {4:n0}K\n- Total Power Output: {5:n0}MW\n- Consumption Rate (Max):\n- {6}L/day\n\n[Upgrade Information]\nScience Tech Required:\n- Fusion Power\nPart Name: {7}\n\n[UF4 Fuel Mode]\n- Core Temperature: {8:n0}K\n- Total Power Output: {9:n0}MW\n- Consumption Rate (Max):\n- {10}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {11:n0}K\n- Total Power Output: {12:n0}MW\n- Consumption Rate (Max):\n- {13}L/day", originalName, ReactorTemp, ThermalPower, uf6_rate_per_day, thf4_ReactorTemp, thf4_ThermalPower, thf4_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_uf6_rate_per_day, up_thf4_ReactorTemp, up_thf4_ThermalPower, up_thf4_rate_per_day);
+            return String.Format("[Base Part Information]\nPart Name: {0}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {1:n0}K\n- Total Power Output: {2:n0}MW\n- Consumption Rate (Max):\n- {3}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {4:n0}K\n- Total Power Output: {5:n0}MW\n- Consumption Rate (Max):\n- {6}L/day\n\n[Upgrade Information]\nScience Tech Required:\n- Fusion Power\nPart Name: {7}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {8:n0}K\n- Total Power Output: {9:n0}MW\n- Consumption Rate (Max):\n- {10}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {11:n0}K\n- Total Power Output: {12:n0}MW\n- Consumption Rate (Max):\n- {13}L/day", originalName, ReactorTemp, ThermalPower, uf6_rate_per_day, thf4_ReactorTemp, thf4_ThermalPower, thf4_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_uf6_rate_per_day, up_thf4_ReactorTemp, up_thf4_ThermalPower, up_thf4_rate_per_day);
         }
 
         public override void OnStart(PartModule.StartState state) {
-            uf4 = part.Resources["UF4"];
+            uf4 = part.Resources["EnrichedUranium"];
             thf4 = part.Resources["ThF4"];
             actinides = part.Resources["Actinides"];
             Fields["fuelmodeStr"].guiActiveEditor = true;
-            if (double.IsNaN(uf4.amount)) {
-                uf4.amount = 0;
-            }
-            if (double.IsNaN(thf4.amount)) {
-                thf4.amount = 0;
-            }
-            if (double.IsNaN(actinides.amount)) {
-                actinides.amount = actinides.maxAmount;
-            }
-            if (!upgradedToV08) {
-                upgradedToV08 = true;
-                actinides.amount = actinides.maxAmount - uf4.amount;
-            }
-            if (!upgradedToV10 && state != PartModule.StartState.Editor) {
-                upgradedToV10 = true;
-                actinides.amount = actinides.amount * 1000;
-                actinides.maxAmount = actinides.maxAmount * 1000;
-                uf4.amount = uf4.amount * 1000;
-                uf4.maxAmount = uf4.maxAmount * 1000;
-                thf4.amount = thf4.amount * 1000;
-                thf4.maxAmount = thf4.maxAmount * 1000;
-            } else if (!upgradedToV10 && state == PartModule.StartState.Editor) {
-                upgradedToV10 = true;
-            }
-            if (uranium_fuel) {
+            //if (double.IsNaN(uf4.amount)) {
+            //    uf4.amount = 0;
+            //}
+            //if (double.IsNaN(thf4.amount)) {
+            //    thf4.amount = 0;
+            //}
+            //if (double.IsNaN(actinides.amount)) {
+            //    actinides.amount = actinides.maxAmount;
+            //}
+            //if (!upgradedToV08) {
+            //    upgradedToV08 = true;
+            //    actinides.amount = actinides.maxAmount - uf4.amount;
+            //}
+            //if (!upgradedToV10 && state != PartModule.StartState.Editor) {
+            //    upgradedToV10 = true;
+            //    actinides.amount = actinides.amount * 1000;
+            //    actinides.maxAmount = actinides.maxAmount * 1000;
+            //    uf4.amount = uf4.amount * 1000;
+            //    uf4.maxAmount = uf4.maxAmount * 1000;
+            //    thf4.amount = thf4.amount * 1000;
+            //    thf4.maxAmount = thf4.maxAmount * 1000;
+            //} else if (!upgradedToV10 && state == PartModule.StartState.Editor) {
+            //    upgradedToV10 = true;
+            //}
+            if (uranium_fuel)
+            {
                 fuel_resource = uf4;
-            } else {
+            }
+            else
+            {
                 fuel_resource = thf4;
             }
             base.OnStart(state);
@@ -183,8 +186,8 @@ namespace InterstellarPlugin {
             Events["ManualRestart"].active = Events["ManualRestart"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing;
             Events["ManualShutdown"].active = Events["ManualShutdown"].guiActiveUnfocused = IsEnabled;
             Events["RefuelUranium"].active = Events["RefuelUranium"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing && uranium_fuel;
-            Events["RefuelThorium"].active = Events["RefuelThorium"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing && !uranium_fuel;
-            Events["SwapFuel"].active = Events["SwapFuel"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing;
+            //Events["RefuelThorium"].active = Events["RefuelThorium"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing && !uranium_fuel;
+            //Events["SwapFuel"].active = Events["SwapFuel"].guiActiveUnfocused = !IsEnabled && !decay_products_ongoing;
             base.OnUpdate();
         }
 
@@ -221,7 +224,7 @@ namespace InterstellarPlugin {
         
         protected override string getResourceDeprivedMessage() {
             if (uranium_fuel) {
-                return "UF4 Deprived";
+                return "Enriched Uranium Deprived";
             } else {
                 return "ThF4 Deprived";
             }
@@ -258,7 +261,7 @@ namespace InterstellarPlugin {
 
         protected void defuelUranium() {
             List<PartResource> swap_resource_list = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("UF4").id, PartResourceLibrary.Instance.GetDefinition("UF4").resourceFlowMode, swap_resource_list);
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").resourceFlowMode, swap_resource_list);
             foreach (PartResource uf6_resource in swap_resource_list) {
                 if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
                     double spare_capacity_for_uf6 = uf6_resource.maxAmount - uf6_resource.amount;

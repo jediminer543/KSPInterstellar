@@ -31,17 +31,17 @@ namespace InterstellarPlugin {
                     double actinides_change = actinides.amount - new_actinides_amount;
                     actinides.amount = new_actinides_amount;
                     if (nuclear_reactor.uranium_fuel) {
-                        PartResource uf4 = nuclear_reactor.part.Resources["UF4"];
+                        PartResource eu = nuclear_reactor.part.Resources["EnrichedUranium"];
                         double depleted_fuels_change = actinides_change * 0.2;
-                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedFuel", -depleted_fuels_change);
-                        double new_uf4_amount = Math.Min(uf4.amount + depleted_fuels_change*4, uf4.maxAmount);
-                        double uf4_change = new_uf4_amount - uf4.amount;
-                        uf4.amount = new_uf4_amount;
+                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", -depleted_fuels_change);
+                        double new_eu_amount = Math.Min(eu.amount + depleted_fuels_change*4, eu.maxAmount);
+                        double eu_change = new_eu_amount - eu.amount;
+                        eu.amount = new_eu_amount;
                         enum_actinides_change += depleted_fuels_change * 5;
                     } else {
                         PartResource thf4 = nuclear_reactor.part.Resources["ThF4"];
                         double depleted_fuels_change = actinides_change * 0.2;
-                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedFuel", -depleted_fuels_change);
+                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", -depleted_fuels_change);
                         double new_thf4_amount = Math.Min(thf4.amount + depleted_fuels_change * 4, thf4.maxAmount);
                         double thf4_change = new_thf4_amount - thf4.amount;
                         thf4.amount = new_thf4_amount;
