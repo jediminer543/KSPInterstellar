@@ -178,14 +178,23 @@ namespace InterstellarPlugin {
             solar_power = 0;
             displayed_solar_power = 0;
             if (IsEnabled && !relay) {
+                float fusionReactorsRequirements = 0.0f;
+
+                try
+                {
+                    fusionReactorsRequirements = vessel.FindPartModulesImplementing<FNFusionReactor>().Where(r => r.isActive()).Sum(r => r.powerRequirements);
+                }
+                catch (ArgumentNullException)
+                {
+                    fusionReactorsRequirements = 0.0f;
+                }
+
                 foreach (FNGenerator generator in generators) {
                     if (generator.isActive()) {
                         FNThermalSource thermal_source = generator.getThermalSource();
                         if (thermal_source != null && !thermal_source.isVolatileSource()) {
-                            double output = generator.getMaxPowerOutput();
-                            if (thermal_source is FNFusionReactor) {
-                                output = output * 0.95;
-                            }
+                            double output = -generator.getCurrentPower();
+                            output -= fusionReactorsRequirements / (double)generators.Count(g => g.isActive());
                             output = output * transmitPower / 100.0;
                             double gpower = consumeFNResource(output * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES);
                             nuclear_power += gpower * 1000 / TimeWarp.fixedDeltaTime;
