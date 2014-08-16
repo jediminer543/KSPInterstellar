@@ -27,7 +27,7 @@ namespace InterstellarPlugin {
         public override void OnStart(PartModule.StartState state) {
             deuterium = part.Resources["Deuterium"];
             he3 = part.Resources["Helium-3"];
-            un = part.Resources["UraniumNitride"];
+            un = part.Resources["EnrichedUranium"];
             base.OnStart(state);
             /*
             lightGameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -52,8 +52,8 @@ namespace InterstellarPlugin {
             */
             antimatter_rate = resourceRate * GameConstants.antimatter_initiated_antimatter_cons_constant*86400/1000000;
             d_he3_rate = resourceRate * GameConstants.antimatter_initiated_d_he3_cons_constant*86400;
-            un_rate = resourceRate * GameConstants.antimatter_initiated_uf4_cons_constant*86400;
-            upgraded_d_he3_rate = upgradedResourceRate * GameConstants.antimatter_initiated_upgraded_uf4_cons_constant;
+            un_rate = resourceRate * GameConstants.antimatter_initiated_eu_cons_constant*86400;
+            upgraded_d_he3_rate = upgradedResourceRate * GameConstants.antimatter_initiated_upgraded_eu_cons_constant;
             upgraded_amat_rate = upgradedResourceRate * GameConstants.antimatter_initiated_antimatter_cons_constant * 86400 / 1000000;
 
 
@@ -108,7 +108,7 @@ namespace InterstellarPlugin {
         public override string GetInfo() {
             float antimatter_rate = resourceRate * (float)GameConstants.antimatter_initiated_antimatter_cons_constant * 86400 * 1000000;
             float d_he3_rate = resourceRate * (float)GameConstants.antimatter_initiated_d_he3_cons_constant * 86400;
-            float un_rate = resourceRate * (float)GameConstants.antimatter_initiated_uf4_cons_constant * 86400;
+            float un_rate = resourceRate * (float)GameConstants.antimatter_initiated_eu_cons_constant * 86400;
             float upgraded_d_he3_rate = upgradedResourceRate * (float)GameConstants.antimatter_initiated_upgraded_d_he3_cons_constant * 86400;
             float upgraded_amat_rate = upgradedResourceRate * (float)GameConstants.antimatter_initiated_antimatter_cons_constant * 86400 * 1000000;
 
@@ -117,7 +117,7 @@ namespace InterstellarPlugin {
 
         protected override double consumeReactorResource(double resource) {
             double deuterium_he3_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_d_he3_cons_constant : resource * GameConstants.antimatter_initiated_d_he3_cons_constant;
-            double un_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_uf4_cons_constant : resource * GameConstants.antimatter_initiated_uf4_cons_constant;
+            double un_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_eu_cons_constant : resource * GameConstants.antimatter_initiated_eu_cons_constant;
             double antimatter_consumption = GameConstants.antimatter_initiated_antimatter_cons_constant * resource;
 
             double delta_deut = deuterium.amount - Math.Max(0, deuterium.amount - deuterium_he3_consumption);
@@ -132,7 +132,7 @@ namespace InterstellarPlugin {
 
         protected override double returnReactorResource(double resource) {
             double deuterium_he3_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_d_he3_cons_constant : resource * GameConstants.antimatter_initiated_d_he3_cons_constant;
-            double un_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_uf4_cons_constant : resource * GameConstants.antimatter_initiated_uf4_cons_constant;
+            double un_consumption = isupgraded ? resource * GameConstants.antimatter_initiated_upgraded_eu_cons_constant : resource * GameConstants.antimatter_initiated_eu_cons_constant;
             double antimatter_consumption = GameConstants.antimatter_initiated_antimatter_cons_constant * resource;
 
             double delta_deut = Math.Min(deuterium.maxAmount, deuterium.amount + deuterium_he3_consumption) - deuterium.amount;

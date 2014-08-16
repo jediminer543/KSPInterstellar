@@ -53,11 +53,11 @@ namespace InterstellarPlugin
         protected double mining_rate_d = 0;
         protected double anthra_rate_d = 0;
         protected double monoprop_rate_d = 0;
-        protected double uranium_nitride_rate_d = 0;
+        protected double enriched_uranium_rate_d = 0;
         protected double ammonia_rate_d = 0;
         protected bool play_down = true;
         protected Animation anim;
-        protected String[] modes = { "Nuclear Reprocessing", "Aluminium Electrolysis", "Sabatier ISRU", "Water Electrolysis", "Anthraquinone Process", "Monopropellant Production", "UF4 Ammonolysis", "Haber Process" };
+        protected String[] modes = { "Nuclear Reprocessing", "Aluminium Electrolysis", "Sabatier ISRU", "Water Electrolysis", "Anthraquinone Process", "Monopropellant Production", "Uranium Ammonolysis", "Haber Process" };
         protected FuelReprocessor reprocessor;
 
         [KSPEvent(guiActive = true, guiName = "Reprocess Nuclear Fuel", active = true)]
@@ -114,7 +114,7 @@ namespace InterstellarPlugin
             activateAnimation();
         }
 
-        [KSPEvent(guiActive = true, guiName = "UF4 Ammonolysis", active = true)]
+        [KSPEvent(guiActive = true, guiName = "Uranium Ammonolysis", active = true)]
         public void UraniumAmmonolysis()
         {
             IsEnabled = true;
@@ -245,7 +245,7 @@ namespace InterstellarPlugin
                 { // Uranium Ammonolysis
                     Fields["uraniumNitrideRate"].guiActive = true;
                     double currentpowertmp = electrical_power_ratio * GameConstants.baseUraniumAmmonolysisConsumption;
-                    double uraniumnitrideratetmp = uranium_nitride_rate_d * 3600;
+                    double uraniumnitrideratetmp = enriched_uranium_rate_d * 3600;
                     uraniumNitrideRate = uraniumnitrideratetmp.ToString("0.0") + " mT/hour";
                     powerStr = currentpowertmp.ToString("0.00") + "MW / " + GameConstants.baseUraniumAmmonolysisConsumption.ToString("0.00") + "MW";
                 }
@@ -390,26 +390,26 @@ namespace InterstellarPlugin
                 else if (active_mode == 6)
                 {
                     double density_ammonia = PartResourceLibrary.Instance.GetDefinition(PluginHelper.ammonia_resource_name).density;
-                    double density_uf4 = PartResourceLibrary.Instance.GetDefinition("UF4").density;
+                    double density_eu = PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").density;
                     double density_un = PartResourceLibrary.Instance.GetDefinition("UraniumNitride").density;
                     double electrical_power_provided = consumeFNResource((GameConstants.baseUraniumAmmonolysisConsumption) * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES);
                     electrical_power_ratio = (float)(electrical_power_provided / TimeWarp.fixedDeltaTime / GameConstants.baseUraniumAmmonolysisConsumption);
                     double lpersec = GameConstants.baseUraniumAmmonolysisRate * electrical_power_ratio;
-                    double uf4persec = lpersec * 1.24597 / density_uf4;
+                    double eupersec = lpersec * 1.24597 / density_eu;
                     double unpersec = lpersec / density_un;
                     double ammoniapersec = lpersec * 0.901 / density_ammonia;
-                    double uf4_rate = ORSHelper.fixedRequestResource(part, "UF4", uf4persec * TimeWarp.fixedDeltaTime);
-                    double ammonia_rate = ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, uf4persec * TimeWarp.fixedDeltaTime);
-                    if (uf4_rate > 0 && ammonia_rate > 0)
+                    double eu_rate = ORSHelper.fixedRequestResource(part, "EnrichedUranium", eupersec * TimeWarp.fixedDeltaTime);
+                    double ammonia_rate = ORSHelper.fixedRequestResource(part, PluginHelper.ammonia_resource_name, eupersec * TimeWarp.fixedDeltaTime);
+                    if (eu_rate > 0 && ammonia_rate > 0)
                     {
-                        uranium_nitride_rate_d = -ORSHelper.fixedRequestResource(part, "UraniumNitride", -uf4_rate * density_uf4 / 1.24597 / density_un) / TimeWarp.fixedDeltaTime * density_un;
+                        enriched_uranium_rate_d = -ORSHelper.fixedRequestResource(part, "UraniumNitride", -eu_rate * density_eu / 1.24597 / density_un) / TimeWarp.fixedDeltaTime * density_un;
                     }
                     else
                     {
                         if (electrical_power_ratio > 0)
                         {
-                            uranium_nitride_rate_d = 0;
-                            ScreenMessages.PostScreenMessage("Uranium Tetraflouride and Ammonia are required to produce Uranium Nitride.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
+                            enriched_uranium_rate_d = 0;
+                            ScreenMessages.PostScreenMessage("Enriched Uranium and Ammonia are required to produce Uranium Nitride.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                             IsEnabled = false;
                         }
                     }

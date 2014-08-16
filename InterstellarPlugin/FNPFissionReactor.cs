@@ -63,18 +63,19 @@ namespace InterstellarPlugin {
         }
 
         public override float getThermalPowerAtTemp(float temp) {
-            float rel_temp_diff = 0;
-            if (temp > optimalPebbleTemp && temp < tempZeroPower && !isupgraded) {
-                rel_temp_diff = (float)Math.Pow((tempZeroPower - temp) / (tempZeroPower - optimalPebbleTemp), 0.81);
-            } else {
-                rel_temp_diff = 1;
-            }
-            return ThermalPower * rel_temp_diff;
+            //float rel_temp_diff = 0;
+            //if (temp > optimalPebbleTemp && temp < tempZeroPower && !isupgraded) {
+            //    rel_temp_diff = (float)Math.Pow((tempZeroPower - temp) / (tempZeroPower - optimalPebbleTemp), 0.81);
+            //} else {
+            //    rel_temp_diff = 1;
+            //}
+            //return ThermalPower * rel_temp_diff;
+            return ThermalPower;
         }
 
         public override void OnStart(PartModule.StartState state) {
             uranium_mononitride = part.Resources["UraniumNitride"];
-            depleted_fuel = part.Resources["DepletedFuel"];
+            depleted_fuel = part.Resources["DepletedUranium"];
             base.OnStart(state);
             initial_thermal_power = ThermalPower;
             initial_resource_rate = resourceRate;
@@ -94,22 +95,23 @@ namespace InterstellarPlugin {
 
         public override void OnFixedUpdate() {
             base.OnFixedUpdate();
-            if (IsEnabled && !isupgraded) {
-                double temp_scale;
-                if(FNRadiator.hasRadiatorsForVessel(vessel)) {
-                    temp_scale = FNRadiator.getAverageMaximumRadiatorTemperatureForVessel(vessel);
-                }else{
-                    temp_scale = optimalPebbleTemp;
-                }
-                ReactorTemp = (float) Math.Min(Math.Max(Math.Pow(getResourceBarRatio(FNResourceManager.FNRESOURCE_WASTEHEAT), 0.25)*temp_scale*1.5,optimalPebbleTemp),tempZeroPower);
-                //ReactorTemp = (float) (Math.Pow(getResourceBarRatio(FNResourceManager.FNRESOURCE_WASTEHEAT), 0.25) * temp_scale * 1.5);
-                float rel_temp_diff = (float) Math.Pow((tempZeroPower - ReactorTemp)/(tempZeroPower - optimalPebbleTemp),0.81);
-                ThermalPower = initial_thermal_power * rel_temp_diff;
-                resourceRate = initial_resource_rate * rel_temp_diff;
-            } else if (IsEnabled && isupgraded) {
-                ThermalPower = upgradedThermalPower;
-                resourceRate = upgradedResourceRate;
-            }
+            //if (IsEnabled && !isupgraded) {
+                //double temp_scale;
+                //if(FNRadiator.hasRadiatorsForVessel(vessel)) {
+                //    temp_scale = FNRadiator.getAverageMaximumRadiatorTemperatureForVessel(vessel);
+                //}else{
+                //    temp_scale = optimalPebbleTemp;
+                //}
+                //ReactorTemp = (float) Math.Min(Math.Max(Math.Pow(getResourceBarRatio(FNResourceManager.FNRESOURCE_WASTEHEAT), 0.25)*temp_scale*1.5,optimalPebbleTemp),tempZeroPower);
+                //float rel_temp_diff = (float) Math.Pow((tempZeroPower - ReactorTemp)/(tempZeroPower - optimalPebbleTemp),0.81);
+                //ThermalPower = initial_thermal_power * rel_temp_diff;
+                //resourceRate = initial_resource_rate * rel_temp_diff;
+                ThermalPower = initial_thermal_power;
+                resourceRate = initial_resource_rate;
+            //} else if (IsEnabled && isupgraded) {
+            //    ThermalPower = upgradedThermalPower;
+            //    resourceRate = upgradedResourceRate;
+            //}
         }
 
         protected override double consumeReactorResource(double resource) {
