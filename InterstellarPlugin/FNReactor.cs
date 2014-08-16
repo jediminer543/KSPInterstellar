@@ -443,7 +443,7 @@ namespace InterstellarPlugin
 
         public float getThermalPower()
         {
-            return ThermalPower;
+            return ThermalPower * (1 - chargedParticleRatio);
         }
 
         public float getChargedPower()

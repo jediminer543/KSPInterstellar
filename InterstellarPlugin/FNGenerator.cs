@@ -341,9 +341,6 @@ namespace InterstellarPlugin {
                     double thermal_power_currently_needed = electrical_power_currently_needed / totalEff;
                     double thermaldt = Math.Max(Math.Min(maxThermalPower, thermal_power_currently_needed) * TimeWarp.fixedDeltaTime, 0.0);
                     input_power = consumeFNResource(thermaldt, FNResourceManager.FNRESOURCE_THERMALPOWER);
-                    if (input_power < thermaldt) {
-                        input_power += consumeFNResource(thermaldt-input_power, FNResourceManager.FNRESOURCE_CHARGED_PARTICLES);
-                    }
                     double wastedt = input_power * totalEff;
                     consumeFNResource(wastedt, FNResourceManager.FNRESOURCE_WASTEHEAT);
                     electricdt = input_power * totalEff;
@@ -352,13 +349,13 @@ namespace InterstellarPlugin {
                 } else {
                     totalEff = 0.85;
                     double charged_power_currently_needed = electrical_power_currently_needed / totalEff;
-                    input_power = consumeFNResource(Math.Max(charged_power_currently_needed*TimeWarp.fixedDeltaTime,0), FNResourceManager.FNRESOURCE_CHARGED_PARTICLES);
+                    double chageddt = Math.Max(Math.Min(maxChargedPower, charged_power_currently_needed) * TimeWarp.fixedDeltaTime, 0.0);
+                    input_power = consumeFNResource(chageddt, FNResourceManager.FNRESOURCE_CHARGED_PARTICLES);
+                    double wastedt = input_power * totalEff;
+                    consumeFNResource(wastedt, FNResourceManager.FNRESOURCE_WASTEHEAT);
                     electricdt = input_power * totalEff;
                     electricdtps = Math.Max(electricdt / TimeWarp.fixedDeltaTime, 0.0);
-                    double wastedt = input_power * totalEff;
                     max_electricdtps = maxChargedPower * totalEff;
-                    consumeFNResource(wastedt, FNResourceManager.FNRESOURCE_WASTEHEAT);
-                    //supplyFNResource(wastedt, FNResourceManager.FNRESOURCE_WASTEHEAT);
                 }
 				outputPower = -(float)supplyFNResourceFixedMax (electricdtps * TimeWarp.fixedDeltaTime, max_electricdtps * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES) / TimeWarp.fixedDeltaTime;
 			} else {
