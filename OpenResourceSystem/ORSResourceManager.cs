@@ -8,6 +8,8 @@ namespace OpenResourceSystem
 {
     public class ORSResourceManager
     {
+        public List<KeyValuePair<ORSResourceSuppliable, double>> PowerDraws
+        { get { return power_draw_list_archive; } }
         public const string FNRESOURCE_MEGAJOULES = "Megajoules";
         public const string FNRESOURCE_CHARGED_PARTICLES = "ChargedParticles";
         public const string FNRESOURCE_THERMALPOWER = "ThermalPower";

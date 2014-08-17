@@ -1,4 +1,6 @@
-﻿using System;
+﻿extern alias ORSv1_1;
+using ORSv1_1::OpenResourceSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,6 +41,12 @@ namespace InterstellarPlugin {
         [KSPEvent(guiActive = true, guiName = "Activate Transmitter", active = true)]
         public void ActivateTransmitter() {
             if (relay) { return; }
+            // Disallow activating more than one MicrowavePowerTransmitter in transmitter mode
+            if (vessel.FindPartModulesImplementing<MicrowavePowerTransmitter>().Exists(pm => pm.isActive() && !pm.getIsRelay()))
+            {
+                ScreenMessages.PostScreenMessage("Warning: Only one Microwave Transmitter can be active at any given time.", 10.0f, ScreenMessageStyle.UPPER_CENTER);
+                return;
+            }
             if (anim != null) {
                 anim[animName].speed = 1f;
                 anim[animName].normalizedTime = 0f;
@@ -178,23 +186,25 @@ namespace InterstellarPlugin {
             solar_power = 0;
             displayed_solar_power = 0;
             if (IsEnabled && !relay) {
-                float fusionReactorsRequirements = 0.0f;
-
+                double powerDraw = 0.0;
+                
                 try
                 {
-                    fusionReactorsRequirements = vessel.FindPartModulesImplementing<FNFusionReactor>().Where(r => r.isActive()).Sum(r => r.powerRequirements);
+                    ORSResourceManager manager = getOvermanagerForResource(FNResourceManager.FNRESOURCE_MEGAJOULES).getManagerForVessel(vessel);
+                    if (manager != null)
+                        powerDraw = manager.PowerDraws.Where(pm => !(pm.Key is MicrowavePowerTransmitter && (pm.Key as MicrowavePowerTransmitter) == this)).Sum(pm => pm.Value);
                 }
                 catch (ArgumentNullException)
                 {
-                    fusionReactorsRequirements = 0.0f;
+                    powerDraw = 0.0;
                 }
 
                 foreach (FNGenerator generator in generators) {
                     if (generator.isActive()) {
                         FNThermalSource thermal_source = generator.getThermalSource();
-                        if (thermal_source != null && !thermal_source.isVolatileSource()) {
-                            double output = -generator.getCurrentPower();
-                            output -= fusionReactorsRequirements / (double)generators.Count(g => g.isActive());
+                        if (thermal_source != null && !thermal_source.isVolatileSource() && thermal_source.isActive()) {
+                            double output = generator.getMaxPowerOutput();
+                            output -= powerDraw / (double)generators.Count(g => g.isActive() && g.getThermalSource().isActive());
                             output = output * transmitPower / 100.0;
                             double gpower = consumeFNResource(output * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES);
                             nuclear_power += gpower * 1000 / TimeWarp.fixedDeltaTime;
