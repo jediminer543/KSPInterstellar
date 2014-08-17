@@ -13,6 +13,8 @@ namespace InterstellarPlugin
 		public string radhazardstr;
 		[KSPField(isPersistant = true)]
 		bool rad_safety_features = true;
+        [KSPField(isPersistant = true)]
+        public float powerConsumption;
 
 		protected bool radhazard = false;
 
@@ -133,7 +135,7 @@ namespace InterstellarPlugin
 			}
 
 			if (throttle > 0) {
-                double power = consumeFNResource(2500.0 * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES);
+                double power = consumeFNResource(powerConsumption * TimeWarp.fixedDeltaTime, FNResourceManager.FNRESOURCE_MEGAJOULES);
                 curEngineT.propellants[1].ratio = (float)(standard_deut_rate / throttle / throttle);
                 curEngineT.propellants[2].ratio = (float)(standard_lith_rate / throttle / throttle);
                 FloatCurve newISP = new FloatCurve();
