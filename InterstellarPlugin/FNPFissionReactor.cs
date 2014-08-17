@@ -74,7 +74,7 @@ namespace InterstellarPlugin {
         }
 
         public override void OnStart(PartModule.StartState state) {
-            uranium_mononitride = part.Resources["UraniumNitride"];
+            uranium_mononitride = part.Resources["EnrichedUranium"];
             depleted_fuel = part.Resources["DepletedUranium"];
             base.OnStart(state);
             initial_thermal_power = ThermalPower;
