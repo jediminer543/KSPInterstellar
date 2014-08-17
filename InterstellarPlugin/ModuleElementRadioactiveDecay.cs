@@ -34,7 +34,7 @@ namespace InterstellarPlugin {
 			if (resourceName == "Tritium") {
 				List<FNReactor> reactors = part.vessel.FindPartModulesImplementing<FNReactor> ();
 				foreach (FNReactor reactor in reactors) {
-					generation_rate += reactor.getTritiumBreedRate ();
+					generation_rate += Convert.ToDouble(reactor.tritiumBreedRate);
 				}
 
 				List<PartResource> tritium_resources = new List<PartResource> ();

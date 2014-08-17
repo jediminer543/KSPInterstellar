@@ -337,9 +337,18 @@ namespace InterstellarPlugin
                 var eEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ElectricEngineController>().ToList(); // Lets find the electric engines
                 foreach (ElectricEngineController engine in eEngines)
                 {
-                    if (engine.isEnabled) // if they are enables
+                    if (engine.isEnabled) // if they are enabled
                     {
                         eEnginePower += engine.maxPower; // add thier demand together
+                    }
+                }
+
+                var vEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<VistaEngineController>().ToList(); // Lets find the electric engines
+                foreach (VistaEngineController engine in vEngines)
+                {
+                    if (engine.isEnabled) // if they are enabled
+                    {
+                        eEnginePower += engine.powerConsumption; // add thier demand together
                     }
                 }
 

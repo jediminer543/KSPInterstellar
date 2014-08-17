@@ -1,4 +1,4 @@
-Version 0.12.0 -  for ksp v0.24.2
+Experimental Version 0.12.0 -  for ksp v0.24.2
 - Fixed data collection on magnetometer.
 - Added more details to generator, reactor and radiator modules.
 - Added atmospheric intake functionality to atmospheric scoops.
@@ -39,6 +39,10 @@ Version 0.12.0 -  for ksp v0.24.2
 - Science Mode is now supported. (By the KSPI code, Treeloader still doesn't work though.)
 - Fission and Pfission now both use general EnrichedUranium and DepletedUranium resources. (For compatibility.)
 - EnrichedUranium can be mined with the Refinery.
+- Corrected power consumption of generators. (rakkhin)
+- Corrected behavior or Microwave transmitters. (rakkhin)
+- Improved he-3 decay tracking. (mellon85)
+- Fixed an issue with Vista and MW throttling. (maybe.)
 
 
 Version 0.11.0
