@@ -13,8 +13,10 @@ namespace InterstellarPlugin
 		public string radhazardstr;
 		[KSPField(isPersistant = true)]
 		bool rad_safety_features = true;
-        [KSPField(isPersistant = true)]
+        [KSPField(isPersistant = false)]
         public float powerConsumption;
+        [KSPField(isPersistant = false)]
+        public float vthrust;
 
 		protected bool radhazard = false;
 
@@ -141,8 +143,8 @@ namespace InterstellarPlugin
                 FloatCurve newISP = new FloatCurve();
                 newISP.Add(0, (float)(minISP / throttle));
                 curEngineT.atmosphereCurve = newISP;
-                if (power >= 2500 * TimeWarp.fixedDeltaTime) {
-                    curEngineT.maxThrust = 1100;
+                if (power >= powerConsumption * TimeWarp.fixedDeltaTime) {
+                    curEngineT.maxThrust = vthrust;
                 } else {
                     curEngineT.maxThrust = 0.0001f;
                 }
