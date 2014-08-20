@@ -37,6 +37,7 @@ namespace InterstellarPlugin
         double maxDemand = 0;
         double minDemand = 0;
         double curDemand = 0;
+        bool automode = true;
 
         //GUI
         [KSPField(isPersistant = false, guiActive = true, guiName = "Input Power")]
@@ -49,7 +50,7 @@ namespace InterstellarPlugin
         public string networkDepthString;
         [KSPField(isPersistant = false, guiActive = true, guiName = "Total Efficiency")]
         public string toteff;
-        [KSPField(isPersistant = true, guiActive = true, guiName = "Reception"), UI_FloatRange(stepIncrement = 0.005f, maxValue = 100, minValue = 1)]
+        [KSPField(isPersistant = true, guiActive = false, guiName = "Reception"), UI_FloatRange(stepIncrement = 0.005f, maxValue = 100, minValue = 1)]
         public float receiptPower;
 
         //Internal 
@@ -85,6 +86,18 @@ namespace InterstellarPlugin
         public void DisableReceiver()
         {
             receiverIsEnabled = false;
+        }
+
+        [KSPEvent(guiActive = true, guiName = "Enable Auto Mode", active = true)]
+        public void EnableAutoMode()
+        {
+            automode = true;Fields["receiptPower"].guiActive = false;
+        }
+
+        [KSPEvent(guiActive = true, guiName = "Disable Auto Mode", active = true)]
+        public void DisableAutoMode()
+        {
+            automode = false;
         }
 
         [KSPAction("Activate Receiver")]
@@ -217,7 +230,10 @@ namespace InterstellarPlugin
             }
             Events["ActivateReceiver"].active = !receiverIsEnabled && !transmitter_on;
             Events["DisableReceiver"].active = receiverIsEnabled;
+            Events["EnableAutoMode"].active = !automode && receiverIsEnabled && !transmitter_on;
+            Events["DisableAutoMode"].active = automode && receiverIsEnabled && !transmitter_on;
             Fields["toteff"].guiActive = (connectedsatsi > 0 || connectedrelaysi > 0);
+            Fields["receiptPower"].guiActive = !automode && receiverIsEnabled && !transmitter_on;
 
             if (receiverIsEnabled)
             {
@@ -329,45 +345,72 @@ namespace InterstellarPlugin
                 connectedsatsi = activeSatsIncr;
                 connectedrelaysi = usedRelays.Count;
 
-                // dynamicly configure power reception
-                List<Part> parts = vessel.parts;  // lets find the maxPower in those part configs for each engine
-                double eEnginePower = 0; //we'll save total electric engine power here
-                double tEnginePower = 0; // and the thermal engine power here
+                double availPower = total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency; // maximum available in network
 
-                var eEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ElectricEngineController>().ToList(); // Lets find the electric engines
-                foreach (ElectricEngineController engine in eEngines)
+                if (automode)
                 {
-                    if (engine.isEnabled) // if they are enabled
-                    {
-                        eEnginePower += engine.maxPower; // add thier demand together
-                    }
-                }
+                    // dynamicly configure power reception
+                    List<Part> parts = vessel.parts;  // lets find the maxPower in those part configs for each engine
+                    double eEnginePower = 0; //we'll save total electric engine power here
+                    double tEnginePower = 0; // and the thermal engine power here
+                    double vEnginePower = 0; // and now the vista engines
+                    int aRecieverCount = 0; //count active recievers
 
-                var vEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<VistaEngineController>().ToList(); // Lets find the electric engines
-                foreach (VistaEngineController engine in vEngines)
+                    var eEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ElectricEngineController>().ToList(); // Lets find the electric engines
+                    foreach (ElectricEngineController engine in eEngines)
+                    {
+                        if (engine.isEnabled) // if they are enabled
+                        {
+                            eEnginePower += engine.maxPower; // add thier demand together
+                        }
+                    }
+
+                    var vEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<VistaEngineController>().ToList(); // Lets find the vista engines
+                    foreach (VistaEngineController vengine in vEngines)
+                    {
+                        if (vengine.isEnabled) // if they are enabled
+                        {
+                            vEnginePower += vengine.powerConsumption; // add thier demand together
+                        }
+                    }
+
+                    var tEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<FNNozzleController>().ToList(); // find the thermal nozzles
+                    foreach (FNNozzleController engine in tEngines)
+                    {
+                        if (engine.IsEnabled) // if they are enabled
+                        {
+                            tEnginePower = availPower; // max the power, since there is no power cap, and waste heat isn't an issue.
+                        }
+                    }
+
+                    //var activeRecievers = FlightGlobals.ActiveVessel.FindPartModulesImplementing<MicrowavePowerReceiver>().ToList();
+                    //foreach (MicrowavePowerReceiver receiver in activeRecievers)
+                    //{
+                    //    if (receiver)
+                    //    {
+                    //        aRecieverCount += 1; // count active recievers
+                    //    }
+                    //}
+
+                    minDemand = getCurrentResourceDemand("Megajoules") + getCurrentResourceDemand("ElectricCharge");// fallback for minimum demand
+                    maxDemand = eEnginePower + vEnginePower + tEnginePower; // the max draw of the engines
+                    
+                    //if (aRecieverCount < 1) // handle divide by zero
+                    //{
+                    //    aRecieverCount = 1;
+                    //}
+ 
+                    // this needs to be fixed to only add power for one active reciever
+
+                    //if throttled up, recieve the maximum of demand up to the maximum available power (ie. atmo, dist, angle, total supply)
+                    if (FlightGlobals.ActiveVessel.ctrlState.mainThrottle > 0.0f) powerInputMegajoules = ((Math.Min(maxDemand, availPower) - vEnginePower) * FlightGlobals.ActiveVessel.ctrlState.mainThrottle) + vEnginePower;
+                    // else only recieve the minimum demand (just enough to keep the lights running) again, if enough available power
+                    else powerInputMegajoules = Math.Min(minDemand, availPower);
+                }
+                else
                 {
-                    if (engine.isEnabled) // if they are enabled
-                    {
-                        eEnginePower += engine.powerConsumption; // add thier demand together
-                    }
+                    powerInputMegajoules = availPower;
                 }
-
-                var tEngines = FlightGlobals.ActiveVessel.FindPartModulesImplementing<FNNozzleController>().ToList(); // find the thermal nozzles
-                foreach (FNNozzleController engine in tEngines)
-                {
-                    if (engine.IsEnabled) // if they are enabled
-                    {
-                        tEnginePower = total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency; // max the power, since there is no power cap, and waste heat isn't an issue.
-                    }
-                }
-
-                minDemand = getCurrentResourceDemand("Megajoules") + getCurrentResourceDemand("ElectricCharge");// fallback for minimum demand
-                maxDemand = Math.Max(eEnginePower, tEnginePower) * FlightGlobals.ActiveVessel.ctrlState.mainThrottle; // save the maximum demand scaled to the current throttle
-
-                //if throttled up, recieve the maximum of demand up to the maximum available power (ie. atmo, dist, angle, total supply)
-                if (FlightGlobals.ActiveVessel.ctrlState.mainThrottle > 0.0f) powerInputMegajoules = Math.Min(maxDemand + getSpareResourceCapacity("Megajoules"), total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
-                // else only recieve the minimum demand (just enough to keep the lights running) again, if enough available power
-                else powerInputMegajoules = Math.Min(minDemand + getSpareResourceCapacity("Megajoules"), total_power / 1000.0 * GameConstants.microwave_dish_efficiency * atmosphericefficiency);
 
                 powerInput = powerInputMegajoules * 1000.0f * receiptPower / 100.0f;
 
