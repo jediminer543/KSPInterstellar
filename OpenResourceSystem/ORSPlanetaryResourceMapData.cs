@@ -36,7 +36,7 @@ namespace OpenResourceSystem {
             body_resource_maps.Clear();
             body_abudnance_angles.Clear();
             map_body = -1;
-            current_body = -1;
+			current_body = body;
             foreach (UrlDir.UrlConfig config in configs) {
                 ConfigNode planetary_resource_config_node = config.config;
                 if (planetary_resource_config_node.GetValue("celestialBodyName") == celestial_body_name && planetary_resource_config_node != null) {
@@ -99,7 +99,6 @@ namespace OpenResourceSystem {
                     Debug.Log("[ORS] " + abundance_points_list.Count + " high value " + resource_gui_name + " locations detected");
                 }
             }
-            current_body = body;
         }
 
         protected static double getPixelAbundanceValue(int pix_x, int pix_y, ORSPlanetaryResourceInfo resource_info) {
