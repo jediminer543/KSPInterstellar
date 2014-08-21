@@ -44,10 +44,20 @@ namespace OpenResourceSystem {
 					string resource_gui_name = planetary_resource_config_node.GetValue("name");
 					if (body_resource_maps.ContainsKey(resource_gui_name))
 						continue;
-                    Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
-                    if (map == null) {
-                        continue;
-                    }
+					Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
+					try
+					{
+						map.GetPixel(1, 1);
+					}
+					catch (UnityException e)
+					{
+						Debug.Log("Stop Doing Dumb Things With Your Map Textures: " + e);
+						continue;
+					}
+					if (map == null)
+					{
+						continue;
+					}
                     ORSPlanetaryResourceInfo resource_info = new ORSPlanetaryResourceInfo(resource_gui_name, map, body);
                     if (planetary_resource_config_node.HasValue("resourceName")) {
                         string resource_name = planetary_resource_config_node.GetValue("resourceName");
