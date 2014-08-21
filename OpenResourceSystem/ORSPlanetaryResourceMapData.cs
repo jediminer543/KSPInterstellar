@@ -41,11 +41,13 @@ namespace OpenResourceSystem {
                 ConfigNode planetary_resource_config_node = config.config;
                 if (planetary_resource_config_node.GetValue("celestialBodyName") == celestial_body_name && planetary_resource_config_node != null) {
                     Debug.Log("[ORS] Loading Planetary Resource Data for " + celestial_body_name);
+					string resource_gui_name = planetary_resource_config_node.GetValue("name");
+					if (body_resource_maps.ContainsKey(resource_gui_name))
+						continue;
                     Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
                     if (map == null) {
                         continue;
                     }
-                    string resource_gui_name = planetary_resource_config_node.GetValue("name");
                     ORSPlanetaryResourceInfo resource_info = new ORSPlanetaryResourceInfo(resource_gui_name, map, body);
                     if (planetary_resource_config_node.HasValue("resourceName")) {
                         string resource_name = planetary_resource_config_node.GetValue("resourceName");
@@ -69,7 +71,7 @@ namespace OpenResourceSystem {
                         string tex_path = planetary_resource_config_node.GetValue("displayTexture");
                         resource_info.setDisplayTexture(tex_path);
                     } else {
-                        string tex_path = planetary_resource_config_node.GetValue("Interstellar/resource_point");
+                        string tex_path = planetary_resource_config_node.GetValue("WarpPlugin/resource_point");
                         resource_info.setDisplayTexture(tex_path);
                     }
                     if (planetary_resource_config_node.HasValue("displayThreshold")) {
