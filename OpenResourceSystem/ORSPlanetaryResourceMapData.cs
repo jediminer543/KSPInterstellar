@@ -36,16 +36,28 @@ namespace OpenResourceSystem {
             body_resource_maps.Clear();
             body_abudnance_angles.Clear();
             map_body = -1;
-            current_body = -1;
+			current_body = body;
             foreach (UrlDir.UrlConfig config in configs) {
                 ConfigNode planetary_resource_config_node = config.config;
                 if (planetary_resource_config_node.GetValue("celestialBodyName") == celestial_body_name && planetary_resource_config_node != null) {
                     Debug.Log("[ORS] Loading Planetary Resource Data for " + celestial_body_name);
-                    Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
-                    if (map == null) {
-                        continue;
-                    }
-                    string resource_gui_name = planetary_resource_config_node.GetValue("name");
+					string resource_gui_name = planetary_resource_config_node.GetValue("name");
+					if (body_resource_maps.ContainsKey(resource_gui_name))
+						continue;
+					Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
+					try
+					{
+						map.GetPixel(1, 1);
+					}
+					catch (UnityException e)
+					{
+						Debug.Log("Stop Doing Dumb Things With Your Map Textures: " + e);
+						continue;
+					}
+					if (map == null)
+					{
+						continue;
+					}
                     ORSPlanetaryResourceInfo resource_info = new ORSPlanetaryResourceInfo(resource_gui_name, map, body);
                     if (planetary_resource_config_node.HasValue("resourceName")) {
                         string resource_name = planetary_resource_config_node.GetValue("resourceName");
@@ -69,7 +81,7 @@ namespace OpenResourceSystem {
                         string tex_path = planetary_resource_config_node.GetValue("displayTexture");
                         resource_info.setDisplayTexture(tex_path);
                     } else {
-                        string tex_path = planetary_resource_config_node.GetValue("Interstellar/resource_point");
+                        string tex_path = planetary_resource_config_node.GetValue("WarpPlugin/resource_point");
                         resource_info.setDisplayTexture(tex_path);
                     }
                     if (planetary_resource_config_node.HasValue("displayThreshold")) {
@@ -97,7 +109,6 @@ namespace OpenResourceSystem {
                     Debug.Log("[ORS] " + abundance_points_list.Count + " high value " + resource_gui_name + " locations detected");
                 }
             }
-            current_body = body;
         }
 
         protected static double getPixelAbundanceValue(int pix_x, int pix_y, ORSPlanetaryResourceInfo resource_info) {

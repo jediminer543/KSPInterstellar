@@ -15,6 +15,7 @@ namespace OpenResourceSystem {
         public string Ab;
 
         protected double abundance = 0;
+		private ORSPlanetaryResourceInfo resourceInfo = null;
 
         [KSPEvent(guiActive = true, guiName = "Display Hotspots", active = true)]
         public void DisplayResource() {
@@ -32,17 +33,29 @@ namespace OpenResourceSystem {
         }
 
         public override void OnUpdate() {
+            ORSPlanetaryResourceMapData.updatePlanetaryResourceMap();
+			if (resourceInfo == null)
+				if (ORSPlanetaryResourceMapData.body_resource_maps.ContainsKey(resourceName))
+					resourceInfo = ORSPlanetaryResourceMapData.body_resource_maps[resourceName];
             Events["DisplayResource"].active = Events["DisplayResource"].guiActive = !ORSPlanetaryResourceMapData.resourceIsDisplayed(resourceName) && mapViewAvailable;
             Events["DisplayResource"].guiName = "Display " + resourceName + " hotspots";
             Events["HideResource"].active = Events["HideResource"].guiActive = ORSPlanetaryResourceMapData.resourceIsDisplayed(resourceName) && mapViewAvailable;
             Events["HideResource"].guiName = "Hide " + resourceName + " hotspots";
             Fields["Ab"].guiName = resourceName + " abundance";
-            if (abundance > 0.001) {
-                Ab = (abundance * 100.0).ToString("0.00") + "%";
-            } else {
-                Ab = (abundance * 1000000.0).ToString("0.0") + "ppm";
-            }
-            ORSPlanetaryResourceMapData.updatePlanetaryResourceMap();
+			if (resourceInfo != null)
+			{
+				if (resourceInfo.getResourceScale() == 1)
+				{
+					Ab = (abundance * 100.0).ToString("0.00") + "%";
+				}
+				else
+				{
+					Ab = (abundance * 1000000.0).ToString("0.0") + "ppm";
+				}
+			}
+			else
+				Ab = "Broken:(";
+
         }
 
         public override void OnFixedUpdate() {
