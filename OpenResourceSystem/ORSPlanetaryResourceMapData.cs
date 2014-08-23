@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace OpenResourceSystem {
     public class ORSPlanetaryResourceMapData : MonoBehaviour {
-        static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
+        public static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
         static Dictionary<string, Vector2d[]> body_abudnance_angles = new Dictionary<string, Vector2d[]>();
         static List<ORSResourceAbundanceMarker> abundance_markers = new List<ORSResourceAbundanceMarker>();
         static int current_body = -1;
