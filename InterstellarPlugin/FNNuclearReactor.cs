@@ -132,14 +132,16 @@ namespace InterstellarPlugin {
             float up_thf4_ThermalPower = upgradedThermalPower * 1.38f;
             float up_thf4_rate_per_day = upgradedResourceRate * 86400 * .45f;
 
-            return String.Format("[Base Part Information]\nPart Name: {0}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {1:n0}K\n- Total Power Output: {2:n0}MW\n- Consumption Rate (Max):\n- {3}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {4:n0}K\n- Total Power Output: {5:n0}MW\n- Consumption Rate (Max):\n- {6}L/day\n\n[Upgrade Information]\nScience Tech Required:\n- Fusion Power\nPart Name: {7}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {8:n0}K\n- Total Power Output: {9:n0}MW\n- Consumption Rate (Max):\n- {10}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {11:n0}K\n- Total Power Output: {12:n0}MW\n- Consumption Rate (Max):\n- {13}L/day", originalName, ReactorTemp, ThermalPower, uf6_rate_per_day, thf4_ReactorTemp, thf4_ThermalPower, thf4_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_uf6_rate_per_day, up_thf4_ReactorTemp, up_thf4_ThermalPower, up_thf4_rate_per_day);
+            //return String.Format("[Base Part Information]\nPart Name: {0}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {1:n0}K\n- Total Power Output: {2:n0}MW\n- Consumption Rate (Max):\n- {3}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {4:n0}K\n- Total Power Output: {5:n0}MW\n- Consumption Rate (Max):\n- {6}L/day\n\n[Upgrade Information]\nScience Tech Required:\n- Fusion Power\nPart Name: {7}\n\n[Enriched Uranium Fuel Mode]\n- Core Temperature: {8:n0}K\n- Total Power Output: {9:n0}MW\n- Consumption Rate (Max):\n- {10}L/day\n\n[ThF4 Fuel Mode]\n- Core Temperature: {11:n0}K\n- Total Power Output: {12:n0}MW\n- Consumption Rate (Max):\n- {13}L/day", originalName, ReactorTemp, ThermalPower, uf6_rate_per_day, thf4_ReactorTemp, thf4_ThermalPower, thf4_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_uf6_rate_per_day, up_thf4_ReactorTemp, up_thf4_ThermalPower, up_thf4_rate_per_day);
+
+            return String.Format("\nCore Temperature: " + ReactorTemp + "K\nTotal Power Output: " + ThermalPower + "MW\nConsumption Rate (Max):\n- " + resourceRate + "Kg/day");
         }
 
         public override void OnStart(PartModule.StartState state) {
             uf4 = part.Resources["EnrichedUranium"];
             thf4 = part.Resources["ThF4"];
             actinides = part.Resources["Actinides"];
-            Fields["fuelmodeStr"].guiActiveEditor = true;
+            Fields["fuelmodeStr"].guiActiveEditor = false;
             //if (double.IsNaN(uf4.amount)) {
             //    uf4.amount = 0;
             //}

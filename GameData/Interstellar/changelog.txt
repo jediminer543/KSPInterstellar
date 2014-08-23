@@ -43,6 +43,7 @@ Experimental Version 0.12.0 -  for ksp v0.24.2
 - Corrected behavior or Microwave transmitters. (rakkhin)
 - Improved he-3 decay tracking. (mellon85)
 - Fixed an issue with Vista and MW throttling. (maybe.)
+- Many many tooltips have been decluttered.
 
 
 Version 0.11.0

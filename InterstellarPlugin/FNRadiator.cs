@@ -37,7 +37,7 @@ namespace InterstellarPlugin
         [KSPField(isPersistant = false)]
         public float upgradedRadiatorTemp;
 
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Type")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Type")]
         public string radiatorType;
         [KSPField(isPersistant = false, guiActive = true, guiName = "Temperature")]
         public string radiatorTempStr;
@@ -45,7 +45,7 @@ namespace InterstellarPlugin
         public string thermalPowerDissipStr;
         [KSPField(isPersistant = false, guiActive = true, guiName = "Power Convected")]
         public string thermalPowerConvStr;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Upgrade")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Upgrade")]
         public string upgradeCostStr;
 
         //public static double stefan_const = 5.6704e-8;
@@ -176,19 +176,19 @@ namespace InterstellarPlugin
             radiatorIsEnabled = false;
         }
 
-        [KSPEvent(guiActive = true, guiName = "Retrofit", active = true)]
-        public void RetrofitRadiator()
-        {
-            if (ResearchAndDevelopment.Instance == null) { return; }
-            if (isupgraded || ResearchAndDevelopment.Instance.Science < upgradeCost) { return; }
+        //[KSPEvent(guiActive = false, guiName = "Retrofit", active = true)]
+        //public void RetrofitRadiator()
+        //{
+        //    if (ResearchAndDevelopment.Instance == null) { return; }
+        //    if (isupgraded || ResearchAndDevelopment.Instance.Science < upgradeCost) { return; }
 
-            isupgraded = true;
-            radiatorType = upgradedName;
-            radiatorTemp = upgradedRadiatorTemp;
-            radiatorTempStr = radiatorTemp + "K";
+        //    isupgraded = true;
+        //    radiatorType = upgradedName;
+        //    radiatorTemp = upgradedRadiatorTemp;
+        //    radiatorTempStr = radiatorTemp + "K";
 
-            ResearchAndDevelopment.Instance.Science = ResearchAndDevelopment.Instance.Science - upgradeCost;
-        }
+        //    ResearchAndDevelopment.Instance.Science = ResearchAndDevelopment.Instance.Science - upgradeCost;
+        //}
 
         [KSPAction("Deploy Radiator")]
         public void DeployRadiatorAction(KSPActionParam param)
@@ -223,13 +223,13 @@ namespace InterstellarPlugin
 
             if (state == StartState.Editor)
             {
-                if (hasTechsRequiredToUpgrade())
-                {
-                    isupgraded = true;
-                    hasrequiredupgrade = true;
-                    isupgraded = true;
-                }
-                return;
+                //if (hasTechsRequiredToUpgrade())
+                //{
+                //    isupgraded = true;
+                //    hasrequiredupgrade = true;
+                //    isupgraded = true;
+                //}
+                //return;
             }
 
 
@@ -261,32 +261,32 @@ namespace InterstellarPlugin
                 radiatorIsEnabled = true;
             }
 
-            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
-            {
-                if (PluginHelper.hasTech(upgradeTechReq))
-                {
-                    hasrequiredupgrade = true;
-                }
-            }
-            else
-            {
-                hasrequiredupgrade = true;
-            }
+            //if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
+            //{
+            //    if (PluginHelper.hasTech(upgradeTechReq))
+            //    {
+            //        hasrequiredupgrade = true;
+            //    }
+            //}
+            //else
+            //{
+            //    hasrequiredupgrade = true;
+            //}
 
             if (radiatorInit == false)
             {
                 radiatorInit = true;
             }
 
-            if (!isupgraded)
-            {
+            //if (!isupgraded)
+            //{
                 radiatorType = originalName;
-            }
-            else
-            {
-                radiatorType = upgradedName;
-                radiatorTemp = upgradedRadiatorTemp;
-            }
+            //}
+            //else
+            //{
+            //    radiatorType = upgradedName;
+            //    radiatorTemp = upgradedRadiatorTemp;
+            //}
 
             radiatorTempStr = radiatorTemp + "K";
             this.part.force_activate();
@@ -296,20 +296,20 @@ namespace InterstellarPlugin
         {
             Events["DeployRadiator"].active = !radiatorIsEnabled && isDeployable;
             Events["RetractRadiator"].active = radiatorIsEnabled && isDeployable;
-            if (ResearchAndDevelopment.Instance != null)
-            {
-                Events["RetrofitRadiator"].active = !isupgraded && ResearchAndDevelopment.Instance.Science >= upgradeCost && hasrequiredupgrade;
-            }
-            else
-            {
-                Events["RetrofitRadiator"].active = false;
-            }
-            Fields["upgradeCostStr"].guiActive = !isupgraded && hasrequiredupgrade;
+            //if (ResearchAndDevelopment.Instance != null)
+            //{
+            //    Events["RetrofitRadiator"].active = !isupgraded && ResearchAndDevelopment.Instance.Science >= upgradeCost && hasrequiredupgrade;
+            //}
+            //else
+            //{
+            //    Events["RetrofitRadiator"].active = false;
+            //}
+            //Fields["upgradeCostStr"].guiActive = !isupgraded && hasrequiredupgrade;
 
-            if (ResearchAndDevelopment.Instance != null)
-            {
-                upgradeCostStr = ResearchAndDevelopment.Instance.Science + "/" + upgradeCost.ToString("0") + " Science";
-            }
+            //if (ResearchAndDevelopment.Instance != null)
+            //{
+            //    upgradeCostStr = ResearchAndDevelopment.Instance.Science + "/" + upgradeCost.ToString("0") + " Science";
+            //}
 
 
             if (update_count - last_draw_update > 8)
@@ -492,27 +492,27 @@ namespace InterstellarPlugin
 
         }
 
-        public bool hasTechsRequiredToUpgrade()
-        {
-            if (HighLogic.CurrentGame != null)
-            {
-                if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
-                {
-                    if (upgradeTechReq != null)
-                    {
-                        if (PluginHelper.hasTech(upgradeTechReq))
-                        {
-                            return true;
-                        }
-                    }
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //public bool hasTechsRequiredToUpgrade()
+        //{
+        //    if (HighLogic.CurrentGame != null)
+        //    {
+        //        if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER | HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX)
+        //        {
+        //            if (upgradeTechReq != null)
+        //            {
+        //                if (PluginHelper.hasTech(upgradeTechReq))
+        //                {
+        //                    return true;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public float getRadiatorTemperature()
         {
@@ -522,13 +522,13 @@ namespace InterstellarPlugin
         public override string GetInfo()
         {
             float thermal_power_dissip = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(radiatorTemp, 4) / 1e6);
-            float thermal_power_dissip2 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(upgradedRadiatorTemp, 4) / 1e6);
+            //float thermal_power_dissip2 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(upgradedRadiatorTemp, 4) / 1e6);
             float thermal_power_dissip3 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(600, 4) / 1e6);
             float thermal_power_dissip4 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(1200, 4) / 1e6);
             float thermal_power_dissip5 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(1800, 4) / 1e6);
             float thermal_power_dissip6 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(2400, 4) / 1e6);
             float thermal_power_dissip7 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(3000, 4) / 1e6);
-            return String.Format("[Base Part Information]\nPart Name: {0}\nHeat Radiated (Max): {1:n0} MW\n\n[Upgrade Information]\nScience Tech Required:\n- {2}\nPart Name: {3}\nHeat Radiated (Max): {4:n0} MW\n\nRadiator Performance at:\n600K: {5:n0} MW\n1,200K: {6:n0} MW\n1,800K: {7:n0} MW\n2,400K: {8:n0} MW\n3,000K: {9:n0} MW\n", originalName, thermal_power_dissip, upgradeTechReq, upgradedName, thermal_power_dissip2, thermal_power_dissip3, thermal_power_dissip4, thermal_power_dissip5, thermal_power_dissip6, thermal_power_dissip7);
+            return String.Format("Heat Radiated (Max): {0:n0} MW\n\nRadiator Performance at:\n600K: {1:n0} MW\n1,200K: {2:n0} MW\n1,800K: {3:n0} MW\n2,400K: {4:n0} MW\n3,000K: {5:n0} MW\n", thermal_power_dissip, thermal_power_dissip3, thermal_power_dissip4, thermal_power_dissip5, thermal_power_dissip6, thermal_power_dissip7);
         }
 
         public override int getPowerPriority()

@@ -14,7 +14,7 @@ namespace InterstellarPlugin {
         [KSPField(isPersistant = false)]
         public bool isTokomak;
 
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Laser Consumption")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Laser Consumption")]
         public string laserPower;
 
         PartResource deuterium;
@@ -27,7 +27,7 @@ namespace InterstellarPlugin {
         protected bool power_deprived = false;
         protected bool fusion_alert = false;
 
-        [KSPEvent(guiActive = true, guiName = "Swap Fuel Mode", active = false)]
+        [KSPEvent(guiActive = false, guiName = "Swap Fuel Mode", active = false)]
         public void SwapFuelMode() {
             fuel_mode++;
             if (fuel_mode > 2) {
@@ -40,7 +40,8 @@ namespace InterstellarPlugin {
             if (fuel_mode == 2) {
                 return false;
             }
-            return true;
+            //return true;
+            return false;
         }
 
         public override bool shouldScaleDownJetISP() {
@@ -51,25 +52,25 @@ namespace InterstellarPlugin {
             deuterium = part.Resources["Deuterium"];
             tritium = part.Resources["Tritium"];
             he3 = part.Resources["Helium-3"];
-            Fields["fuelmodeStr"].guiActive = true;
-            Fields["fuelmodeStr"].guiActiveEditor = true;
+            Fields["fuelmodeStr"].guiActive = false;
+            Fields["fuelmodeStr"].guiActiveEditor = false;
             initial_laser_consumption = powerRequirements;
             initial_resource_rate = resourceRate;
             initial_thermal_power = ThermalPower;
             setupFuelMode();
             base.OnStart(state);
             if (isupgraded) {
-                Events["SwapFuelMode"].active = true;
-                Events["SwapFuelMode"].guiActiveEditor = true;
+                Events["SwapFuelMode"].active = false;
+                Events["SwapFuelMode"].guiActiveEditor = false;
             }
             if (isTokomak) {
-                breedtritium = true;
+                breedtritium = false;
             }
         }
 
         public override void OnUpdate() {
-            Fields["laserPower"].guiActive = IsEnabled;
-            Fields["fuelmodeStr"].guiActive = true;
+            //Fields["laserPower"].guiActive = IsEnabled;
+            Fields["fuelmodeStr"].guiActive = false;
             laserPower = power_consumed.ToString("0.0") + "MW";
             if (isTokomak) {
                 Fields["laserPower"].guiName = "Plasma Heating";
@@ -88,7 +89,9 @@ namespace InterstellarPlugin {
             float up_deut_rate_per_day = upgradedResourceRate * 86400;
             float up_deut_he3_rate_per_day = upgradedResourceRate * 86400 / 13.25f;
             float up_he3_rate_per_day = upgradedResourceRate * 86400 / 17;
-            return String.Format("[Base Part Information]\nPart Name: {0}\nCore Temperature: {1:n0}K\nTotal Power Output: {2:n0}MW\nPower Requirement: {8}MW\n\n[Deuterium/Tritium Fuel Mode]\nConsumption Rate (Max):\n- {3}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 80%\n- Charged Particles: 20%\n\n[Upgraded Information]\nScience Tech Required:\n- Antimatter Power\nPart Name: {4}\nCore Temperature: {5:n0}K\nTotal Power Output: {6:n0}MW\nPower Requirement: {8}MW\n\n[Deuterium/Tritium Fuel Mode]\nConsumption Rate (Max):\n- {7}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 80%\n- Charged Particles: 20%\n\n[Deuterium/He-3 Fuel Mode]\nConsumption Rate (Max):\n- {9}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 21%\n- Charged Particles: 79%\n\n[He-3 Fuel Mode]\nConsumption Rate (Max):\n- {10}Kg/day\nPower Output Ratio:\n- Charged Particles: 100%", originalName, ReactorTemp, ThermalPower, deut_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_deut_rate_per_day, powerRequirements, up_deut_he3_rate_per_day, up_he3_rate_per_day);
+            //return String.Format("[Base Part Information]\nPart Name: {0}\nCore Temperature: {1:n0}K\nTotal Power Output: {2:n0}MW\nPower Requirement: {8}MW\n\n[Deuterium/Tritium Fuel Mode]\nConsumption Rate (Max):\n- {3}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 80%\n- Charged Particles: 20%\n\n[Upgraded Information]\nScience Tech Required:\n- Antimatter Power\nPart Name: {4}\nCore Temperature: {5:n0}K\nTotal Power Output: {6:n0}MW\nPower Requirement: {8}MW\n\n[Deuterium/Tritium Fuel Mode]\nConsumption Rate (Max):\n- {7}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 80%\n- Charged Particles: 20%\n\n[Deuterium/He-3 Fuel Mode]\nConsumption Rate (Max):\n- {9}Kg/day\nPower Output Ratio:\n- Thermal Power Output: 21%\n- Charged Particles: 79%\n\n[He-3 Fuel Mode]\nConsumption Rate (Max):\n- {10}Kg/day\nPower Output Ratio:\n- Charged Particles: 100%", originalName, ReactorTemp, ThermalPower, deut_rate_per_day, upgradedName, upgradedReactorTemp, upgradedThermalPower, up_deut_rate_per_day, powerRequirements, up_deut_he3_rate_per_day, up_he3_rate_per_day);
+
+            return String.Format("\nCore Temperature: " + ReactorTemp + "K\nTotal Power Output: "+ ThermalPower + "MW\nConsumption Rate (Max):\n- " + deut_rate_per_day + "Kg/day");
         }
 
         public override string getResourceManagerDisplayName() {

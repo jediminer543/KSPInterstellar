@@ -70,13 +70,13 @@ namespace InterstellarPlugin
         public string coretempStr;
         [KSPField(isPersistant = false, guiActive = true, guiName = "Status")]
         public string statusStr;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Thermal Power")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Thermal Power")]
         public string currentPwr;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Charged Power")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Charged Power")]
         public string currentPwr2;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Upgrade")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Upgrade")]
         public string upgradeCostStr;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Tritium")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "Tritium")]
         public string tritiumBreedRate;
 
         // Internal
@@ -328,10 +328,10 @@ namespace InterstellarPlugin
             }
             Events["BreedTritium"].active = !breedtritium && isNeutronRich() && IsEnabled;
             Events["StopBreedTritium"].active = breedtritium && isNeutronRich() && IsEnabled;
-            Fields["upgradeCostStr"].guiActive = !isupgraded && hasrequiredupgrade;
+            //Fields["upgradeCostStr"].guiActive = !isupgraded && hasrequiredupgrade;
             Fields["tritiumBreedRate"].guiActive = breedtritium && isNeutronRich() && IsEnabled;
-            Fields["currentPwr"].guiActive = IsEnabled;
-            Fields["currentPwr2"].guiActive = IsEnabled;
+            //Fields["currentPwr"].guiActive = IsEnabled;
+            //Fields["currentPwr2"].guiActive = IsEnabled;
             coretempStr = ReactorTemp.ToString("0") + "K";
             if (IsEnabled)
             {
@@ -369,7 +369,7 @@ namespace InterstellarPlugin
                 {
                     if (ThermalPower * (1 - chargedParticleRatio) * thermal_power_ratio > 0)
                     {
-                        Fields["currentPwr"].guiActive = true;
+                        //Fields["currentPwr"].guiActive = false;
                         currentPwr = getPowerFormatString(ThermalPower * (1 - chargedParticleRatio) * thermal_power_ratio) + "_th";
                     }
                     else
@@ -379,7 +379,7 @@ namespace InterstellarPlugin
 
                     if (ThermalPower * charged_power_ratio * chargedParticleRatio > 0)
                     {
-                        Fields["currentPwr2"].guiActive = true;
+                        //Fields["currentPwr2"].guiActive = true;
                         currentPwr2 = getPowerFormatString(ThermalPower * chargedParticleRatio * charged_power_ratio) + "_cp";
                     }
                     else
