@@ -1,8 +1,8 @@
-﻿extern alias ORSv1_1;
+﻿//extern alias ORSv1_1;
 
 using Toolbar;
 using UnityEngine;
-using ORSv1_1::OpenResourceSystem;
+using OpenResourceSystem;
 using InterstellarPlugin;
 
 namespace InterstellarToolbar

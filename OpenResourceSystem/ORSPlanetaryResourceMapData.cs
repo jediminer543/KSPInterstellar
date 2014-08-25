@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace OpenResourceSystem {
-    public class ORSPlanetaryResourceMapData : MonoBehaviour {
-        public static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
+namespace OpenResourceSystem
+{
+    public class ORSPlanetaryResourceMapData : MonoBehaviour
+    {
+        static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
         static Dictionary<string, Vector2d[]> body_abudnance_angles = new Dictionary<string, Vector2d[]>();
         static List<ORSResourceAbundanceMarker> abundance_markers = new List<ORSResourceAbundanceMarker>();
         static int current_body = -1;
@@ -21,13 +23,15 @@ namespace OpenResourceSystem {
         static Vector3d sphere_scale_scaled = new Vector3d(2, 2, 2);
         static string sphere_texture;
         static double stored_scale = -1;
-        
 
-        public static void loadPlanetaryResourceData(int body) {
+
+        public static void loadPlanetaryResourceData(int body)
+        {
             string celestial_body_name = FlightGlobals.Bodies[body].bodyName;
             UrlDir.UrlConfig[] configs = GameDatabase.Instance.GetConfigs("PLANETARY_RESOURCE_DEFINITION");
             Debug.Log("[ORS] Loading Planetary Resource Data. Length: " + configs.Length);
-            foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers) {
+            foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers)
+            {
                 removeAbundanceSphere(abundance_marker.getPlanetarySphere());
                 removeAbundanceSphere(abundance_marker.getScaledSphere());
             }
@@ -36,55 +40,65 @@ namespace OpenResourceSystem {
             body_resource_maps.Clear();
             body_abudnance_angles.Clear();
             map_body = -1;
-			current_body = body;
-            foreach (UrlDir.UrlConfig config in configs) {
+            current_body = body;
+            foreach (UrlDir.UrlConfig config in configs)
+            {
                 ConfigNode planetary_resource_config_node = config.config;
-                if (planetary_resource_config_node.GetValue("celestialBodyName") == celestial_body_name && planetary_resource_config_node != null) {
+                if (planetary_resource_config_node.GetValue("celestialBodyName") == celestial_body_name && planetary_resource_config_node != null)
+                {
                     Debug.Log("[ORS] Loading Planetary Resource Data for " + celestial_body_name);
-					string resource_gui_name = planetary_resource_config_node.GetValue("name");
-					if (body_resource_maps.ContainsKey(resource_gui_name))
-						continue;
-					Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
-					try
-					{
-						map.GetPixel(1, 1);
-					}
-					catch (UnityException e)
-					{
-						Debug.Log("Stop Doing Dumb Things With Your Map Textures: " + e);
-						continue;
-					}
-					if (map == null)
-					{
-						continue;
-					}
+                    string resource_gui_name = planetary_resource_config_node.GetValue("name");
+                    if (body_resource_maps.ContainsKey(resource_gui_name))
+                        continue;
+                    Texture2D map = GameDatabase.Instance.GetTexture(planetary_resource_config_node.GetValue("mapUrl"), false);
+                    try
+                    {
+                        map.GetPixel(1, 1);
+                    }
+                    catch (UnityException e)
+                    {
+                        Debug.Log("Stop Doing Dumb Things With Your Map Textures: " + e);
+                        continue;
+                    }
+                    if (map == null)
+                    {
+                        continue;
+                    }
                     ORSPlanetaryResourceInfo resource_info = new ORSPlanetaryResourceInfo(resource_gui_name, map, body);
-                    if (planetary_resource_config_node.HasValue("resourceName")) {
+                    if (planetary_resource_config_node.HasValue("resourceName"))
+                    {
                         string resource_name = planetary_resource_config_node.GetValue("resourceName");
                         resource_info.setResourceName(resource_name);
                     }
-                    if (planetary_resource_config_node.HasValue("resourceScale")) {
+                    if (planetary_resource_config_node.HasValue("resourceScale"))
+                    {
                         string resource_scale = planetary_resource_config_node.GetValue("resourceScale");
                         resource_info.setResourceScale(resource_scale);
                     }
-                    if (planetary_resource_config_node.HasValue("scaleFactor")) {
+                    if (planetary_resource_config_node.HasValue("scaleFactor"))
+                    {
                         string scale_factorstr = planetary_resource_config_node.GetValue("scaleFactor");
                         double scale_factor = double.Parse(scale_factorstr);
                         resource_info.setScaleFactor(scale_factor);
                     }
-                    if (planetary_resource_config_node.HasValue("scaleMultiplier")) {
+                    if (planetary_resource_config_node.HasValue("scaleMultiplier"))
+                    {
                         string scale_multstr = planetary_resource_config_node.GetValue("scaleMultiplier");
                         double scale_mult = double.Parse(scale_multstr);
                         resource_info.setScaleMultiplier(scale_mult);
                     }
-                    if (planetary_resource_config_node.HasValue("displayTexture")) {
+                    if (planetary_resource_config_node.HasValue("displayTexture"))
+                    {
                         string tex_path = planetary_resource_config_node.GetValue("displayTexture");
                         resource_info.setDisplayTexture(tex_path);
-                    } else {
+                    }
+                    else
+                    {
                         string tex_path = planetary_resource_config_node.GetValue("WarpPlugin/resource_point");
                         resource_info.setDisplayTexture(tex_path);
                     }
-                    if (planetary_resource_config_node.HasValue("displayThreshold")) {
+                    if (planetary_resource_config_node.HasValue("displayThreshold"))
+                    {
                         string display_threshold_str = planetary_resource_config_node.GetValue("displayThreshold");
                         double display_threshold = double.Parse(display_threshold_str);
                         resource_info.setDisplayThreshold(display_threshold);
@@ -92,12 +106,15 @@ namespace OpenResourceSystem {
                     body_resource_maps.Add(resource_gui_name, resource_info);
                     List<Vector2d> abundance_points_list = new List<Vector2d>();
 
-                    for (int i = 0; i < map.height; ++i) {
-                        for (int j = 0; j < map.width; ++j) {
-                            if (getPixelAbundanceValue(j,i, resource_info) >= resource_info.getDisplayThreshold()) {
+                    for (int i = 0; i < map.height; ++i)
+                    {
+                        for (int j = 0; j < map.width; ++j)
+                        {
+                            if (getPixelAbundanceValue(j, i, resource_info) >= resource_info.getDisplayThreshold())
+                            {
                                 //high value location, mark it
-                                double theta = (j - map.width / 2)*2.0*180.0/map.width;
-                                double phi = (i - map.height / 2)*2.0*90.0/map.height;
+                                double theta = (j - map.width / 2) * 2.0 * 180.0 / map.width;
+                                double phi = (i - map.height / 2) * 2.0 * 90.0 / map.height;
                                 Vector2d angles = new Vector2d(theta, phi);
                                 //body_abudnance_angles.Add(resource_gui_name, angles);
                                 abundance_points_list.Add(angles);
@@ -111,48 +128,62 @@ namespace OpenResourceSystem {
             }
         }
 
-        protected static double getPixelAbundanceValue(int pix_x, int pix_y, ORSPlanetaryResourceInfo resource_info) {
+        protected static double getPixelAbundanceValue(int pix_x, int pix_y, ORSPlanetaryResourceInfo resource_info)
+        {
             Texture2D map = resource_info.getResourceMap();
             Color pix_color = map.GetPixel(pix_x, pix_y);
             double resource_val = 0;
             double scale_factor = resource_info.getScaleFactor();
             double scale_multiplier = resource_info.getScaleMultiplier();
-            if (resource_info.getResourceScale() == ORSPlanetaryResourceInfo.LOG_SCALE) {
+            if (resource_info.getResourceScale() == ORSPlanetaryResourceInfo.LOG_SCALE)
+            {
                 resource_val = Math.Pow(scale_factor, pix_color.grayscale * 255.0) / 1000000 * scale_multiplier;
-            }else if (resource_info.getResourceScale() == ORSPlanetaryResourceInfo.LINEAR_SCALE) {
+            }
+            else if (resource_info.getResourceScale() == ORSPlanetaryResourceInfo.LINEAR_SCALE)
+            {
                 resource_val = pix_color.grayscale * scale_multiplier;
             }
             return resource_val;
         }
 
-        public static ORSPlanetaryResourcePixel getResourceAvailabilityByRealResourceName(int body, string resourcename, double lat, double lng) {
-            if (body != current_body) {
+        public static ORSPlanetaryResourcePixel getResourceAvailabilityByRealResourceName(int body, string resourcename, double lat, double lng)
+        {
+            if (body != current_body)
+            {
                 loadPlanetaryResourceData(body);
             }
-            try{
+            try
+            {
                 ORSPlanetaryResourceInfo resource_info = body_resource_maps.Where(ri => ri.Value.getResourceName() == resourcename).FirstOrDefault().Value;
-                return getResourceAvailability(body, resource_info.getName(),lat,lng);
-            }catch(Exception ex) {
+                return getResourceAvailability(body, resource_info.getName(), lat, lng);
+            }
+            catch (Exception ex)
+            {
                 ORSPlanetaryResourcePixel resource_pixel = new ORSPlanetaryResourcePixel(resourcename, 0, body);
                 return resource_pixel;
             }
         }
 
-        public static ORSPlanetaryResourcePixel getResourceAvailability(int body, string resourcename, double lat, double lng) {
-            if (body != current_body) {
+        public static ORSPlanetaryResourcePixel getResourceAvailability(int body, string resourcename, double lat, double lng)
+        {
+            if (body != current_body)
+            {
                 loadPlanetaryResourceData(body);
             }
             int lng_s = ((int)Math.Ceiling(Math.Abs(lng / 180)) % 2);
             lng = lng % 180;
-            if (lng_s == 0) {
-                lng = (180*Math.Sign(lng) - lng)*(-1);
+            if (lng_s == 0)
+            {
+                lng = (180 * Math.Sign(lng) - lng) * (-1);
             }
             int lat_s = ((int)Math.Ceiling(Math.Abs(lat / 90)) % 2);
             lat = lat % 90;
-            if (lat_s == 0) {
-                lat = (90 * Math.Sign(lat) - lat)*(-1);
+            if (lat_s == 0)
+            {
+                lat = (90 * Math.Sign(lat) - lat) * (-1);
             }
-            if (body_resource_maps.ContainsKey(resourcename)) {
+            if (body_resource_maps.ContainsKey(resourcename))
+            {
                 ORSPlanetaryResourceInfo resource_info = body_resource_maps[resourcename];
                 Texture2D map = resource_info.getResourceMap();
                 double len_x = map.width;
@@ -160,27 +191,31 @@ namespace OpenResourceSystem {
                 double origin_x = map.width / 2.0;
                 double origin_y = map.height / 2.0;
 
-                double map_x = (lng * len_x/2/180 + origin_x);
-                double map_y = (lat * len_y/2/90 + origin_y);
+                double map_x = (lng * len_x / 2 / 180 + origin_x);
+                double map_y = (lat * len_y / 2 / 90 + origin_y);
 
                 int pix_x = (int)Math.Round(map_x);
                 int pix_y = (int)Math.Round(map_y);
-                                
+
                 double resource_val = getPixelAbundanceValue(pix_x, pix_y, resource_info);
 
                 ORSPlanetaryResourcePixel resource_pixel = new ORSPlanetaryResourcePixel(resource_info.getName(), resource_val, resource_info.getBody());
                 resource_pixel.setResourceName(resource_info.getResourceName());
 
                 return resource_pixel;
-            }else {
+            }
+            else
+            {
                 ORSPlanetaryResourcePixel resource_pixel = new ORSPlanetaryResourcePixel(resourcename, 0, body);
                 return resource_pixel;
             }
         }
 
-        public static void setDisplayedResource(string displayed_resource) {
+        public static void setDisplayedResource(string displayed_resource)
+        {
             ORSPlanetaryResourceMapData.displayed_resource = displayed_resource;
-            foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers) {
+            foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers)
+            {
                 removeAbundanceSphere(abundance_marker.getPlanetarySphere());
                 removeAbundanceSphere(abundance_marker.getScaledSphere());
             }
@@ -188,24 +223,32 @@ namespace OpenResourceSystem {
             sphere = null;
             sphere_texture = null;
             abundance_markers.Clear();
-            
+
         }
 
-        public static bool resourceIsDisplayed(string resource) {
-            if (displayed_resource == resource) {
+        public static bool resourceIsDisplayed(string resource)
+        {
+            if (displayed_resource == resource)
+            {
                 return true;
-            } else {
+            }
+            else
+            {
                 return false;
             }
         }
 
-        public static void updatePlanetaryResourceMap() {
-            if (FlightGlobals.currentMainBody.flightGlobalsIndex != current_body) {
+        public static void updatePlanetaryResourceMap()
+        {
+            if (FlightGlobals.currentMainBody.flightGlobalsIndex != current_body)
+            {
                 loadPlanetaryResourceData(FlightGlobals.currentMainBody.flightGlobalsIndex);
             }
 
-            if (body_resource_maps.ContainsKey(displayed_resource) && (FlightGlobals.currentMainBody.flightGlobalsIndex != map_body || displayed_resource != map_resource)) {
-                foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers) {
+            if (body_resource_maps.ContainsKey(displayed_resource) && (FlightGlobals.currentMainBody.flightGlobalsIndex != map_body || displayed_resource != map_resource))
+            {
+                foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers)
+                {
                     removeAbundanceSphere(abundance_marker.getPlanetarySphere());
                     removeAbundanceSphere(abundance_marker.getScaledSphere());
                 }
@@ -213,8 +256,10 @@ namespace OpenResourceSystem {
                 CelestialBody celbody = FlightGlobals.currentMainBody;
                 sphere_texture = body_resource_maps[displayed_resource].getDisplayTexturePath();
                 Vector2d[] abundance_points_list = body_abudnance_angles[displayed_resource];
-                if (abundance_points_list != null && celbody.pqsController != null) {
-                    foreach (Vector2d abundance_point in abundance_points_list) {
+                if (abundance_points_list != null && celbody.pqsController != null)
+                {
+                    foreach (Vector2d abundance_point in abundance_points_list)
+                    {
                         double theta = abundance_point.x;
                         double phi = abundance_point.y;
                         Vector3d up = celbody.GetSurfaceNVector(phi, theta).normalized;
@@ -223,7 +268,7 @@ namespace OpenResourceSystem {
                         GameObject resource_prim_scaled = createAbundanceSphere();
 
                         Vector3d center = celbody.position + surface_height * up;
-                        Vector3d scaledcenter = ScaledSpace.LocalToScaledSpace(celbody.position) + surface_height * up*ScaledSpace.InverseScaleFactor;
+                        Vector3d scaledcenter = ScaledSpace.LocalToScaledSpace(celbody.position) + surface_height * up * ScaledSpace.InverseScaleFactor;
 
                         Transform scaled_trans = ScaledSpace.Instance.scaledSpaceTransforms.Single(t => t.name == celbody.name);
                         resource_prim_scaled.transform.position = scaledcenter;
@@ -244,19 +289,29 @@ namespace OpenResourceSystem {
                     map_resource = displayed_resource;
                     stored_scale = ScaledSpace.ScaleFactor;
                 }
-            } else {
-                if (body_resource_maps.ContainsKey(displayed_resource) && FlightGlobals.currentMainBody.flightGlobalsIndex == map_body && displayed_resource == map_resource) {
+            }
+            else
+            {
+                if (body_resource_maps.ContainsKey(displayed_resource) && FlightGlobals.currentMainBody.flightGlobalsIndex == map_body && displayed_resource == map_resource)
+                {
                     CelestialBody celbody = FlightGlobals.currentMainBody;
-                    foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers) {
-                        if (lineOfSightToPosition(abundance_marker.getPlanetarySphere().transform.position, celbody)) {
-                            if (MapView.MapIsEnabled) {
+                    foreach (ORSResourceAbundanceMarker abundance_marker in abundance_markers)
+                    {
+                        if (lineOfSightToPosition(abundance_marker.getPlanetarySphere().transform.position, celbody))
+                        {
+                            if (MapView.MapIsEnabled)
+                            {
                                 abundance_marker.getScaledSphere().renderer.enabled = true;
                                 abundance_marker.getPlanetarySphere().renderer.enabled = false;
-                            } else {
+                            }
+                            else
+                            {
                                 abundance_marker.getScaledSphere().renderer.enabled = false;
                                 abundance_marker.getPlanetarySphere().renderer.enabled = true;
-                            }   
-                        }else{
+                            }
+                        }
+                        else
+                        {
                             abundance_marker.getScaledSphere().renderer.enabled = false;
                             abundance_marker.getPlanetarySphere().renderer.enabled = false;
                         }
@@ -264,18 +319,23 @@ namespace OpenResourceSystem {
                 }
             }
         }
-                   
 
-        protected static GameObject createAbundanceSphere() {
-            if (sphere == null) {
+
+        protected static GameObject createAbundanceSphere()
+        {
+            if (sphere == null)
+            {
                 GameObject resource_prim = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 resource_prim.collider.enabled = false;
                 resource_prim.transform.localScale = sphere_scale * (FlightGlobals.currentMainBody.Radius / FlightGlobals.Bodies[ORSGameConstants.REF_BODY_KERBIN].Radius);
                 resource_prim.renderer.material.shader = Shader.Find("Unlit/Texture");
                 resource_prim.renderer.material.color = new Color(Color.red.r, Color.red.g, Color.red.b, 1.0f);
-                if (sphere_texture != null) {
-                    resource_prim.renderer.material.mainTexture = GameDatabase.Instance.GetTexture(sphere_texture,false);
-                } else {
+                if (sphere_texture != null)
+                {
+                    resource_prim.renderer.material.mainTexture = GameDatabase.Instance.GetTexture(sphere_texture, false);
+                }
+                else
+                {
                     resource_prim.renderer.material.mainTexture = GameDatabase.Instance.GetTexture("OpenResourceSystem/resource_point", false);
                 }
                 resource_prim.renderer.material.renderQueue = 1000;
@@ -285,30 +345,42 @@ namespace OpenResourceSystem {
                 Destroy(resource_prim.collider);
                 sphere = resource_prim;
             }
-            return (GameObject) Instantiate(sphere);
+            return (GameObject)Instantiate(sphere);
         }
-        
-        protected static void removeAbundanceSphere(GameObject go) {
+
+        protected static void removeAbundanceSphere(GameObject go)
+        {
             Destroy(go);
         }
 
-        protected static bool lineOfSightToPosition(Vector3d a, CelestialBody referenceBody) {
+        protected static bool lineOfSightToPosition(Vector3d a, CelestialBody referenceBody)
+        {
             Vector3d b = FlightGlobals.ActiveVessel.transform.position;
             Vector3d refminusa = referenceBody.position - a;
             Vector3d bminusa = b - a;
-            if (Vector3d.Dot(refminusa, bminusa) > 0) {
-                if (Vector3d.Dot(refminusa, bminusa.normalized) < bminusa.magnitude) {
+            if (Vector3d.Dot(refminusa, bminusa) > 0)
+            {
+                if (Vector3d.Dot(refminusa, bminusa.normalized) < bminusa.magnitude)
+                {
                     Vector3d tang = refminusa - Vector3d.Dot(refminusa, bminusa.normalized) * bminusa.normalized;
-                    if (tang.magnitude < referenceBody.Radius) {
+                    if (tang.magnitude < referenceBody.Radius)
+                    {
                         return false;
                     }
                 }
             }
             return true;
         }
-            
+
+        public static Dictionary<string, ORSPlanetaryResourceInfo> getPlaneteryResourceMapData()
+        {
+
+            return body_resource_maps;
+
+        }
 
         
+
 
     }
 }
