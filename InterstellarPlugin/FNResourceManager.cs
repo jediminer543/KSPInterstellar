@@ -1,11 +1,11 @@
-﻿extern alias ORSv1_1;
+﻿////extern alias ORSv1_1;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using ORSv1_1::OpenResourceSystem;
+using OpenResourceSystem;
 
 namespace InterstellarPlugin {
     public class FNResourceManager : ORSResourceManager {

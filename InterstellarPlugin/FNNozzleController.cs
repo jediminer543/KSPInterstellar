@@ -423,7 +423,15 @@ namespace InterstellarPlugin{
                     if (double.IsNaN(proportion) || double.IsInfinity(proportion)) {
                         proportion = 1;
                     }
-                    part.temperature = (float)Math.Max((Math.Sqrt(vessel.srf_velocity.magnitude) * 20.0 / GameConstants.atmospheric_non_precooled_limit) * part.maxTemp * proportion, 1);
+                    float ptemp = (float)Math.Max((Math.Sqrt(vessel.srf_velocity.magnitude) * 20.0 / GameConstants.atmospheric_non_precooled_limit) * part.maxTemp * proportion, 1);
+
+                    if (ptemp / part.maxTemp > .99)
+                    {
+                        ScreenMessages.PostScreenMessage("Turbojet Safety Warning: Engines disabled to prevent critical heat damage!", 2.5f, ScreenMessageStyle.UPPER_CENTER);
+                        myAttachedEngine.Shutdown();
+                    }
+                    else part.temperature = ptemp;
+
                     //myAttachedEngine.DeactivateRunningFX();
                 } else {
                     //myAttachedEngine.ActivateRunningFX();
