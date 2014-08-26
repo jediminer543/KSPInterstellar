@@ -41,8 +41,8 @@ namespace OpenResourceSystem
         {
             ORSPlanetaryResourceMapData.updatePlanetaryResourceMap();
             if (resourceInfo == null)
-                if (ORSPlanetaryResourceMapData.getPlaneteryResourceMapData.ContainsKey(resourceName))
-                    resourceInfo = ORSPlanetaryResourceMapData.getPlaneteryResourceMapData[resourceName];
+                if (ORSPlanetaryResourceMapData.getPlanetaryResourceMapData.ContainsKey(resourceName))
+                    resourceInfo = ORSPlanetaryResourceMapData.getPlanetaryResourceMapData[resourceName];
             Events["DisplayResource"].active = Events["DisplayResource"].guiActive = !ORSPlanetaryResourceMapData.resourceIsDisplayed(resourceName) && mapViewAvailable;
             Events["DisplayResource"].guiName = "Display " + resourceName + " hotspots";
             Events["HideResource"].active = Events["HideResource"].guiActive = ORSPlanetaryResourceMapData.resourceIsDisplayed(resourceName) && mapViewAvailable;
