@@ -40,10 +40,17 @@ Experimental Version 0.12.0 -  for ksp v0.24.2
 - Fission and Pfission now both use general EnrichedUranium and DepletedUranium resources. (For compatibility.)
 - EnrichedUranium can be mined with the Refinery.
 - Corrected power consumption of generators. (rakkhin)
-- Corrected behavior or Microwave transmitters. (rakkhin)
+- Corrected behavior of Microwave transmitters. (rakkhin)
 - Improved he-3 decay tracking. (mellon85)
 - Fixed an issue with Vista and MW throttling. (maybe.)
 - Many many tooltips have been decluttered.
+- Thermal Turbojets will now disable themselves before critical overheating occurs.
+- Plasma Thrusters now have thrust vectoring.
+- Science lab now has a science container and can do crew reports.
+- Support for CommunityResourcePack.
+- ORS v 1.2.0
+- Fuel resources are now tweakable in the VAB.
+- Initial resource cost implimentation. (Better balance will come in a later version.)
 
 
 Version 0.11.0
