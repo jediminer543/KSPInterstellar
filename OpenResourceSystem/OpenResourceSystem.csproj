@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenResourceSystem</RootNamespace>
-    <AssemblyName>OpenResourceSystem_1_1_0</AssemblyName>
+    <AssemblyName>OpenResourceSystem_1_2_0</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -72,7 +72,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="OpenResourceSystem\Plugins\" />
+    <Content Include="..\GameData\CommunityResourcePack\**\*.*">
+      <Link>\CommunityResourcePack\%(RecursiveDir)%(FileName)</Link>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
