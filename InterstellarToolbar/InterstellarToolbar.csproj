@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="OpenResourceSystem_1_2_0">
       <HintPath>..\GameData\OpenResourceSystem\Plugins\OpenResourceSystem_1_2_0.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Toolbar">
       <HintPath>..\GameData\000_Toolbar\Toolbar.dll</HintPath>
