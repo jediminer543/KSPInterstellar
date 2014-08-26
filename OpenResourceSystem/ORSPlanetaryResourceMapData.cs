@@ -372,7 +372,7 @@ namespace OpenResourceSystem
             return true;
         }
 
-        public static Dictionary<string, ORSPlanetaryResourceInfo> getPlaneteryResourceMapData { get { return body_resource_maps; } }
+        public static Dictionary<string, ORSPlanetaryResourceInfo> getPlanetaryResourceMapData { get { return body_resource_maps; } }
 
 
 
