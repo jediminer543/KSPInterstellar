@@ -433,6 +433,26 @@ namespace InterstellarPlugin {
                                     }
                                 }
 
+                                if (!prefab_available_part.Resources.Contains("Megajoules") && panel.chargeRate > 0)
+                                {
+                                    ConfigNode node = new ConfigNode("RESOURCE");
+                                    node.AddValue("name", "Megajoules");
+                                    node.AddValue("maxAmount", panel.chargeRate);
+                                    node.AddValue("amount", 0);
+                                    PartResource pr = prefab_available_part.AddResource(node);
+
+                                    if (available_part.resourceInfo != null && pr != null)
+                                    {
+                                        if (available_part.resourceInfo.Length == 0)
+                                        {
+                                            available_part.resourceInfo = pr.resourceName + ":" + pr.amount + " / " + pr.maxAmount;
+                                        }
+                                        else
+                                        {
+                                            available_part.resourceInfo = available_part.resourceInfo + "\n" + pr.resourceName + ":" + pr.amount + " / " + pr.maxAmount;
+                                        }
+                                    }
+                                }
                             }
 
 							if(prefab_available_part.FindModulesImplementing<ElectricEngineController>().Count() > 0) {
