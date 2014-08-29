@@ -1,0 +1,51 @@
+@PART[DeployableRadiator]
+{
+	title = Deployable Radiator
+}
+
+@PART[Atmospheric Scoop]
+{
+	name = AtmosphericScoop
+}
+
+@PART[vista]
+{
+	name = Vista
+	TechRequied	= interstellarTechFusionPower2
+}
+
+@PART[FNDeuteriumCryostat]
+{
+	name = DeuteriumCryostat
+	!MODULE[ModuleElementRadioactiveDecay]
+}
+
+@PART[RVDeutTrit]
+{
+	!MODULE[ModuleElementRadioactiveDecay]
+}
+
+@PART[phasedArray1]
+{
+	name = DeployablePhasedArray
+}
+
+@PART[FusionReactor]
+{
+TechRequied	= interstellarTechFusionPower
+}
+
+@PART[AntimatterTank]
+{
+TechRequied	= interstellarTechAccelerator
+}
+
+@PART[AntimatterCollector]
+{
+TechRequied	= interstellarTechAccelerator
+}
+
+@PART[AntimatterReactor]
+{
+TechRequied	= interstellarTechAntimatterPower
+}
