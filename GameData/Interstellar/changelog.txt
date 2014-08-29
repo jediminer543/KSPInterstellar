@@ -1,7 +1,7 @@
  Interstellar Lite v0.12.2
  - Fixed powercap scaling for electricengines. (Existing parts may not be affected.)
  - Removed redundant base scaleexponent configs from interstellar_tweakscale.cfg
- - Fixed MM patch. (It works for reals this time!)
+ - Fixed MM patch. (It works for reals this time!) (realgrep)
  - Remove unused and broken radioactivedecay modules from some part files.
 
 Interstellar Lite v0.12.1
