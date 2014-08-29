@@ -1,4 +1,40 @@
+ Interstellar Lite v0.12.2
+ - Fixed powercap scaling for electricengines. (Existing parts may not be affected.)
+ - Removed redundant base scaleexponent configs from interstellar_tweakscale.cfg
+ - Fixed MM patch. (It works for reals this time!)
+ - Remove unused and broken radioactivedecay modules from some part files.
+
+Interstellar Lite v0.12.1
+- Fixed tech tree configuration
+- Cleared treeloader part tech overrides for compatibility
+- Move tech requirements to the appropriate parts
+- Fixed minor part config errors
+- MM provided for backwards vessel compatibility. (Copy your save just in case.)
+
 Experimental Version 0.12.0 -  for ksp v0.24.2
+- Radiators now glow red hot in proportion to temperature. (mellon85)
+- Tweakscale integration (Some of the models have been removed in the process.)
+- Reactor rebalance (basic fission is more capable, antimatter less so)
+- Radiators have been buffed. (Flat and inline radiator have decided to retire to the ugly duckling pond.)
+- Water is now Water. (Who'da thunk it!)
+- Precoolers work again! (They are basicly a "free" intake now.)
+- Science Mode is now supported. (By the KSPI code, Treeloader still doesn't work though.)
+- Fission and Pfission now both use general EnrichedUranium and DepletedUranium resources. (For compatibility.)
+- EnrichedUranium can be mined with the Refinery.
+- Corrected power consumption of generators. (rakkhin)
+- Corrected behavior of Microwave transmitters. (rakkhin)
+- Improved he-3 decay tracking. (mellon85)
+- Fixed an issue with Vista and MW throttling. (maybe.)
+- Many many tooltips have been decluttered.
+- Thermal Turbojets will now disable themselves before critical overheating occurs.
+- Plasma Thrusters now have thrust vectoring.
+- Science lab now has a science container and can do crew reports.
+- Support for CommunityResourcePack.
+- ORS v 1.2.0
+- Fuel resources are now tweakable in the VAB.
+- Initial resource cost implimentation. (Better balance will come in a later version.)
+
+Experimental Version 0.11.0 -  for ksp v0.24.2
 - Fixed data collection on magnetometer.
 - Added more details to generator, reactor and radiator modules.
 - Added atmospheric intake functionality to atmospheric scoops.
@@ -30,28 +66,6 @@ Experimental Version 0.12.0 -  for ksp v0.24.2
 - Corrected resource name in particle fission reactor configs.
 - Corrected tech requirements for warp drive configs.
 - Added part costs for 0.24.
-- Radiators now glow red hot in proportion to temperature. (mellon85)
-- Tweakscale integration (Some of the models have been removed in the process.)
-- Reactor rebalance (basic fission is more capable, antimatter less so)
-- Radiators have been buffed. (Flat and inline radiator have decided to retire to the ugly duckling pond.)
-- Water is now Water. (Who'da thunk it!)
-- Precoolers work again! (They are basicly a "free" intake now.)
-- Science Mode is now supported. (By the KSPI code, Treeloader still doesn't work though.)
-- Fission and Pfission now both use general EnrichedUranium and DepletedUranium resources. (For compatibility.)
-- EnrichedUranium can be mined with the Refinery.
-- Corrected power consumption of generators. (rakkhin)
-- Corrected behavior of Microwave transmitters. (rakkhin)
-- Improved he-3 decay tracking. (mellon85)
-- Fixed an issue with Vista and MW throttling. (maybe.)
-- Many many tooltips have been decluttered.
-- Thermal Turbojets will now disable themselves before critical overheating occurs.
-- Plasma Thrusters now have thrust vectoring.
-- Science lab now has a science container and can do crew reports.
-- Support for CommunityResourcePack.
-- ORS v 1.2.0
-- Fuel resources are now tweakable in the VAB.
-- Initial resource cost implimentation. (Better balance will come in a later version.)
-
 
 Version 0.11.0
 -Toolbar Integration
