@@ -6,46 +6,52 @@ using System.Linq;
 using System.Text;
 using OpenResourceSystem;
 
-namespace InterstellarPlugin {
-    class FuelReprocessor {
+namespace InterstellarPlugin
+{
+    class FuelReprocessor
+    {
         protected Part part;
         protected Vessel vessel;
         protected double current_rate = 0;
         protected double remaining_to_reprocess = 0;
 
-        public FuelReprocessor(Part part) {
+        public FuelReprocessor(Part part)
+        {
             this.part = part;
             vessel = part.vessel;
         }
 
-        public void performReprocessingFrame(double rate_multiplier) {
+        public void performReprocessingFrame(double rate_multiplier)
+        {
             List<FNNuclearReactor> nuclear_reactors = vessel.FindPartModulesImplementing<FNNuclearReactor>();
             double remaining_capacity_to_reprocess = GameConstants.baseReprocessingRate * TimeWarp.fixedDeltaTime / 86400.0 * rate_multiplier;
             double enum_actinides_change = 0;
             double amount_to_reprocess = 0;
-            foreach (FNNuclearReactor nuclear_reactor in nuclear_reactors) {
+            foreach (FNNuclearReactor nuclear_reactor in nuclear_reactors)
+            {
                 // reprocess each one
                 PartResource actinides = nuclear_reactor.part.Resources["Actinides"];
-                if (remaining_capacity_to_reprocess > 0) {
+                if (remaining_capacity_to_reprocess > 0)
+                {
                     double new_actinides_amount = Math.Max(actinides.amount - remaining_capacity_to_reprocess, 0);
                     double actinides_change = actinides.amount - new_actinides_amount;
                     actinides.amount = new_actinides_amount;
                     if (nuclear_reactor.uranium_fuel) {
-                        PartResource eu = nuclear_reactor.part.Resources["EnrichedUranium"];
-                        double depleted_fuels_change = actinides_change * 0.2;
-                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", -depleted_fuels_change);
-                        double new_eu_amount = Math.Min(eu.amount + depleted_fuels_change*4, eu.maxAmount);
-                        double eu_change = new_eu_amount - eu.amount;
-                        eu.amount = new_eu_amount;
-                        enum_actinides_change += depleted_fuels_change * 5;
-                    } else {
-                        PartResource thf4 = nuclear_reactor.part.Resources["ThF4"];
-                        double depleted_fuels_change = actinides_change * 0.2;
-                        depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", -depleted_fuels_change);
-                        double new_thf4_amount = Math.Min(thf4.amount + depleted_fuels_change * 4, thf4.maxAmount);
-                        double thf4_change = new_thf4_amount - thf4.amount;
-                        thf4.amount = new_thf4_amount;
-                        enum_actinides_change += depleted_fuels_change * 5;
+                    PartResource eu = nuclear_reactor.part.Resources["EnrichedUranium"];
+                    double depleted_fuels_change = actinides_change * 0.2;
+                    depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", ResourceFlowMode.ALL_VESSEL, -depleted_fuels_change);
+                    double new_eu_amount = Math.Min(eu.amount + depleted_fuels_change * 4, eu.maxAmount);
+                    double eu_change = new_eu_amount - eu.amount;
+                    eu.amount = new_eu_amount;
+                    enum_actinides_change += depleted_fuels_change * 5;
+                    //} else {
+                    //    PartResource thf4 = nuclear_reactor.part.Resources["ThF4"];
+                    //    double depleted_fuels_change = actinides_change * 0.2;
+                    //    depleted_fuels_change = -ORSHelper.fixedRequestResource(part, "DepletedUranium", -depleted_fuels_change);
+                    //    double new_thf4_amount = Math.Min(thf4.amount + depleted_fuels_change * 4, thf4.maxAmount);
+                    //    double thf4_change = new_thf4_amount - thf4.amount;
+                    //    thf4.amount = new_thf4_amount;
+                    //    enum_actinides_change += depleted_fuels_change * 5;
                     }
                     remaining_capacity_to_reprocess = Math.Max(0, actinides_change);
                     //enum_actinides_change += actinides_change;
@@ -56,11 +62,13 @@ namespace InterstellarPlugin {
             current_rate = enum_actinides_change;
         }
 
-        public double getActinidesRemovedPerHour() {
+        public double getActinidesRemovedPerHour()
+        {
             return current_rate / TimeWarp.fixedDeltaTime * 3600.0;
         }
 
-        public double getRemainingAmountToReprocess() {
+        public double getRemainingAmountToReprocess()
+        {
             return remaining_to_reprocess;
         }
     }

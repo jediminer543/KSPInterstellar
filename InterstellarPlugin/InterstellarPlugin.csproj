@@ -38,8 +38,8 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="OpenResourceSystem_1_2_0">
-      <HintPath>..\GameData\OpenResourceSystem\Plugins\OpenResourceSystem_1_2_0.dll</HintPath>
+    <Reference Include="OpenResourceSystem_1_2_1">
+      <HintPath>..\GameData\OpenResourceSystem\Plugins\OpenResourceSystem_1_2_1.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
