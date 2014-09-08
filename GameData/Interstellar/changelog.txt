@@ -1,4 +1,4 @@
-Interstellar Lite v0.12.2
+Interstellar Lite v0.12.3
 - Fixed fission reactor refueling.
 - Fixed uranium reprocessing.
 - Buffed water extraction rates on the refinery to address mismatched scales for MKS style water maps. (temporary workaround until a code fix can be implimented, should fix existing vessels)
