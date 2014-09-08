@@ -16,7 +16,7 @@ namespace InterstellarPlugin {
         
         //Internal
         protected PartResource thf4;
-        protected PartResource uf4;
+        protected PartResource eu;
         protected PartResource fuel_resource;
         protected PartResource actinides;
         protected double initial_thermal_power = 0;
@@ -34,18 +34,18 @@ namespace InterstellarPlugin {
             IsEnabled = false;
         }
 
-        [KSPEvent(guiName = "Refuel Uranium Nitride", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
+        [KSPEvent(guiName = "Refuel Enriched Uranium", externalToEVAOnly = true, guiActiveUnfocused = true, unfocusedRange = 3.0f)]
         public void RefuelUranium() {
-            List<PartResource> uf6_resources = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").resourceFlowMode, uf6_resources);
-            double spare_capacity_for_uf6 = Math.Max(uf4.maxAmount - uf4.amount - actinides.amount, 0);
-            foreach (PartResource uf6_resource in uf6_resources) {
-                if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
-                    double uf6_available = uf6_resource.amount;
-                    double uf6_added = Math.Min(uf6_available, spare_capacity_for_uf6);
-                    uf4.amount += uf6_added;
-                    uf6_resource.amount -= uf6_added;
-                    spare_capacity_for_uf6 -= uf6_added;
+            List<PartResource> eu_resources = new List<PartResource>();
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, ResourceFlowMode.ALL_VESSEL, eu_resources);
+            double spare_capacity_for_eu = Math.Max(eu.maxAmount - eu.amount - actinides.amount, 0);
+            foreach (PartResource eu_resource in eu_resources) {
+                if (eu_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
+                    double eu_available = eu_resource.amount;
+                    double eu_added = Math.Min(eu_available, spare_capacity_for_eu);
+                    eu.amount += eu_added;
+                    eu_resource.amount -= eu_added;
+                    spare_capacity_for_eu -= eu_added;
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace InterstellarPlugin {
             if (actinides.amount <= 0.01) {
                 if (uranium_fuel) {
                     defuelUranium();
-                    if (uf4.amount > 0) { return; }
+                    if (eu.amount > 0) { return; }
                     setThoriumFuel();
                     RefuelThorium();
                 } else {
@@ -87,13 +87,13 @@ namespace InterstellarPlugin {
         public void EditorSwapFuel() {
             if (uranium_fuel) {
                 uranium_fuel = !uranium_fuel;
-                uf4.amount = 0;
+                eu.amount = 0;
                 thf4.amount = thf4.maxAmount;
                 fuelmodeStr = "Thorium";
             } else {
                 uranium_fuel = !uranium_fuel;
                 thf4.amount = 0;
-                uf4.amount = uf4.maxAmount;
+                eu.amount = eu.maxAmount;
                 fuelmodeStr = "Uranium";
             }
         }
@@ -138,7 +138,7 @@ namespace InterstellarPlugin {
         }
 
         public override void OnStart(PartModule.StartState state) {
-            uf4 = part.Resources["EnrichedUranium"];
+            eu = part.Resources["EnrichedUranium"];
             thf4 = part.Resources["ThF4"];
             actinides = part.Resources["Actinides"];
             Fields["fuelmodeStr"].guiActiveEditor = false;
@@ -168,7 +168,7 @@ namespace InterstellarPlugin {
             //}
             if (uranium_fuel)
             {
-                fuel_resource = uf4;
+                fuel_resource = eu;
             }
             else
             {
@@ -241,7 +241,7 @@ namespace InterstellarPlugin {
         }
 
         protected void setUraniumFuel() {
-            fuel_resource = uf4;
+            fuel_resource = eu;
             fuelmodeStr = "Uranium";
             ThermalPower = (float)(initial_thermal_power);
             resourceRate = (float)(initial_resource_rate);
@@ -263,13 +263,13 @@ namespace InterstellarPlugin {
 
         protected void defuelUranium() {
             List<PartResource> swap_resource_list = new List<PartResource>();
-            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").resourceFlowMode, swap_resource_list);
-            foreach (PartResource uf6_resource in swap_resource_list) {
-                if (uf6_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
-                    double spare_capacity_for_uf6 = uf6_resource.maxAmount - uf6_resource.amount;
-                    double uf6_added = Math.Min(uf4.amount, spare_capacity_for_uf6);
-                    uf4.amount -= uf6_added;
-                    uf6_resource.amount += uf6_added;
+            part.GetConnectedResources(PartResourceLibrary.Instance.GetDefinition("EnrichedUranium").id, ResourceFlowMode.ALL_VESSEL, swap_resource_list);
+            foreach (PartResource eu_resource in swap_resource_list) {
+                if (eu_resource.part.FindModulesImplementing<FNNuclearReactor>().Count == 0) {
+                    double spare_capacity_for_eu = eu_resource.maxAmount - eu_resource.amount;
+                    double eu_added = Math.Min(eu.amount, spare_capacity_for_eu);
+                    eu.amount -= eu_added;
+                    eu_resource.amount += eu_added;
                 }
             }
         }
