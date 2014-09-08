@@ -1,0 +1,3 @@
+Open Resource System v1.2.1
+- Extended ORHHelper.fixedRequestResource() to include an arguement for ResourceFlowMode.
+- added a changleog for ORS!
