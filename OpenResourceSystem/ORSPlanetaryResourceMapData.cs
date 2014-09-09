@@ -374,7 +374,16 @@ namespace OpenResourceSystem
 
         public static Dictionary<string, ORSPlanetaryResourceInfo> getPlanetaryResourceMapData { get { return body_resource_maps; } }
 
-
+		public static List<string> resourceNames
+		{
+			get
+			{
+				List<string> names = new List<string>();
+				foreach (string name in body_resource_maps.Keys)
+					names.Add(name);
+				return names;
+			}
+		}
 
 
     }
