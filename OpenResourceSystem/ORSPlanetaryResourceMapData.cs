@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace OpenResourceSystem
 {
-    public class ORSPlanetaryResourceMapData : MonoBehaviour
+    public class ORSPlanetaryResourceMapData
     {
         static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
         static Dictionary<string, Vector2d[]> body_abudnance_angles = new Dictionary<string, Vector2d[]>();
@@ -145,6 +145,47 @@ namespace OpenResourceSystem
             }
             return resource_val;
         }
+
+		public static double getPixelAbundanceValue(int body, string resourcename, double lat, double lng)
+		{
+			if (body != current_body)
+			{
+				loadPlanetaryResourceData(body);
+			}
+			int lng_s = ((int)Math.Ceiling(Math.Abs(lng / 180)) % 2);
+			lng = lng % 180;
+			if (lng_s == 0)
+			{
+				lng = (180 * Math.Sign(lng) - lng) * (-1);
+			}
+			int lat_s = ((int)Math.Ceiling(Math.Abs(lat / 90)) % 2);
+			lat = lat % 90;
+			if (lat_s == 0)
+			{
+				lat = (90 * Math.Sign(lat) - lat) * (-1);
+			}
+			if (body_resource_maps.ContainsKey(resourcename))
+			{
+				ORSPlanetaryResourceInfo resource_info = body_resource_maps[resourcename];
+				Texture2D map = resource_info.getResourceMap();
+				double len_x = map.width;
+				double len_y = map.height;
+				double origin_x = map.width / 2.0;
+				double origin_y = map.height / 2.0;
+
+				double map_x = (lng * len_x / 2 / 180 + origin_x);
+				double map_y = (lat * len_y / 2 / 90 + origin_y);
+
+				int pix_x = (int)Math.Round(map_x);
+				int pix_y = (int)Math.Round(map_y);
+
+				return getPixelAbundanceValue(pix_x, pix_y, resource_info);
+			}
+			else
+			{
+				return 0;
+			}
+		}
 
         public static ORSPlanetaryResourcePixel getResourceAvailabilityByRealResourceName(int body, string resourcename, double lat, double lng)
         {
@@ -342,15 +383,15 @@ namespace OpenResourceSystem
                 resource_prim.renderer.receiveShadows = false;
                 resource_prim.renderer.enabled = false;
                 resource_prim.renderer.castShadows = false;
-                Destroy(resource_prim.collider);
+                MonoBehaviour.Destroy(resource_prim.collider);
                 sphere = resource_prim;
             }
-            return (GameObject)Instantiate(sphere);
+            return (GameObject)MonoBehaviour.Instantiate(sphere);
         }
 
         protected static void removeAbundanceSphere(GameObject go)
         {
-            Destroy(go);
+            MonoBehaviour.Destroy(go);
         }
 
         protected static bool lineOfSightToPosition(Vector3d a, CelestialBody referenceBody)
@@ -374,7 +415,16 @@ namespace OpenResourceSystem
 
         public static Dictionary<string, ORSPlanetaryResourceInfo> getPlanetaryResourceMapData { get { return body_resource_maps; } }
 
-
+		public static List<string> resourceNames
+		{
+			get
+			{
+				List<string> names = new List<string>();
+				foreach (string name in body_resource_maps.Keys)
+					names.Add(name);
+				return names;
+			}
+		}
 
 
     }
