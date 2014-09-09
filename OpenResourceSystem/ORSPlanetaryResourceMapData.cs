@@ -94,7 +94,7 @@ namespace OpenResourceSystem
                     }
                     else
                     {
-                        string tex_path = planetary_resource_config_node.GetValue("WarpPlugin/resource_point");
+                        string tex_path = planetary_resource_config_node.GetValue("OpenResourceSystem/resource_point");
                         resource_info.setDisplayTexture(tex_path);
                     }
                     if (planetary_resource_config_node.HasValue("displayThreshold"))
