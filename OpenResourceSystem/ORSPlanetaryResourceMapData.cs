@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace OpenResourceSystem
 {
-    public class ORSPlanetaryResourceMapData : MonoBehaviour
+    public class ORSPlanetaryResourceMapData
     {
         static Dictionary<string, ORSPlanetaryResourceInfo> body_resource_maps = new Dictionary<string, ORSPlanetaryResourceInfo>();
         static Dictionary<string, Vector2d[]> body_abudnance_angles = new Dictionary<string, Vector2d[]>();
@@ -342,15 +342,15 @@ namespace OpenResourceSystem
                 resource_prim.renderer.receiveShadows = false;
                 resource_prim.renderer.enabled = false;
                 resource_prim.renderer.castShadows = false;
-                Destroy(resource_prim.collider);
+                MonoBehaviour.Destroy(resource_prim.collider);
                 sphere = resource_prim;
             }
-            return (GameObject)Instantiate(sphere);
+            return (GameObject)MonoBehaviour.Instantiate(sphere);
         }
 
         protected static void removeAbundanceSphere(GameObject go)
         {
-            Destroy(go);
+            MonoBehaviour.Destroy(go);
         }
 
         protected static bool lineOfSightToPosition(Vector3d a, CelestialBody referenceBody)
