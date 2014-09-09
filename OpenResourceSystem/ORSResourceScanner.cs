@@ -60,7 +60,7 @@ namespace OpenResourceSystem
                 }
             }
             else
-                Ab = "Broken:(";
+                Ab = "0";
 
         }
 
