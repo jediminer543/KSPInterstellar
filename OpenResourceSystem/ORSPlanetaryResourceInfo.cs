@@ -18,6 +18,8 @@ namespace OpenResourceSystem {
         protected double scale_multiplier = 1;
         protected string displayTexture = "";
         protected double displayThreshold = 0.001;
+		private Color lowColor = XKCDColors.HotPink;
+		private Color highColor = XKCDColors.Fuchsia;
         
         public ORSPlanetaryResourceInfo(string name, Texture2D map, int body) {
             this.name = name;
@@ -57,6 +59,16 @@ namespace OpenResourceSystem {
             }
         }
 
+		public void setLowColor(string color)
+		{
+			this.lowColor = ConfigNode.ParseColor(color);
+		}
+
+		public void setHighColor(string color)
+		{
+			this.highColor = ConfigNode.ParseColor(color);
+		}
+
         public int getBody() {
             return body;
         }
@@ -92,5 +104,15 @@ namespace OpenResourceSystem {
         public double getScaleMultiplier() {
             return scale_multiplier;
         }
+
+		public Color getLowColor()
+		{
+			return lowColor;
+		}
+
+		public Color getHighColor()
+		{
+			return highColor;
+		}
     }
 }
