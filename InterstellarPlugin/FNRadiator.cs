@@ -398,7 +398,10 @@ namespace InterstellarPlugin
                     part.decouple(1);
                 }
             }
-
+            else
+            {
+                convectedThermalPower = 0;
+            }
 
             if (radiatorIsEnabled)
             {
@@ -521,14 +524,28 @@ namespace InterstellarPlugin
 
         public override string GetInfo()
         {
-            float thermal_power_dissip = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(radiatorTemp, 4) / 1e6);
-            //float thermal_power_dissip2 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(upgradedRadiatorTemp, 4) / 1e6);
-            float thermal_power_dissip3 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(600, 4) / 1e6);
-            float thermal_power_dissip4 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(1200, 4) / 1e6);
-            float thermal_power_dissip5 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(1800, 4) / 1e6);
-            float thermal_power_dissip6 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(2400, 4) / 1e6);
-            float thermal_power_dissip7 = (float)(GameConstants.stefan_const * radiatorArea * Math.Pow(3000, 4) / 1e6);
-            return String.Format("Heat Radiated (Max): {0:n0} MW\n\nRadiator Performance at:\n600K: {1:n0} MW\n1,200K: {2:n0} MW\n1,800K: {3:n0} MW\n2,400K: {4:n0} MW\n3,000K: {5:n0} MW\n", thermal_power_dissip, thermal_power_dissip3, thermal_power_dissip4, thermal_power_dissip5, thermal_power_dissip6, thermal_power_dissip7);
+            // We build the info dynamically depending on the actual maximum temperature for the radiator.
+            var b = new StringBuilder()
+                .AppendFormat("Heat Radiated (Max): {0:n0} MW\n\nRadiator Performance at:", HeatDissipation(radiatorTemp));
+
+            // We'll put one (temperature, dissipation) point every 600°, plus the max.
+            for (int i = 0; i * 600 < radiatorTemp; ++i)
+            {
+                AppendRadiatorPerformanceLine(b, i * 600);
+            }
+            AppendRadiatorPerformanceLine(b, radiatorTemp);
+
+            return b.ToString();
+        }
+
+        private void AppendRadiatorPerformanceLine(StringBuilder b, float temperature)
+        {
+            b.AppendFormat("\n{0}K: {1:n0} MW", temperature, HeatDissipation(temperature));
+        }
+
+        private float HeatDissipation(float temperature)
+        {
+            return (float) (GameConstants.stefan_const * radiatorArea * Math.Pow(temperature, 4) / 1e6);
         }
 
         public override int getPowerPriority()

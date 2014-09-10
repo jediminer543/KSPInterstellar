@@ -165,7 +165,6 @@ namespace InterstellarPlugin {
             if (fuel_mode == 0) {
                 fuelmodeStr = GameConstants.deuterium_tritium_fuel_mode;
                 powerRequirements = initial_laser_consumption;
-                chargedParticleRatio = 0.21f;
                 resourceRate = initial_resource_rate;
                 if (isTokomak) {
                     ThermalPower = initial_thermal_power;
@@ -173,7 +172,6 @@ namespace InterstellarPlugin {
             } else if (fuel_mode == 1) {
                 fuelmodeStr = GameConstants.deuterium_helium3_fuel_mode;
                 powerRequirements = initial_laser_consumption*4f;
-                chargedParticleRatio = 0.8f;
                 if (isTokomak) {
                     resourceRate = resourceRate / 13.25f;
                     ThermalPower = initial_thermal_power / 13.25f * 1.03977f;
@@ -183,7 +181,6 @@ namespace InterstellarPlugin {
             } else {
                 fuelmodeStr = GameConstants.helium3_fuel_mode;
                 powerRequirements = initial_laser_consumption*7.31f;
-                chargedParticleRatio = 1.0f;
                 if (isTokomak) {
                     resourceRate = resourceRate / 17;
                     ThermalPower = initial_thermal_power / 17 * 0.7329545f;
