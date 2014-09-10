@@ -20,6 +20,7 @@ namespace OpenResourceSystem {
         protected double displayThreshold = 0.001;
 		private Color lowColor = XKCDColors.HotPink;
 		private Color highColor = XKCDColors.Fuchsia;
+		private bool hidden = false;
         
         public ORSPlanetaryResourceInfo(string name, Texture2D map, int body) {
             this.name = name;
@@ -69,6 +70,11 @@ namespace OpenResourceSystem {
 			this.highColor = ConfigNode.ParseColor(color);
 		}
 
+		public void setHiddenValue(string s)
+		{
+			this.hidden = bool.Parse(s);
+		}
+
         public int getBody() {
             return body;
         }
@@ -113,6 +119,11 @@ namespace OpenResourceSystem {
 		public Color getHighColor()
 		{
 			return highColor;
+		}
+
+		public bool getHidden()
+		{
+			return hidden;
 		}
     }
 }
