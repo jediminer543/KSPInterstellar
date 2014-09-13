@@ -94,7 +94,7 @@ namespace OpenResourceSystem
                     }
                     else
                     {
-                        string tex_path = planetary_resource_config_node.GetValue("WarpPlugin/resource_point");
+                        string tex_path = planetary_resource_config_node.GetValue("OpenResourceSystem/resource_point");
                         resource_info.setDisplayTexture(tex_path);
                     }
                     if (planetary_resource_config_node.HasValue("displayThreshold"))
@@ -103,6 +103,21 @@ namespace OpenResourceSystem
                         double display_threshold = double.Parse(display_threshold_str);
                         resource_info.setDisplayThreshold(display_threshold);
                     }
+					if (planetary_resource_config_node.HasValue("lowColor"))
+					{
+						string lowColor = planetary_resource_config_node.GetValue("lowColor");
+						resource_info.setLowColor(lowColor);
+					}
+					if (planetary_resource_config_node.HasValue("highColor"))
+					{
+						string highColor = planetary_resource_config_node.GetValue("highColor");
+						resource_info.setHighColor(highColor);
+					}
+					if (planetary_resource_config_node.HasValue("hidden"))
+					{
+						string hidden = planetary_resource_config_node.GetValue("hidden");
+						resource_info.setHiddenValue(hidden);
+					}
                     body_resource_maps.Add(resource_gui_name, resource_info);
                     List<Vector2d> abundance_points_list = new List<Vector2d>();
 
