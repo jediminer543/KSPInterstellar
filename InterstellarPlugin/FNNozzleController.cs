@@ -345,6 +345,10 @@ namespace InterstellarPlugin
                 {
                     TogglePropellant();
                 }
+                else
+                {
+                    updateIspEngineParams();
+                }
             }
             else
             {
