@@ -3,16 +3,16 @@ KSPInterstellar (experimental)
 
 KSP Instellar Mod for Kerbal Space Program
 
-This version of interstellar is modified and published by me, WaveFunctionP. It is not published by FractalUK, the creator of Interstellar. Do not blame him for broke things with this version, instead contact me here on github or the interstellar forum thread.
+This version of interstellar is modified and published by WaveFunctionP. It is not published by FractalUK, the creator of Interstellar. Do not blame him for broke things with this version, instead contact me here on github or the interstellar forum thread.
+
+I, jediminer543, have forked WaveFunctionP's KSPI Lite and reverted the configs to closer to the original KSPI Configs. Any Help would be mutch apreciated. Also Please raise issues if unwanted bugs occur.
 
 
 For players:
 
 Download the compiled addon here: https://github.com/WaveFunctionP/KSPInterstellar/releases
 
-Donations:
-
-https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VQWK2AHCDMR9Y
+I will Be releasing a compiled version once initial changes are made
 
 For developers:
 
